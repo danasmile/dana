@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/askAnswer.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+
+	<style type="text/css">
+		#layerui-layer39.layerui-layer.layerui-anim.layui-layer-tips {
+			top: 100px;
+		}
+
+		div.layerui-layer-content {
+			top: 100px;
+		}
+
+		.upload_ws_img {
+			display: flex;
+		}
+
+		.upload_ws_img .answerImg,
+		.inp_div_img {
+			display: inline-block;
+		}
+
+		.upload-img,
+		.answerImg {
+			display: inline-block;
+		}
+
+		.answerImg {
+			width: auto;
+			height: auto;
+		}
+
+		.answerImg img {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		.inp_div_img img {
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		/*底部弹窗*/
+		#dibupop {
+			text-align: center;
+			position: fixed;
+			height: 0;
+			width: 100%;
+			bottom: 0;
+			left: 0;
+			background: rgba(10, 12, 12, 0.8);
+			overflow-y: scroll;
+
+			color: #FFFFFF;
+		}
+
+		#dibupop ul {
+			padding-top: .2rem;
+			padding-bottom: .2rem;
+		}
+
+		#dibupop li {
+			padding-top: .1rem;
+		}
+
+		/*常见问题 样式*/
+		.questionDetail h4 {
+			color: #000;
+			font-weight: 600;
+			font-size: 0.26rem;
+			margin-bottom: 0.2rem;
+		}
+
+		.questionDetail p {
+			margin-bottom: 0;
+		}
+
+		.con .questionDetail {
+			display: none;
+		}
+
+		.con .questionDetail.on {
+			display: block;
+		}
+
+		.con .questionDetail p.note {
+			color: #EB8002;
+		}
+
+		[v-cloak] {
+			display: none !important;
+		}
+
+		.jie-tu {
+			width: 100%;
+			border: 1px solid #eee;
+		}
+
+		.userId {
+			border-bottom: 0;
+			padding-bottom: 0.2rem;
+		}
+
+		.userId1 span,
+		.userId1 span span {
+			font-size: 0.26rem;
+		}
+
+		.userQuestion table tr td:last-child {
+			padding-top: 0;
+		}
+
+		.userQuestion table tr {
+			/*width:100%;*/
+		}
+
+		.userQuestion table tr td {
+			/*width:10%;*/
+		}
+
+		.userQuestion table tr .jie-tu1:nth-child(2) {
+			padding-left: 0.28rem;
+		}
+
+		.conContent .content {
+			padding-bottom: 0.2rem;
+		}
+
+		.userQuestion table {
+			width: auto;
+		}
+	</style>
+
+</head>
+
+<body style="position: relative;">
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>有问必答</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page1">
+		<div id="tabBox12" class="tabBoxLine">
+			<div class="hd" style="margin-bottom:0.2rem;">
+				<ul>
+					<li class="type-or" data-type="1"><a href="javascript:void(0)">历史工单</a></li>
+					<li class="type-or" data-type="2"><a href="javascript:void(0)">提交工单</a></li>
+					<li class="type-or" data-type="1"><a href="javascript:void(0)">常见问题</a></li>
+				</ul>
+			</div>
+			<div class="bd" id="tabBox12-bd" style="position: relative;">
+				<!-- ①历史工单 -->
+				<div class="con" id="his-ord-list">
+
+				</div>
+				<!-- /①历史工单 -->
+
+				<!-- ②提交工单 -->
+				<div class="con submitDiv">
+					<!--问题分类-->
+					<div class="sort">
+						<p class="title">问题分类</p>
+						<div class="selSort">
+							<span class="current" data-cate="0">
+								<div class="lan89"></div>
+							</span>
+							<span data-cate="1">提现</span>
+							<span data-cate="2">其他</span>
+						</div>
+					</div>
+					<!--货币信息-->
+					<div class="coinMessage">
+						<div class="mes1">
+							<span>货币类型</span>
+							<span id="fttanqi">USTD</span>
+						</div>
+						<div class="openMessage">
+							<div class="mes1">
+								<span>交易ID(hash)</span>
+								<input type="text" class="tradeId" placeholder="请从发币方获取交易ID" id="depo_txid">
+							</div>
+							<p class="title">
+								<div class="lan216"></div>
+							</p>
+							<textarea name="answerWord" class="answerWord" placeholder="请在此输入你的问题" id="ticket_text"></textarea>
+							<div style="background: #fff;padding-bottom:0.3rem;">
+								<p class="title">问题截图</p>
+								<div class="upload_ws_img">
+									<div class="answerImg">
+
+									</div>
+
+									<div style="position: relative;" class="inp_div_img">
+										<img src="../imgs/file.png" />
+										<input type="file" name="files[]" multiple="multiple" class="upload-img upload-img2" id="duofiles">
+									</div>
+
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!--提交按钮-->
+					<div class="submitBtn">提交工单</div>
+				</div>
+				<!-- /②提交工单 -->
+
+				<!--③常见问题-->
+				<div class="con">
+					<table class="answerTable">
+						<tr>
+							<td>如何修改/取消谷歌验证码</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>如何修改手机号码</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>如何修改资金密码</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>如何充值</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>如何提现</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>充值不到账</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+						<tr>
+							<td>提现不到账</td>
+							<td><img src="../imgs/trunRight.png" alt=""></td>
+						</tr>
+					</table>
+				</div>
+				<!--/③常见问题-->
+
+				<!--④常见问题详情-->
+				<div class="con">
+					<div class="questionDetail">
+						<h4>如何修改/取消谷歌验证码</h4>
+						<p>打开安全设置--谷歌验证器绑定，点击“取消或重置谷歌验证 ”通过资金密码和绑定手机的短信验证码可以重置谷歌验证；如果原谷歌验证码可以使用需要取消，根据上面的提示，输入谷歌验证码，点击取消即可。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>如何修改手机号码？</h4>
+						<p>如果手机已经安装安卓版APP，登录账户后在安全中心，自助解绑手机号码，重新绑定新手机号码。</p>
+						<p>或提交工单，提供账户基本信息，本人手持身份证的照片等，我们帮您修改。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>如何修改资金密码？</h4>
+						<p>在安全设置中选择“修改资金密码”，根据提示输入账户绑定的邮箱和账户登录密码，查询邮件，根据提示重新设置资金密码即可。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>如何充值？</h4>
+						<p>在网站上方点击“我的财务”找到要充值的币种，点击“充值”查询充值地址，根据充值页面要求，转币到充值地址就可以。</p>
+						<p>如何是需要充值法币，在C2C场外交易区，先兑换成USDT再进行币币交易。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>如何提现？</h4>
+						<p>在网站上方点击“我的财务”找到要提币的币种，点击“提现”，直接进入提现页面，根据页面提示信息进行如实填写，填写完成后点击“提交提现申请”，完成提现操作。</p>
+						<p class="note">注意：数字资产只能提现到该币种对应的钱包地址，务必核实清楚再进行提交，否则操作错误有可能导致资产损失。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>充值不到账？</h4>
+						<p>请先查询区块记录，确认是否发送成功，充值地址是否有误。</p>
+						<p>如果充值信息无误，区块已经确认发送成功没有到账，请提供账户ID，充值币种，数量，充值时间和交易ID我们进行查询。</p>
+					</div>
+					<div class="questionDetail">
+						<h4>提现不到账？</h4>
+						<p>在提现记录下面有交易ID， 先查询区块记录确认是否发送成功。如果区块有记录没有到账，请复制提现记录联系接收方查询解决。</p>
+						<p>对于区块没有记录的，请提交信息我们进行查询</p>
+					</div>
+				</div>
+				<!--/④常见问题详情-->
+
+				<!--⑤历史订单详情-->
+				<div class="con his" id="hor-detail">
+
+				</div>
+				<!--/⑤历史订单详情-->
+
+
+
+			</div>
+		</div>
+
+
+
+		<!--底部弹窗 begin-->
+		<div id="dibupop">
+
+		</div>
+		<!--底部弹窗 end-->
+
+	</section>
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/vue.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var cate = "0";
+			var currency = "";
+			var inputFiles = {};
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+			}
+
+
+			/*提交订单分类选择*/
+			$(".selSort span").click(function () {
+				$(".selSort span").removeClass("current");
+				$(this).addClass("current");
+				//获得cate 
+				cate = $(this).data("cate").toString();
+
+			});
+
+			/*点击“常见问题列表进入问题详情”*/
+			$(".answerTable tr").click(function () {
+				var t = $(this).index();
+				$('.con .questionDetail').eq(t).addClass('on').siblings().removeClass('on');
+				var moveWidth = '-' + 3 * ($(".tempWrap").width()) + 'px';
+				$("#tabBox12-bd").css("transform", "translate(" + moveWidth + ", 0px) translateZ(0px)");
+			});
+			//选择底部actionsheet 的数据
+
+			$("#fttanqi").click(function () {
+				$("#dibupop").css({ "height": "50%" });
+
+			});
+
+
+			//获取货币类型数据
+			$.ajax({
+				url: httpHead + 'Wap/User/coinlist/',
+				type: "post",
+				data: {
+					ltoken: lToken
+					//ltoken:"72ac411aa25419e75850cc300b5af805"
+				},
+				success: function (data) {
+					if (data.code == "200") {
+
+						var str = '';
+						for (i in data.body) {
+							str += '<ul><li>' + data.body[i].toUpperCase() + '</li></ul>';
+						}
+						$('#dibupop').html(str);
+
+						$("#fttanqi").html(data.body[0].toUpperCase());
+						$("#dibupop ul li").click(function () {
+							var index = $(this).index();
+							layer.msg($(this).html(), { coin: 1, shift: 5 });
+							$("#fttanqi").html($(this).html().toUpperCase());
+							$("#dibupop").css({ "height": "0" });
+						})
+
+						//获得货币类型
+						currency = $("#fttanqi").html();
+
+					}
+				},
+				error: function (data) {
+					layer.msg(data.result, { icon: 2 })
+				}
+			});
+			//获取货币类型数据
+
+			//提交工单  
+			$('.submitBtn').on('click', function () {
+
+				//判断姓名是否为空
+				var jyid = /^[a-zA-Z0-9]{6,100}$/;
+
+				if ($("#depo_txid").val() == "") {
+					layer.tips('请输入交易id', '#depo_txid', { tips: 3 });
+					return false;
+				}
+				if (!jyid.test($("#depo_txid").val())) {
+					layer.tips('交易id最少6位数', '#depo_txid', { tips: 3 });
+					return false;
+				}
+				if ($("#ticket_text").val() == "") {
+					layer.tips('描述内容不能为空', '#ticket_text', { tips: 3 });
+					return false;
+				}
+				var up_img = new FormData();
+				var pic = document.getElementById("duofiles").files;
+				var currencyL = $("#fttanqi").html();
+				up_img.append('ltoken', lToken);
+				up_img.append('depo_txid', $("#depo_txid").val());
+				up_img.append('ticket_text', $("#ticket_text").val());
+				up_img.append('cate', cate);
+				up_img.append('currency', currencyL);
+				for (i in inputFiles) {
+					//console.log(i, inputFiles[i])
+					up_img.append(i, inputFiles[i]);
+				}
+				//console.log(lToken,$("#depo_txid").val(),$("#ticket_text").val(),cate,currencyL)
+				$.ajax({
+					url: httpHead + 'Wap/User/worklist_img',
+					type: 'post',
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: up_img,
+					success: function (data) {
+						//console.log(data)
+						if (data.code == "200") {
+							layer.msg(data.result, { icon: 1, shift: 5 });
+							setTimeout(function () {
+								location.reload();
+							}, 3000);
+						} else {
+							layer.msg(data['result']);
+						}
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				});
+			});
+			//提交工单
+
+			//上传图片预览
+			var amountIndexI = 0;
+			$("#duofiles").change(function () {
+				amountIndexI++;
+				//将图片的路径动态存入数组          
+				var pic = document.getElementById("duofiles").files[0];
+				//console.log(pic);
+				var srcSrc = window.URL.createObjectURL(pic);
+				//console.log($('.answerImg img').length);          
+				//动态创建子元素	            
+				$('<img>', {
+					src: srcSrc
+				}).appendTo($('.answerImg'));
+
+				$(this).attr('data-type', true);
+				var inputFileIndex = 'filename' + amountIndexI;
+				inputFiles[inputFileIndex] = pic
+				if ($('.answerImg img').length == 3) {
+					$('.inp_div_img').hide();
+				}
+
+			});
+			//上传图片预览
+			//历史工单
+			function historyDan() {
+				$.ajax({
+					url: 'https://jys.hedu.mobi/Wap/User/worklist',
+					type: 'post',
+					data: {
+						ltoken: lToken
+					},
+					success: function (data) {
+
+						if (data.code == '200') {
+							var shuzu = data.body.list;
+							//console.log(shuzu)
+							var shuzuL = shuzu.length;
+							var str = '';
+							var reply_list = '';
+							for (var i = 0; i < shuzuL; i++) {
+								var sendCateR = shuzu[i]['send_cate'];
+								var sendCate;
+								if (sendCateR == 0) {
+									sendCate = '充值';
+								} else if (sendCateR == 1) {
+									sendCate = '提现';
+								} else {
+									sendCate = '其他';
+								}
+								var imgS = '';
+								var sendImg1 = shuzu[i]['send_img1'];
+								var sendImg2 = shuzu[i]['send_img2'];
+								var sendImg3 = shuzu[i]['send_img3'];
+								if (sendImg1 != '' && sendImg1 != null) {
+									imgS += '<td width="100" class="jie-tu1"><img class="jie-tu" src="' + httpHead + sendImg1 + '" alt="问题"></td>';
+								}
+								if (sendImg2 != '' && sendImg2 != null) {
+									imgS += '<td width="100" class="jie-tu1"><img class="jie-tu" src="' + httpHead + sendImg2 + '" alt="问题"></td>';
+								}
+								if (sendImg3 != '' && sendImg3 != null) {
+									imgS += '<td width="100" class="jie-tu1"><img class="jie-tu" src="' + httpHead + sendImg3 + '" alt="问题"></td>';
+								}
+								var status = shuzu[i]['status'];
+								var statusC;
+								if (status == 0) {
+									statusC = '未回复';
+								} else {
+									statusC = '已回复';
+								}
+								str += '<div class="conContent"><div class="userId"><span>交易ID：<span>' + shuzu[i]['trans_id'] + '</span></span><span class="tixian">' + sendCate + '</span></div><div class="userId1"><span>货币类型：<span>' + shuzu[i]['currency'] + '</span></span></div><div class="userQuestion"><table><tr>' + imgS + '</tr></table></div><div class="content" style="">' + shuzu[i]['send_content'] + '</div><div class="questionState"><span>' + statusC + '</span><img src="../imgs/trunRight.png"  alt="更多"></div></div>';
+
+								reply_list += '<div class="hisDetail"><ul class="order1"><li><span>服务单号</span><span>' + shuzu[i]['worklist_id'] + '</span></li><li><span>服务时间</span><span>' + timestampToymdhms(Number(shuzu[i]['reply_time'])) + '</span></li></ul><ul class="order2"><li><p>审核留言</p></li><li><span>' + shuzu[i]['reply_content'] + '</span></li></ul><ul class="order3"><li><p>问题信息</p></li><li><span>问题分类</span><span>' + sendCate + '</span></li><li><span>货币类型</span><span>' + shuzu[i]['currency'] + '</span></li><li><span>交易ID</span><span>' + shuzu[i]['trans_id'] + '</span></li><li><span style="float:left;"><div class="lan216"></div></span></li><li class="description"><span class="messageWord">' + shuzu[i]['send_content'] + '</span></li></ul></div>';
+							}
+							$(".his").html(reply_list);
+							$('#his-ord-list').html(str);
+							/*点击“历史订单里的状态图标进入订单详情”*/
+							$("body").on("click", ".questionState", function () {
+								if ($(this).find('span').html() == '未回复') {
+									layer.msg('请等待回复', { icon: 2, shift: 5 });
+									return false;
+								}
+								var index = $(this).closest(".conContent").index();
+								$(".hisDetail").hide();
+								$(".his .hisDetail").eq(index).show();
+								var moveWidth = '-' + 4 * ($(".tempWrap").width()) + 'px';
+								$("#tabBox12-bd").css("transform", "translate(" + moveWidth + ", 0px) translateZ(0px)");
+							});
+
+						}
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				});
+				//setTimeout(function(){historyDan()},5000)
+			}
+			historyDan()
+			//历史工单
+
+			//时间戳转化函数
+			function timestampToymdhms(timestamp) {
+				var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				var Y = date.getFullYear() + '-';
+				var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				var D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate());
+				var hour = date.getHours()
+				var minute = date.getMinutes()
+				var second = date.getSeconds()
+				return Y + M + D + " " + hour + ':' + minute;
+			}
+
+		});
+	</script>
+
+
+</body>
+
+</html>

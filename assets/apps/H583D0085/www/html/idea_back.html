@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>联合交易所</title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="联合交易所">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<style>
+		textarea{border:none;font-size:0.25rem;line-height:0.5rem;padding: 0.19rem;}
+		input[type=text]{border:none;padding: 0.19rem;}
+		#box .list2 li {font-size: .35rem;line-height: .9rem;text-align: center;cursor: pointer;}
+		#box h3 {font-size: .4rem;text-align: center;padding: .2rem 0;margin-bottom: .2rem; }
+
+		#editbank .list2 li {font-size: .35rem;line-height: .9rem;text-align: center;cursor: pointer;}
+		#editbank h3 {font-size: .4rem;text-align: center;padding: .2rem 0;margin-bottom: .2rem; }
+		.txt{position: absolute;right: .4rem;top: 0;line-height: .98rem;color: #fff;font-size: .3rem;}
+		.page18{padding-top:0.15rem;}
+		textarea::-webkit-input-placeholder {color:#ccc;font-size: 100%;}
+		input::-webkit-input-placeholder {color:#ccc;font-size: 100%;}
+		#moblie{height:0.75rem;}
+		a{transition:none;}
+		a:active, a:hover, a:focus{color:#fff;}
+	</style>
+</head>
+
+
+
+<body>
+	<header>
+		<a class="back" onclick="history.go(-1)"></a>
+		<h3>问题反馈</h3>
+		<a class="txt">
+			<div class="lan115"></div>
+		</a>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page18">
+
+		<div>
+			<textarea id="remark" rows="3" cols="20" placeholder="请输入您的意见或者建议"></textarea>
+			<br><br>
+			<input type="text" id="moblie" placeholder="您的手机号码或者邮箱">
+		</div>
+
+
+	</section>
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script>
+		$('.txt').on('click', function () {
+			var remarkVal = $('#remark').val();
+			var moblieVal = $('#moblie').val();
+			if (remarkVal == '') {
+				layer.tips('请输入您的意见或者建议', '#remark', { tips: 3 });
+				return false;
+			}
+			if (moblieVal == '') {
+				layer.tips('请输入手机号码或者邮箱', '#moblie', { tips: 3 });
+				return false;
+			}
+			var sendData;
+			//此处为接口位置
+			//此处为接口位置
+		})
+	</script>
+</body>
+
+</html>

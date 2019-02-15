@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<style>
+		.page-loginRegister .btn{
+		background:#ff564f;
+	}
+</style>
+</head>
+
+<body style="background-color:#030f24">
+	<header class="transparent">
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>
+			<div class="lan224"></div>
+		</h3>
+	</header>
+	<!-- <div class="h98"></div> -->
+
+
+
+	<section class="wrap page-loginRegister">
+
+		<a href="" class="logo" style="width:0.8rem;"><img src="../imgs/loges.png" alt=""></a>
+		<ul class="form">
+			<li><input type="text" class="icon-countryCode holder33" onfocus="this.blur();"></li>
+			<li><input type="text" class="icon-phone holder29"></li>
+			<li><input type="text" class="icon-code" placeholder="验证码"><a href="javascript:void(0)" class="btn-yzm">
+					<div class="lan226"></div>
+				</a></li>
+			<li><input type="password" name="" id="password1" class="icon-lock" placeholder="登录密码(6-16位字母和数字的组合)"></li>
+			<li><input type="password" name="" id="password2" class="icon-lock" placeholder="确认登录密码"></li>
+			<li><input type="password" name="" id="lock1" class="icon-lock2" placeholder="资金密码(6-16位字母和数字的组合)"></li>
+			<li><input type="password" name="" id="lock2" class="icon-lock2" placeholder="确认资金密码"></li>
+			<li class="mt6"><input type="submit" value="注册" class="btn"></li>
+		</ul>
+
+
+	</section>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="../js/main.js"></script>-->
+	<script src="../layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			mui.init();
+			window.addEventListener('refresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				// var phoneCode = event.detail.phoneCode;
+				location.reload();
+			});
+			var authCodeA;
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+
+			$('.icon-countryCode').val(localStorage.draft_phoneCode);
+			$('.icon-countryCode').on('click', function () {
+				mui.openWindow({
+					url: 'phone-area.html',
+					id: 'phone-area.html',
+					extras: {
+						fromPage: 'register.html'  //扩展参数
+					},
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+			//实现注册功能
+			$('.mt6 .btn').on('click', function () {
+				var iconCountryCode = $('.icon-countryCode').val();
+				var iconPhone = $('.icon-phone').val();
+				var iconCode = $('.icon-code').val();
+				var password1 = $('#password1').val();
+				var password2 = $('#password2').val();
+				var lock1 = $('#lock1').val();
+				var lock2 = $('#lock2').val();
+
+				if (iconCountryCode == '' || iconCountryCode == null) {
+					layer.tips('请输入国家码', '.icon-countryCode', { tips: [3, '#FFA235'] });
+					return false;
+				}
+
+				if (iconPhone == '' || iconPhone == null) {
+					layer.tips('请输入手机号', '.icon-phone', { tips: [3, '#FFA235'] });
+					return false;
+				}
+				if (iconCode == '' || iconCode == null) {
+					layer.tips('请输入验证码', '.icon-code', { tips: [3, '#FFA235'] });
+					return false;
+				}
+				if (password1 == '' || password1 == null) {
+					layer.tips('请输入登录密码', '#password1', { tips: [3, '#FFA235'] });
+					return false;
+				} else if (get_pwd_strength(password1) != true) {
+					layer.tips(get_pwd_strength(password1), '#password1', { tips: 3 });
+					return false;
+				}
+				if (password2 == '' || password2 == null) {
+					layer.tips('请输入确认登录密码', '#password2', { tips: [3, '#FFA235'] });
+					return false;
+				}
+				if (password1 != password2) {
+					layer.tips('请输入相同的登录密码', "#password2", { tips: [3, '#FFA235'] });
+					return false;
+				}
+
+				if (lock1 == '' || lock1 == null) {
+					layer.tips('请输入资金密码', '#lock1', { tips: [3, '#FFA235'] });
+					return false;
+				} else if (get_pwd_strength(lock1) != true) {
+					layer.tips(get_pwd_strength(lock1), '#lock1', { tips: 3 });
+					return false;
+				}
+				if (lock1 == password1) {
+					layer.tips('资金密码不能和登录密码相同', "#lock1", { tips: [3, '#FFA235'] });
+					return false;
+				}
+				if (lock2 == '' || lock2 == null) {
+					layer.tips('请输入确认资金密码', '#lock2', { tips: [3, '#FFA235'] });
+					return false;
+				}
+				if (lock1 != lock2) {
+					layer.tips('请输入相同的资金密码', '#lock2', { tips: [3, '#FFA235'] })
+					return false;
+				}
+				var sendData = {
+					countryCode: iconCountryCode,
+					moble: iconPhone,
+					password: password1,
+					fund_psd: lock1
+				}
+				console.log(sendData);
+				$.ajax({
+					url: 'https://jys.hedu.mobi/wap/Login/upregister',
+					type: 'post',
+					data: sendData,
+					success: function (data) {
+						if (data['code'] == 200) {
+							layer.msg('注册成功', { icon: 1, shift: 5 });
+							//					    localStorage.setItem('telephoneNumber',sendData.moble);					   
+							setTimeout(function () {
+								mui.back();
+							}, 2000);
+						} else {
+							layer.msg(data['result'], { icon: 2, shift: 5 })
+						}
+					},
+					error: function (res) {
+						console.log(res)
+					}
+				});
+			});
+			//实现注册功能
+
+			//发送短信验证码
+			$(".btn-yzm").on('click', function () {
+				if ($('.icon-countryCode').val() == '') {
+					layer.tips('请输入国家码', '.icon-countryCode', { tips: [3, '#FFA235'] });
+					return false;
+				} else {
+					var countryCode = $('.icon-countryCode').val();
+				}
+
+				if ($('.icon-phone').val() == '') {
+					layer.tips('请输入手机号', '.icon-phone', { tips: [3, '#FFA235'] });
+					return false;
+				} else {
+					var mobileY = $('.icon-phone').val();
+				}
+				var sendData = {
+					countryCode: countryCode,
+					mobile: mobileY,
+					bj: 1
+				}
+				//console.log(sendData)
+				if (!$('.btn-yzm').hasClass('disabled')) {
+					$.ajax({
+						url: httpHead + 'Wap/login/real',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							console.log(data);
+							if (data['code'] == 200) {
+								layer.msg(data['result'], { icon: 1, shift: 5 });
+								authCodeA = data['body'];
+								timeClock('.btn-yzm');
+							} else {
+								layer.msg(data['result'], { icon: 2, shift: 5 });
+							}
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					});
+				} else {
+					layer.msg('不能频繁发送', { icon: 2, shift: 5 });
+				}
+			});
+			//发送短信验证码
+			//验证密码6-16位字母和数字的组合
+			function get_pwd_strength($pwd) {
+				if ($pwd.length > 16 || $pwd.length < 6) {
+					return "密码必须为6-16位";
+				} else if (/^\d+$/.test($pwd)) {
+					return "密码必须包含字母";//全数字
+				} else if (/^[a-z]+$/i.test($pwd)) {
+					return '密码必须包含数字';
+				} else if (!/^[A-Za-z0-9]+$/.test($pwd)) {
+					return '密码只能包含数字和字母';
+				} else {
+					return true;
+				}
+			}
+			//验证密码6-16位字母和数字的组合
+			//手机验证码倒计时函数
+			function timeClock(cls) {
+				var _this = $(cls);
+				if (_this.hasClass('disabled')) {
+					return false;
+				} else {
+					_this.addClass('disabled');
+					var i = 59;
+					var int = setInterval(clock, 1000);
+					function clock() {
+						_this.text("重新发送(" + i + ")");
+						i--;
+						if (i < 0) {
+							_this.removeClass('disabled');
+							i = 59;
+							_this.text("点击获取");
+							clearInterval(int);
+						}
+					}
+					return false;
+				}
+			}
+			//手机验证码倒计时函数
+		})
+	</script>
+</body>
+
+</html>

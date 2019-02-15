@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>联合交易所</title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="联合交易所">
+	<meta name="description" content="1">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+
+	<style>
+		.operate{
+	width: 5.5rem;
+    margin: 0 auto;
+    margin-top: 0.3rem;
+    background-color: white;
+}
+.page24 .list .title{
+	line-height: .85rem;
+	padding: 0 .3rem;
+	background-color: #f4f4f4;
+	color: #999;
+	font-size: .24rem;
+}
+.page24 .list input[type=file]{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+.page24 .list .btn-upload span {
+	position: absolute;
+	bottom: 1.2rem;
+	left: 0;
+	text-align: center;
+	width: 100%;
+}
+.page24 .list .btn-upload {
+	background: url(../images/upload.png) center center no-repeat;
+	background-size: 7.08rem 4.43rem;
+	width: 100%;
+	height: 4.73rem;
+	position: relative;
+	text-align: center;
+	font-size: .24rem;
+	color: #666;
+	padding: .3rem;
+	
+}
+.operate {
+	width: 5.5rem;
+	margin: 0 auto;
+	margin-top: 0.3rem;
+	background-color: white;
+}
+input[type=submit] {
+	/*background-color: #ff8c00;*/
+	text-align: center;
+	width: 100%;
+	border: #cccccc 1px solid;
+	height: .75rem;
+	border-radius: .1rem;
+}
+.img-look{
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	padding:0.3rem;
+	box-sizing:border-box;
+	border:none;
+}
+</style>
+</head>
+
+
+
+<body class="bg">
+	<header>
+		<a class="back" href="javascript:mui.back();"></a>
+		<h3>更换头像</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page24">
+		<!--<form action="/user/img" enctype="multipart/form-data" method="post" >	</form>-->
+
+		<ul class="list">
+			<li>
+				<p class="title">上传头像</p>
+				<div class="btn-upload" id="ups">
+					<img class="img-look" src="" alt="" />
+					<span>请上传头像</span>
+					<input type="file" name="photo" id="photo">
+				</div>
+			</li>
+
+			<li class="operate" id="subtn"><input type="submit" value="点击上传头像" class="btn"></li>
+		</ul>
+
+	</section>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script>
+		mui.init();
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//用户ltoken
+				$('#photo').on('change', function () {
+					$(this).attr('data-type', true);
+					var filename = $(this)[0].files[0];
+					var wuc = window.URL.createObjectURL(filename);
+					$(this).siblings('span').hide();
+					$(this).siblings('.img-look').show();
+					$(this).siblings('.img-look').attr('src', wuc);
+					var up_img = new FormData();
+					up_img.append('file', filename);
+					up_img.append('ltoken', lToken);
+					var senData = { ltoken: lToken, file: filename }
+					console.log(senData)
+					$.ajax({
+						url: httpHead + 'Wap/User/edit_headerpic',
+						type: 'post',
+						cache: false,
+						contentType: false,
+						processData: false,
+						data: up_img,
+						success: function (data) {
+							console.log(data);
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					})
+				});
+				$('.btn').on('click', function () {
+					if ($('#photo').attr('data-type')) {
+						layer.msg('上传成功', { icon: 1, shift: 5 });
+						var propertyStockTwo = plus.webview.getWebviewById('mine.html');
+						mui.fire(propertyStockTwo, 'refresh');
+						var propertyStockLogin = plus.webview.getWebviewById('login.html');
+						mui.fire(propertyStockLogin, 'refresh');
+						setTimeout(function () {
+							mui.back();
+						}, 3000)
+					} else {
+						layer.msg('请添加图片', { icon: 2, shift: 5 });
+					}
+				});
+
+			}
+
+		})
+
+
+
+	</script>
+
+</body>
+
+</html>

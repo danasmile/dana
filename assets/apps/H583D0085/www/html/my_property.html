@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<style>
+		.g-propertyPanel .money {
+			font-size: 0.36rem;
+			color: #eee;
+			margin-left: 0.1rem;
+		}
+
+		html .g-propertyPanel .meney2 {
+			font-size: 0.26rem;
+			margin-top: 0.06rem;
+			color: #eee;
+		}
+
+		.money3 {
+			color: #333;
+			font-size: 0.26rem;
+			text-align: center;
+			margin-top: 0.18rem;
+			background: #fff;
+			display: flex;
+			padding: 0.3rem 0 0.3rem;
+			margin-bottom: 0.2rem;
+			justify-content: space-around;
+		}
+
+		.money3 span {
+			color: #333;
+		}
+
+		.money3 span:nth-child(1) {
+			margin-right: 0.3rem;
+		}
+
+		html .g-propertyPanel .txt1 {
+			opacity: 1;
+		}
+
+		.money3 .dongjie {
+			color: #333;
+		}
+
+		.g-propertyPanel .money2 .dongjie {
+			color: #333;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="" style="background-color:#ee514a;">
+		<!--<a href="javascript:history.back();" class="back"></a>-->
+		<h3>我的资产</h3>
+	</header>
+	<!-- <div class="h98"></div> -->
+	<section class="wrap page18">
+		<div class="g-propertyPanel">
+		</div>
+		<div class="property-dong">
+
+		</div>
+		<!--<div class="search">
+		<input type="text" placeholder="搜索币种">
+		<label for="" class="checkbox">隐藏小于￥1</label>
+	</div>-->
+
+		<div class="list">
+			<div class="loginTips" style="width:50%;margin:0 auto;text-align:center;margin-top:2.6rem;display:none;">
+				<a href="javascript:void(0)" style="">
+					<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+					<p style="font-size:0.3rem;">登录后查看</p>
+				</a>
+			</div>
+		</div>
+
+
+	</section>
+
+
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			window.addEventListener('refresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				location.reload();
+			});
+			$('.loginTips').on('click', function () {
+				mui.openWindow({
+					url: 'login.html',
+					id: 'login.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//alert(lToken)
+				//用户ltoken
+				//获取用户资产
+				var sendData = { ltoken: lToken };
+				myFinance();
+				function myFinance() {
+					$.ajax({
+						url: httpHead + 'Wap/Finance/index',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							//console.log(data)
+							if (data['code'] == 200) {
+								var totalDataStr = '';
+								totalDataStr = '<div class="txt1">预估总资产</div><div class="money">' + data['body']['cny']['zj'] + '<span>YDP</span></div><div class="meney2"><span class="dongjie">或</span>' + data['body']['cny']['elc_btc'] + '<span>BTC</span></div>';
+								$(".g-propertyPanel").html(totalDataStr);
+								// $('.property-dong').html('<div class="money3"><span>可用YDP:' + data['body']['cny']['zj'] + '</span><span class="dongjie">冻结YDP:' + data['body']['cny']['elc_btc'] + '</span></div>');
+								var imgHttp = 'https://jys.hedu.mobi/Upload/coin/';
+								var coinListStr = '';
+								var dataS = data['body']['coinList'];
+								/*for(i in dataS){
+										var dataCoinTitle = dataS[i]['title'].split('(')[0]; 
+										var bcode=encodeURI(encodeURI(dataCoinTitle));	
+									coinListStr += '<div class="item"><ul class="con"><li><h3><img src="'+imgHttp+dataS[i]['img']+'" alt="" class="icon">'+dataS[i]['xnb']+'</h3><div class="txt2">'+dataS[i]['name']+' '+dataCoinTitle+'</div></li><li><div class="txt1">折合(YDP)</div><div class="txt2">'+dataS[i]['zhehe']+'</div></li><li><div class="txt1">冻结</div><div class="txt2">'+dataS[i]['xnbd']+'</div></li>'
+									+'</ul><div class="btm">'
+									+'<a class="btn1 add-money" data-href="addMoney.html?'+dataS[i]['name']+'&'+dataS[i]['xnb']+'&'+bcode+'">'
+									+'<img src="../images/icon184-1.png" alt="" class="icon2">充币</a><a data-href="extract.html?'+dataS[i]['name']+'&'+dataS[i]['xnb']+'" class="btn2 extract"><img src="../images/icon184-2.png" alt="" class="icon2">提币</a><a href="javascript:void(0)" class="btn3"><img src="../images/icon184-3.png" alt="" class="icon2">交易</a></div></div>';
+								}*/
+								//addressAdd
+								for (i in dataS) {
+									var dataCoinTitle = dataS[i]['title'].split('(')[0];
+									var bcode = encodeURI(encodeURI(dataCoinTitle));
+									coinListStr += '<div class="item"><ul class="con"><li><h3><img src="' + imgHttp + dataS[i]['img'] + '" alt="" class="icon">' + dataS[i]['xnb'] + '</h3><div class="txt2">' + dataS[i]['name'] + ' ' + dataCoinTitle + '</div></li><li><div class="txt1">冻结</div><div class="txt2">' + dataS[i]['xnbd'] + '</div></li><li><div class="txt1">总计</div><div class="txt2">' + dataS[i]['zhehe'] + '</div></li>'
+										+ '</ul><div class="btm">'
+										+ '<a class="btn1 add-money" data-href="addressAdd.html?' + dataS[i]['name'] + '&' + dataS[i]['xnb'] + '&' + bcode + '">'
+										+ '<img src="../images/icon184-1.png" alt="" class="icon2">充币</a><a data-href="extract.html?' + dataS[i]['name'] + '&' + dataS[i]['xnb'] + '" class="btn2 extract"><img src="../images/icon184-2.png" alt="" class="icon2">提币</a><a href="javascript:void(0)" class="btn3"><img src="../images/icon184-3.png" alt="" class="icon2">交易</a></div></div>';
+								}
+								$('.list').html(coinListStr);
+								$('.add-money').on('click', function () {
+									var thisUrl = $(this).attr('data-href');
+									mui.openWindow({
+										url: thisUrl,
+										id: thisUrl,
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								});
+								$('.extract').on('click', function () {
+									var url = $(this).attr('data-href');
+									console.log(url);
+									mui.openWindow({
+										url: url,
+										id: url,
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								});
+								$('.btn3').on('click', function () {
+									mui.fire(plus.webview.currentWebview().opener(), 'godeal');
+								})
+							}
+						},
+						error: function (res) {
+							console.log(res);
+						}
+					})
+					setTimeout(function () { myFinance() }, 5000);
+				}
+
+				//获取用户资产
+			} else {
+				$('.loginTips').show();
+			}
+
+		});
+	</script>
+</body>
+
+</html>

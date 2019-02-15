@@ -1,0 +1,25 @@
+.con{
+	background: #FFFFFF;
+}
+.ws_zfb_pay{
+	display: flex;
+	align-items: center;
+	background: #fff;
+	padding-bottom:0.3rem;
+	padding-top:0.3rem;
+}
+.zfb_pay-p{
+	display: inline-flex;
+	height: 1.5rem;
+	line-height: 1.5rem;
+	padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+}
+.zfb_pay-p img{
+	width:1.5rem;
+}
+.zfb_pay-p input[type='file']{
+    color: transparent;
+    
+}

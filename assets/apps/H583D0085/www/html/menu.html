@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+	<script src="../js/languge/languge.js"></script>
+	<style type="text/css">
+		.mui-active {
+			color: #f24646 !important;
+		}
+
+		.mui-bar-tab .mui-icon {
+			background-repeat: no-repeat;
+			background-size: 100%;
+			background-position: center;
+			top: 4px !important;
+		}
+
+		.m-icon1 {
+			background-image: url('../imgs/ft1.png');
+		}
+
+		.mui-active .m-icon1 {
+			background-image: url('../imgs/ft1-on.png');
+		}
+
+		.m-icon2 {
+			background-image: url('../imgs/ft2.png');
+		}
+
+		.mui-active .m-icon2 {
+			background-image: url('../imgs/ft2-on.png');
+		}
+
+		.m-icon3 {
+			background-image: url('../imgs/ft3.png');
+		}
+
+		.mui-active .m-icon3 {
+			background-image: url('../imgs/ft3-on.png');
+		}
+
+		.m-icon4 {
+			background-image: url('../imgs/ft4.png');
+		}
+
+		.mui-active .m-icon4 {
+			background-image: url('../imgs/ft4-on.png');
+		}
+
+		.m-icon5 {
+			background-image: url('../imgs/ft5.png');
+		}
+
+		.mui-active .m-icon5 {
+			background-image: url('../imgs/ft5-on.png');
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="mui-bar mui-bar-tab">
+		<a id="defaultTab" class="mui-tab-item mui-active" href="market.html">
+			<span class="mui-icon m-icon1"></span>
+			<span class="mui-tab-label">行情</span>
+		</a>
+		<a id="dealTap" class="mui-tab-item" href="stock_goods.html">
+			<span class="mui-icon m-icon2"></span>
+			<span class="mui-tab-label">交易</span>
+		</a>
+		<a class="mui-tab-item" href="c2c_trade.html">
+			<span class="mui-icon m-icon3"></span>
+			<span class="mui-tab-label">C2C</span>
+		</a>
+		<a class="mui-tab-item" href="my_property.html">
+			<span class="mui-icon m-icon4"></span>
+			<span class="mui-tab-label">资金</span>
+		</a>
+		<a class="mui-tab-item" href="mine.html">
+			<span class="mui-icon m-icon5"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</nav>
+</body>
+<script src="../js/mui.min.js"></script>
+<script type="text/javascript">
+	mui.init();
+	//mui初始化									
+	mui.plusReady(function () {
+		var pages = ['market.html', 'stock_goods.html', 'c2c_trade.html', 'my_property.html', 'mine.html'];
+		var arr = document.getElementsByClassName("mui-tab-item");
+		var styles = {
+			top: "0",
+			bottom: "51px"
+		}
+		var pageArr = [];
+		var slef = plus.webview.currentWebview();
+		for (var i = 0; i < arr.length; i++) {
+			// 有几个选项卡，需要创建几个子页面
+			var page = plus.webview.create(pages[i], pages[i], styles);
+			pageArr.push(page);
+			!function (i) {
+				arr[i].addEventListener("tap", function () {
+					// 让当前页面(i)显示，不是当前页面隐藏
+					for (var j = 0; j < pageArr.length; j++) {
+						if (j != i) pageArr[j].hide();
+						else pageArr[j].show();
+					}
+					/* 让新创建的webview，追加合并到当前的窗口上。合并成一个窗口。
+					 * 目的：将父子窗口合并成一个页面，实现同开同关的效果。 避免点击返回安监室，子页面先关闭，而父页面的头部和尾部没有关闭的BUG。
+					 */
+					slef.append(pageArr[i]);
+
+				})
+			}(i);
+		}
+		// 默认触发第0个选项卡的tap事件。
+		mui.trigger(arr[0], "tap");
+
+		//自定义事件，模拟点击“跳转到交易tab”
+		document.addEventListener('godeal', function () {
+			var dealTap = document.getElementById("dealTap");
+			//模拟首页点击
+			mui.trigger(dealTap, 'tap');
+			//切换选项卡高亮
+			var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+			if (dealTap !== current) {
+				current.classList.remove('mui-active');
+				dealTap.classList.add('mui-active');
+			}
+		});
+
+
+	});
+
+
+</script>
+
+</html>

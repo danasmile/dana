@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<!--<link rel="stylesheet" type="text/css" href="../css/bank_czrd.css"/>-->
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		.item-bank{
+		width:94%;
+		margin:0 auto;
+		background:#ff564f;
+		border-radius:6px;
+		margin-top:0.2rem;
+	}
+	.item-bank a{
+		display:block;
+		color:#fff;
+		/*overflow:hidden;*/
+		position: relative;
+	}
+	.item-bank a span{
+		position:absolute;
+		right:0.2rem;
+		top:0.2em;
+		color:#fff;
+		font-size:0.4rem;
+	}
+	.bank-float{
+		overflow:hidden;
+	}
+	.item-bank a h3{
+		padding:0.4rem 0.2rem 0;
+		font-size:0.32rem;
+	}
+	.bank-card{
+		padding:0.3rem 0.3rem 0.4rem;
+		font-size:0.28rem;
+		float:right;
+	}
+	.bank-float .bank-card:nth-child(1){
+		float: left;
+	} 
+</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:history.back();" class="back"></a>
+		<h3>银行卡管理</h3>
+	</header>
+	<div class="h98"></div>
+
+
+
+	<section class="wrap page21">
+		<div class="list-bank">
+
+		</div>
+		<div class="g-operate" style="text-align: center;"><a class="btn add_backcard" style="display: block;">+
+				添加银行卡 </a></div>
+
+	</section>
+	<div id="search">
+
+	</div>
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/bank_czrd.js"></script>
+
+	<script>
+		$(function () {
+				mui.init();
+
+				$('.add_backcard').on('click', function () {
+						mui.openWindow({
+								url: 'add_backcard.html',
+								id: 'add_backcard.html',
+								styles: {
+										top: '0',//新页面顶部位置
+										bottom: '0',//新页面底部位置
+								},
+								waiting: {
+										autoShow: false
+								},
+								show: {
+										autoShow: true//页面loaded事件发生后自动显示，默认为true
+								}
+						});
+				});
+			
+
+
+		});
+
+</script>
+</body>
+
+</html>

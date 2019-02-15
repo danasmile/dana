@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main1.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+    <style>
+        html body {
+            background: #fff;
+        }
+
+        /*订单详情表格*/
+        .detailOrder {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .detailOrder tr {
+            height: 0.8rem;
+            line-height: 0.8rem;
+        }
+
+        .detailOrder td {
+            color: #999;
+            font-size: 0.28rem;
+        }
+
+        .detailOrder td span:last-child {
+            float: right;
+            color: #666;
+        }
+
+        span.orderNumber,
+        span.remark {
+            color: red !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="javascript:mui.back();" class="back"></a>
+        <h3>订单详情</h3>
+    </header>
+    <div class="h98"></div>
+    <section class="wrap page2">
+        <div style="margin:0 0.2rem;">
+            <table class="detailOrder">
+                <tr>
+                    <td>
+                        <span>单号 </span>
+                        <span class="orderNumber idnum"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>价格（CYN）</span>
+                        <span class="price"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>数量（USDT）</span>
+                        <span class="num"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>金额（CYN）</span>
+                        <span class="cprice"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>建立时间 </span>
+                        <span class="addtime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>打款时间 </span>
+                        <span class="paytime"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>类型 </span>
+                        <span class="type"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>姓名 </span>
+                        <span class="name"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>状态 </span>
+                        <span class="status"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>币种 </span>
+                        <span>CNY</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>注意事项 </span>
+                        <span class="remark">请注意打款时间，超时将自动关闭</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <!--<script src="js/main.js"></script>-->
+    <script src="../layer/layer.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script>
+        $(function () {
+            mui.init();
+            mui.plusReady(function () {
+                var self = plus.webview.currentWebview();
+                //alert(self.allData)
+                var selfData = self.allData;
+                var payTime;
+                $('.idnum').html(selfData.id);
+                $('.price').html(selfData.price);
+                $('.num').html(selfData.num);
+                $('.cprice').html(selfData.cprice);
+                $('.addtime').html(format(Number(selfData.addtime)));
+                if (selfData.paytime == 0) {
+                    payTime = 0;
+                } else {
+                    payTime = format(Number(selfData.paytime));
+                }
+                $('.paytime').html(payTime);
+                $('.type').html(selfData.type);
+                $('.name').html(selfData.shopName);
+                $('.status').html(selfData.status);
+            });
+
+            // 时间戳转日期
+            function add0(m) { return m < 10 ? '0' + m : m }
+            function format(shijianchuo) {
+                var shijianchuo = shijianchuo * 1000;
+                //shijianchuo是整数，否则要parseInt转换
+                var time = new Date(shijianchuo);
+                var y = time.getFullYear();
+                var m = time.getMonth() + 1;
+                var d = time.getDate();
+                var h = time.getHours();
+                var mm = time.getMinutes();
+                var s = time.getSeconds();
+                //console.log(y,'hahah')
+                return add0(y) + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+            }
+            // 时间戳转日期
+        })
+    </script>
+</body>
+
+</html>

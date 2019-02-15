@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+    <style>
+        .recordTable{
+            width:100%;
+            color:#888;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .recordTable thead tr{
+            color:#000;
+            font-size:0.30rem;
+            height:0.8rem;
+            line-height:0.8rem;
+            border-bottom:1px solid #ccc;
+        }
+        .recordTable tbody tr{
+            height:1.0rem;
+            line-height:1.0rem;
+            border-bottom:1px solid #eee;
+        }
+        .recordTable tr td:nth-child(1),.recordTable tr th:nth-child(1){
+            width:auto;
+        }
+        .recordTable tr td:nth-child(2),.recordTable tr th:nth-child(2){
+              width:16%;
+        }
+        .recordTable tr td:nth-child(3),.recordTable tr th:nth-child(3){
+            width:20%;
+        }
+        .recordTable tr td:nth-child(4),.recordTable tr th:nth-child(4){
+            width:20%;
+        }
+        .recordTable tr td:nth-child(5),.recordTable tr th:nth-child(5){
+            width:15%;
+        }
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+    </style>
+</head>
+<body style="background: #fff;">
+<header>
+    <a href="javascript:history.back();" class="back"></a>
+    <h3><div class="lan153"></div></h3>
+</header>
+<div class="h98"></div>
+<section class="wrap page9">
+    <table class="recordTable">
+        <thead>
+            <tr>
+                <th>提现时间</th>
+                <th><div class="lan46a"></div></th>
+                <th><div class="lan16"></div></th>
+                <th>实际到账</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody class="tbodyRecord">
+
+        </tbody>
+
+    </table>
+</section>
+<script src="../js/slide.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    $(function () {
+         //域名
+        var httpHead = 'https://jys.hedu.mobi/';
+        //域名
+        if(localStorage.ltoken){
+            //用户ltoken
+            var lToken = localStorage.ltoken;
+            //用户ltoken
+            var hrefBi = location.href.split("?");
+
+            var coinType=hrefBi[1].toLowerCase();
+
+            var recordData = {
+                ltoken:lToken,
+                coin:coinType
+            };
+            console.log(recordData);
+            $.ajax({
+                url:httpHead+'Wap/Finance/myzr_list',
+                type:'post',
+                data:recordData,
+                success:function(data){
+                	 console.log(data);
+                    if(data['code'] == 200){
+                        var listLength=data['body']['list'].length;
+                        var listHtml='';
+                        for(var i=0;i<listLength;i++){
+                            var useridList=data['body']['list'][i]['userid'];//列表id
+                            var addtimeList=timeChange(data['body']['list'][i]['addtime']);//添加时间
+                            var numList=Number(data['body']['list'][i]['num']).toFixed(2);//数量
+                            var mumList=Number(data['body']['list'][i]['mum']).toFixed(2);//实际到账
+                            var statusList=data['body']['list'][i]['status'];//状态
+                            var statusContent;
+                            var a;
+
+                            if(statusList==0){
+                                statusContent="失败";
+                                a="red";
+                            }else if(statusList==1){
+                                statusContent="成功";
+                                a="green";
+                            }
+
+                            listHtml+='<tr id="'+useridList+'"><td><span>'+addtimeList+'</span></td><td class="coinType">'+coinType+'</td><td>'+numList+'</td><td>'+mumList+'</td><td class="status '+a+'">'+statusContent+'</td></tr>';
+                            
+                        }
+                        $(".tbodyRecord").html(listHtml);
+
+                    }else{
+                        layer.msg(data['result'],{icon:2,shift:5});
+                    }
+                },
+                error:function(data){
+                    console.log(data);
+                }
+            })
+        }else{
+            layer.msg('请先登录')
+        }
+
+
+function timeChange(dateString, formdate) {
+        if (dateString == null || dateString == '') {
+            return '';
+        }
+        // new Date('');传入毫秒数,也可以得到普通的时间,再对date处理
+        var date = new Date(parseInt(dateString));
+        //获取月份,天数,小时数,分钟数,小于10的显示01-09
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        var ss = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+        if (formdate == null || formdate == "yyyy-mm-dd HH:mm:ss") {
+            return month + "-" + currentDate + " " + hours + ":" + minutes+ ":" +ss;
+        } else if (formdate == "yyyy-mm-dd") {
+            return month + "-" + currentDate;
+        } else if (formdate == "yyyy-mm") {
+            return month;
+        } else if (formdate == "mm-dd") {
+            return month + "-" + currentDate;
+        } else if (formdate == "HH:mm") {
+            return hours + ":" + minutes;
+        } else {
+            return '';
+        }
+    }
+    });
+
+
+    
+    // console.log(timeChange(1494591696997))
+
+</script>
+</body>
+</html>

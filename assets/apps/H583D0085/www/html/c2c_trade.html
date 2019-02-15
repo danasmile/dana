@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		html body{
+			background:#fff;
+			position:relative;
+		}
+		.page1 .list .pay-way{
+			justify-content:flex-start;
+		}
+		#check-box,#check-box1,#check-boxS1,#check-boxS{
+			display:flex;
+			margin-left:0.6rem;
+			justify-content:space-between;
+		}
+		#check-box>div,#check-box1>div,#check-boxS1>div,#check-boxS>div{
+			margin-right:0.4rem;
+		}
+		.box{
+			width:0.3rem;
+			height:0.3rem;
+			display:inline-block;
+			-webkit-border-radius: 0.1rem;
+			-moz-border-radius: 0.1rem;
+			border-radius: 0.1rem;
+			border:1px solid #ff564f;
+			position:relative;
+			vertical-align:middle;
+			margin-top:-0.05rem;
+			margin-right:0.1rem;
+		}
+		.box img{
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			opacity:0;
+		}
+
+		/*市场挂单*/
+		.market-order-title{
+			padding:0 0.2rem;
+			font-size:0.28rem;
+		}
+		.market-order-title span{
+			color:#999;
+		}
+		.con-list{
+			width:98%;
+			margin:0.2rem auto 0;
+			padding:0.2rem 0.14rem;
+			background:#fff url(../images/right-jiantou.png) right center no-repeat;
+			background-size:0.5rem;
+			display:flex;
+			font-size:0.24rem;
+			border-bottom:0.02rem solid #eee;
+		}
+		.con-list>div:nth-child(1){
+			flex:1.3;
+		}
+		.con-list>div:nth-child(2){
+			flex:1.1;
+		}
+		.con-list>div:nth-child(3){
+			position:relative;
+			flex:0.6;
+		}
+		.con-list>div:nth-child(3) .con-list-type{
+			width:0.8rem;
+			height:0.8rem;
+			text-align:center;
+			line-height:0.8rem;
+			position:absolute;
+			top:0.35rem;
+			right:0.4rem;
+			color:#fff;
+			background:#ff564f;
+			-webkit-border-radius: 100%;
+			-moz-border-radius: 100%;
+			border-radius: 100%;
+		}
+		.con-list>div:nth-child(2) .con-list-item1{
+			color:#333;
+		}
+		.con-list-item1{
+			color:#ff564f;
+			font-size:0.28rem;
+			margin-bottom:0.15rem;
+		}
+		.con-list-item2{
+			color:#666;
+			margin-bottom:0.1rem;
+		}
+		.con-list-item4{
+			margin-bottom:0.1rem;
+		}
+		.con-list-item img{
+			width:0.4rem;
+			height:0.4rem;
+		}
+		/*市场挂单*/
+		.g-operate{
+			padding:0.3rem 0.2rem 0.2rem;
+		}
+		.g-operate .btn{
+			height:0.7rem;
+			line-height:0.7rem;
+			font-size:0.28rem;
+		}
+		.tabBoxLine .hd li{
+			font-size:0.28rem;
+		}
+		.con-list-item3{
+			margin-right:0.1rem;
+		}
+		/*当前订单*/
+		/*当前订单*/
+		.orderTable{
+			width:100%;
+			border-collapse: collapse;
+		}
+		.orderTable tr{
+			height:1.0rem;
+			border-bottom:1px solid #ddd;
+			cursor: pointer;
+		}
+		.orderTable td:last-child {
+			text-align: right;
+		}
+		.orderTable td:first-child{
+			text-align:left;
+		}
+		.orderTable p{
+			color:#333;
+			font-size:0.24rem;
+		}
+		.orderTable td:first-child p:first-child{
+			font-size:0.28rem;
+		}
+		.orderTable td:last-child p:first-child{
+			font-size:0.28rem;
+			color:green;
+		}
+		.orderTable td:first-child p:last-child,.orderTable td:last-child p:last-child{
+			color:#999;			margin-top:0.08rem;
+		}
+		/*商家新增样式*/
+		.overage{ height:1rem ;
+				  line-height: 1rem;
+		          background: #ecebeb;
+		          padding-left: 0.15rem;}
+		.overage .now-price{ float: right; 
+							 margin-right: 0.4rem;
+							 }
+		.overage .now-price em{color: red;  margin-left: 0.15rem;}
+		#least-one,#least-two,#most-one,#most-two{ width: 2rem; border:solid #D2D2D2 1px ; padding-left: 0.125rem; margin: 0 0.2rem;}
+	    .orderTable{ text-align: center;}
+	    header .txtRight{padding: 0.1rem 0.008rem;}
+	    header .txtRight>span{ margin-right: 0.2rem; padding: 0.09rem 0.1rem;}
+	    /*价格浮动滑块样式*/
+	   .chooseBtn {
+            display: none;
+        }
+
+        .choose-label {
+            box-shadow: #ccc 0px 0px 0px 1px;
+            width: 40px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            position: relative;
+            background-color: #bdbdbd;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+
+        .choose-label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border-radius: 20px;
+            background-color: #fff;
+            z-index: 20;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .chooseBtn:checked + label.choose-label:before {
+            left: 20px;
+        }
+
+        .chooseBtn:checked + label.choose-label {
+            background-color: #51ccee;
+            vertical-align: middle;
+        }
+        header .txtRight {
+   			padding: 0.1rem 0.008rem;
+		}
+		header .txtRight{
+			font-size:0.28rem;
+			line-height:normal;
+			position:absolute;
+			top:0.14rem;
+			-webkit-border-radius: 0.5rem;
+			-moz-border-radius: 0.5rem;
+			border-radius: 0.3rem;
+			border:0.02rem solid #fff;
+		}
+		header .txtRight>span{
+			margin-right:0.1rem;
+			padding: 0.09rem 0.1rem;
+			color:#fff;
+			border-radius: 0.3rem;
+		}
+		header .txtRight .ordinary{ margin-left: 0.01rem;}
+		header .txtRight .merchant{ margin-right: 0.01rem;}
+		header .txtRight span.on{
+			color:#000;
+			background: #fff;
+		}
+		.pageShow{
+			display:none;
+		}
+		.pageHide{
+			display:none;
+		}
+		.page1{
+			position:absolute;
+			top:0.98rem;
+		}
+		.orderTable th:last-child{
+			text-align:right;
+		}
+		.orderTableF{
+			padding:0 0.3rem;
+		}
+		.orderTable tr td:first-child{
+			text-align:left;
+		}
+		.orderTable tr td:last-child{
+			text-align:right;
+		}
+		/*切换滑动*/
+#tabBox11, #tabBox1{
+	width:100%;
+	overflow:hidden;
+}
+#tabBox111-bd, #tabBox1-bd{
+	width:400%;
+	overflow:hidden;
+	transition:all 300ms;
+}
+#tabBox111-bd .con, #tabBox1-bd .con{
+	width:25%;
+	float:left;
+}
+#tabBox11 .hd a, #tabBox1 .hd a{
+	height: 0.8rem;
+  display: inline-block;
+}
+#tabBox11 .hd .active a, #tabBox1 .hd .active a{
+	color:#ff564f;
+	border-bottom:0.04rem solid #ff564f;
+}
+.con{
+	min-height: 1px;
+}
+/*切换滑动*/
+	</style>
+</head>
+
+<body>
+	<header>
+		<!--<a href="javascript:history.back();" class="back"></a>-->
+		<h3>USDT/CNY</h3>
+		<!--<div class="txtRight"><span>普通</span><span>商家</span></div>-->
+		<div class="txtRight"><span class="ordinary">普通</span><span id="merchant-switch" class="merchant">商家</span></div>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page1 pageHide">
+		<div id="tabBox11" class="tabBoxLine">
+			<div class="hd">
+				<ul>
+					<li class="type-or active" data-type="1"><a href="javascript:void(0)">
+							<div class="lan11"></div>
+						</a></li>
+					<li class="type-or" data-type="2"><a href="javascript:void(0)">
+							<div class="lan12"></div>
+						</a></li>
+					<li class="type-or" data-type="1"><a href="javascript:void(0)">当前订单</a></li>
+					<li class="type-or" data-type="2"><a href="javascript:void(0)">历史订单</a></li>
+				</ul>
+			</div>
+			<div class="bd" id="tabBox111-bd">
+
+				<!-- 买入 -->
+				<div class="con">
+					<div>
+						<ul class="list">
+							<li style="color:#999;"><span class="tt">买入估价</span><input style="color:#999;" value="" readonly class="buy-price"
+								 type="text" placeholder=""><em>CNY</em></li>
+							<li><span class="tt">买入数量</span><input class="buy-num" type="text" placeholder="输入买入数量"><em>USDT</em></li>
+							<li>
+								<span class="tt2">买入总计</span><span class="tRight"><span class="buy-total"></span>CNY</span>
+								<!--<span class="tt2">付款期限<br>买入总计</span><span class="tRight">30分钟<br><span class="buy-total"></span>CNY</span>-->
+							</li>
+							<li style="color:#999999;">
+								<span class="tt">最小成交量 </span><input style="color:#999;" type="text" id="" value="0" readonly />
+							</li>
+							<li class="pay-way"><span class="tt">支付方式</span>
+								<div id="check-box">
+									<div class="check-box check-box-we" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan65"></div>
+										</span></div>
+									<div class="check-box check-box-bao" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan63"></div>
+										</span></div>
+									<div class="check-box check-box-yin" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan64"></div>
+										</span></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="g-operate">
+						<input type="submit" value="买入" class="btn" id="buy">
+					</div>
+					<!--市场挂单-->
+					<div class="market-order">
+						<p class="market-order-title">市场挂单<span>（只显示在线商家）</span></p>
+						<div id="market-buy">
+
+						</div>
+					</div>
+					<!--市场挂单-->
+				</div>
+				<!-- /买入 -->
+				<!-- 卖出 -->
+				<div class="con">
+					<div>
+						<ul class="list">
+							<li style="color:#999;"><span class="tt">卖出估价</span><input style="color:#999;" value="" readonly class="sell-price"
+								 type="text" placeholder=""><em>CNY</em></li>
+							<li><span class="tt">卖出数量</span><input class="sell-num" type="text" placeholder="输入卖出数量"></li>
+							<li>
+								<!--<span class="tt2">付款期限<br>买入总计</span><span class="tRight">30分钟<br><span class="buy-total"></span>CNY</span>-->
+								<span class="tt2">卖出总计</span><span class="tRight"><span class="sell-total"></span>CNY</span>
+							</li>
+							<li>
+								<span style="color:#999;" class="tt">最小成交量 </span><input style="color:#999;" type="text" id="" value="0"
+								 readonly />
+							</li>
+							<li class="pay-way"><span class="tt">支付方式</span>
+								<div id="check-box1">
+									<div class="check-box check-box-we1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan65"></div>
+										</span></div>
+									<div class="check-box check-box-bao1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan63"></div>
+										</span></div>
+									<div class="check-box check-box-yin1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan64"></div>
+										</span></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="g-operate">
+						<input type="submit" value="卖出" class="btn" id="sell">
+					</div>
+					<!--市场挂单-->
+					<div class="market-order">
+						<p class="market-order-title">市场挂单<span>（只显示在线商家）</span></p>
+						<div id="market-sell">
+
+						</div>
+					</div>
+					<!--市场挂单-->
+				</div>
+				<!-- /卖出 -->
+				<!--当前订单-->
+				<div class="con">
+					<div class="orderTableF">
+						<table class="orderTable orderTable1 orderTableP">
+
+						</table>
+						<div class="loginTips" style="width: 50%; margin: 2.6rem auto 0px; text-align: center;display:none;">
+							<a href="javascript:void(0)" style="">
+								<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+								<p style="font-size:0.3rem;">登录后查看</p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--/当前订单-->
+				<!--历史订单-->
+				<div class="con">
+					<div class="orderTableF">
+						<table class="orderTable orderTable2">
+
+						</table>
+						<div class="loginTips" style="width: 50%; margin: 2.6rem auto 0px; text-align: center;display:none;">
+							<a href="javascript:void(0)" style="">
+								<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+								<p style="font-size:0.3rem;">登录后查看</p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--/历史订单-->
+			</div>
+		</div>
+	</section>
+
+	<section class="wrap page1 pageShow">
+		<div id="tabBox1" class="tabBoxLine">
+			<div class="hd">
+				<ul>
+					<li class="type-or active" data-type="1"><a href="javascript:void(0)">
+							<div class="lan11"></div>
+						</a></li>
+					<li class="type-or" data-type="2"><a href="javascript:void(0)">
+							<div class="lan12"></div>
+						</a></li>
+					<li class="type-or" data-type="1"><a href="javascript:void(0)">当前订单</a></li>
+					<li class="type-or" data-type="2"><a href="javascript:void(0)">历史订单</a></li>
+				</ul>
+			</div>
+			<div class="bd" id="tabBox1-bd">
+
+				<!-- 商家买入 -->
+				<div class="con merchant">
+					<div class="overage">
+						<span class="ye">USDT余额：<em></em></span>
+						<span class="now-price now-price-buy">实时价:<em></em></span>
+					</div>
+					<div>
+						<ul class="list">
+							<li><span class="tt">买入估价</span><input value="" class="buy-priceS" type="text" placeholder="请输入价格"></li>
+							<li><span class="tt">买入数量</span><input class="buy-numS" type="text" placeholder="请输入数量"><em>USDT</em></li>
+							<li style="color:#999;"><span class="tt">兑换金额</span><span><span style="color:#999;" readonly class="buy-mumS"
+									 type="text"></span><em>CNY</em></span></li>
+							<li>
+								<span class="tt">最小成交量 <input type="text" id="least-one" value="" />--<input readonly type="text" id="most-two"
+									 value="" /></span>
+							</li>
+							<li class="pay-way"><span class="tt">支付方式</span>
+								<div id="check-boxS">
+									<div class="check-box check-box-weS" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan65"></div>
+										</span></div>
+									<div class="check-box check-box-baoS" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan63"></div>
+										</span></div>
+									<div class="check-box check-box-yinS" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan64"></div>
+										</span></div>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+					<div class="g-operate">
+						<input type="submit" value="买入" class="btn" id="buyS">
+					</div>
+					<!--市场挂单-->
+					<div class="market-order">
+						<p class="market-order-title">市场挂单<span>（只显示在线商家）</span></p>
+						<div id="merchant-market-buy">
+						</div>
+					</div>
+					<!--市场挂单-->
+					<div class="orderTableF">
+						<table class="orderTable">
+							<thead>
+								<tr>
+									<th>类型</th>
+									<th>价格(CNY)</th>
+									<th>数量(USDT)</th>
+									<th>限额(USDT)</th>
+								</tr>
+							</thead>
+							<tbody class="market-sell-zhu">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- 商家买入 -->
+				<!-- 商家卖出 -->
+				<div class="con merchant">
+					<div class="overage">
+						<span class="ye">USDT余额：<em></em></span>
+						<span class="now-price now-price-sell">实时价:<em></em></span>
+					</div>
+					<div>
+						<ul class="list">
+							<li><span class="tt">卖出估价</span><input value="" class="sell-priceS" type="text" placeholder="请输入价格"></li>
+							<li><span class="tt">卖出数量</span><input class="sell-numS" type="text" placeholder="请输入数量"><em>USDT</em></li>
+							<li><span style="color:#999;" class="tt">兑换金额</span><span><span style="color:#999;" readonly class="sell-mumS"
+									 type="text"></span><em>CNY</em></span></li>
+							<li>
+								<span class="tt">最小成交量 <input type="text" id="least-two" value="" />--<input readonly type="text" id="most-one"
+									 value="" /></span>
+							</li>
+							<li class="pay-way"><span class="tt">支付方式</span>
+								<div id="check-boxS1">
+									<div class="check-box check-box-weS1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan65"></div>
+										</span></div>
+									<div class="check-box check-box-baoS1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan63"></div>
+										</span></div>
+									<div class="check-box check-box-yinS1" data-type="0"><span class="box"><img src="../images/check.png" alt=""></span><span>
+											<div class="lan64"></div>
+										</span></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="g-operate">
+						<input type="submit" value="卖出" class="btn" id="sellS">
+					</div>
+					<!--市场挂单-->
+					<div class="market-order">
+						<p class="market-order-title">市场挂单<span>（只显示在线商家）</span></p>
+						<div id="merchant-market-buy">
+						</div>
+					</div>
+					<!--市场挂单-->
+					<div class="orderTableF">
+						<table class="orderTable">
+							<thead>
+								<tr>
+									<th>类型</th>
+									<th>价格(CNY)</th>
+									<th>数量(USDT)</th>
+									<th>限额(USDT)</th>
+								</tr>
+							</thead>
+							<tbody class="market-zhu">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- 商家卖出 -->
+				<!--当前订单-->
+				<div class="con">
+					<div class="orderTableF">
+						<table class="orderTable orderTableOne1 orderTableS">
+
+						</table>
+						<div class="loginTips" style="width: 50%; margin: 2.6rem auto 0px; text-align: center;display:none;">
+							<a href="javascript:void(0)" style="">
+								<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+								<p style="font-size:0.3rem;">登录后查看</p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--/当前订单-->
+				<!--历史订单-->
+				<div class="con">
+					<div class="orderTableF">
+						<table class="orderTable orderTable2One">
+
+						</table>
+						<div class="loginTips" style="width: 50%; margin: 2.6rem auto 0px; text-align: center;display:none;">
+							<a href="javascript:void(0)" style="">
+								<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+								<p style="font-size:0.3rem;">登录后查看</p>
+							</a>
+						</div>
+					</div>
+				</div>
+				<!--/历史订单-->
+			</div>
+		</div>
+	</section>
+	<!--没有登录的情况-->
+	<div class="loginTips" style="width: 50%; margin: 3rem auto 0px; text-align: center;display:none;">
+		<a href="javascript:void(0)" style="">
+			<img src="../images/face61.png" alt="" class="icon" style="width:1rem;height:1rem;margin-bottom:0.3rem;">
+			<p style="font-size:0.3rem;">登录后进行c2c交易</p>
+		</a>
+	</div>
+	<!--没有登录的情况-->
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			//小数点保留位数
+			var round = 4;
+			//小数点保留位数
+			//商家切换
+			//      $('.ordinary').on('click',function(){
+			//			$(this).addClass('on').siblings().removeClass('on');
+			////			$('.pageHide').css({'opacity':'1','visibility':'visible','z-index':'100'});
+			////			//$('.pageShow').css({'opaicty':'0','z-index':'0'});
+			////			$('.pageShow').css({'opacity':'0','visibility':'hidden','z-index':'0'});
+			//			$('.pageShow').hide();
+			//			$('.pageHide').show();
+			//		})
+			//		$('#merchant-switch').on('click',function(){
+			//			$(this).addClass('on').siblings().removeClass('on');
+			//			//$('.pageHide').css({'opacity':'0','z-index':'0'});			
+			////			$('.pageHide').css({'opacity':'0','visibility':'hidden','z-index':'0'});			
+			////			$('.pageShow').css({'opacity':'1','visibility':'visible','z-index':'100'});	
+			//			$('.pageShow').show();
+			//			$('.pageHide').hide();
+			//		})
+			//商家切换
+			window.addEventListener('refresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				location.reload();
+			});
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//用户ltoken
+				//判断是否是第一次循环
+				var firstCircle = true;
+				//判读是否是第一次循环
+				function allDatas() {
+					$.ajax({
+						url: httpHead + 'Wap/C2c/index',
+						type: 'post',
+						global: false,
+						data: { ltoken: lToken },
+						success: function (data) {
+							if (data['body']['data']['isshop'] == 2) {
+								$('.ordinary').removeClass('on');
+								$('#merchant-switch').addClass('on');
+								$('.pageShow').show();
+							} else {
+								$('.ordinary').addClass('on');
+								$('#merchant-switch').removeClass('on');
+								$('.pageHide').show();
+							}
+							if (data['code'] == 200) {
+								if (firstCircle) {
+									//买入卖出估价
+									$('.buy-price').val(Number(data['body']['data']['buy']).toFixed(round));
+									$('.sell-price').val(Number(data['body']['data']['sell']).toFixed(round));
+									//买入卖出估价
+									//买入卖出估价
+									$('.buy-priceS').val(Number(data['body']['data']['buy']).toFixed(round));
+									$('.sell-priceS').val(Number(data['body']['data']['sell']).toFixed(round));
+									//买入卖出估价
+								}
+								firstCircle = false;
+								//usdt余额
+								$('.ye em').html(Number(data['body']['data']['myusdt']).toFixed(round))
+								//usdt余额
+								//实时价
+								$('.now-price-buy em').html(Number(data['body']['data']['buy']).toFixed(round));
+								$('.now-price-sell em').html(Number(data['body']['data']['sell']).toFixed(round))
+								//实时价
+								// 市场挂单
+								var datas = data['body']['myucoin'];
+								var dataUcoinListL = datas.length;
+								var dataUcoinListStrSell = '';
+								var dataUconListStrBuy = '';
+								var dataUconListStrBuyMarket = '';
+								var dataUconListStrSellMarket = '';
+								var dataUconListType;
+								var singlePersonArr = [];
+								var singlePersonArr1 = [];
+								//console.log(datas,'myucoin');
+								for (var i = 0; i < dataUcoinListL; i++) {
+									if (datas[i]['type'] == '1') {
+										//                               var  dataUconListType = '买';
+										var payImgs = '';
+										if (datas[i]['wechat'] == 1) {
+											payImgs += '<img src="../images/wechart.png" alt="" class="con-list-item3 con-list-wechat">';
+										}
+										if (datas[i]['alipay'] == 1) {
+											payImgs += '<img src="../images/alipay.png" alt="" class="con-list-item3 con-list-alipay">';
+										}
+										if (datas[i]['bank'] == 1) {
+											payImgs += '<img src="../images/bank.png" alt="" class="con-list-item3 con-list-bank">';
+										}
+										dataUconListStrBuy += '<a href="javascript:void(0);" class="con-list"><div class="con-list-item"><div class="con-list-item1">' + datas[i]['shop_name'] + '</div>' + payImgs + '</div><div class="con-list-item"><div class="con-list-item1">' + Number(datas[i]['cprice']).toFixed(round) + 'CNY</div><div class="con-list-item4">价格：<span>' + Number(datas[i]['price']).toFixed(round) + '</span>CNY</div><div class="con-list-item2">限额：' + Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round) + '</div><div class="con-list-item3">数量：<span class="con-list-count">' + Number(datas[i]['num']).toFixed(round) + '</span></div></div><div class="con-list-item"><div class="con-list-type"><div class="lan11"></div></div></div></a>';
+										dataUconListStrBuyMarket += '<tr><td><p>' + '买入' + '</p></td><td><p>' + Number(datas[i]['price']).toFixed(round) + '</p></td><td><p>' + Number(datas[i]['num']).toFixed(round) + '</p></td><td><p>' + Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round) + '</p></td></tr>';
+										var singlePerson1 = {};
+										singlePerson1.name = datas[i]['shop_name'];
+										singlePerson1.id = datas[i]['number'];
+										singlePerson1.limit = Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round);
+										singlePerson1.price = Number(datas[i]['price']).toFixed(round);
+										singlePerson1.num = Number(datas[i]['num']).toFixed(round);
+										singlePerson1.payWay = payImgs;
+										singlePerson1.type = '买入';
+										singlePerson1.idId = datas[i]['id'];
+										singlePerson1.sidSid = datas[i]['sid'];
+										singlePersonArr1.push(singlePerson1);
+									} else {
+										var payImgsOne = '';
+										if (datas[i]['wechat'] == 1) {
+											payImgsOne += '<img src="../images/wechart.png" alt="" class="con-list-item3 con-list-wechat">';
+										}
+										if (datas[i]['alipay'] == 1) {
+											payImgsOne += '<img src="../images/alipay.png" alt="" class="con-list-item3 con-list-alipay">';
+										}
+										if (datas[i]['bank'] == 1) {
+											payImgsOne += '<img src="../images/bank.png" alt="" class="con-list-item3 con-list-bank">';
+										}
+										dataUcoinListStrSell += '<a href="javascript:void(0);" class="con-list"><div class="con-list-item"><div class="con-list-item1">' + datas[i]['shop_name'] + '</div>' + payImgsOne + '</div><div class="con-list-item"><div class="con-list-item1">' + Number(datas[i]['cprice']).toFixed(round) + 'CNY</div><div class="con-list-item4">价格：<span>' + Number(datas[i]['price']).toFixed(round) + '</span>CNY</div><div class="con-list-item2">限额：' + Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round) + '</div><div class="con-list-item3">数量：<span class="con-list-count">' + Number(datas[i]['num']).toFixed(round) + '</span></div></div><div class="con-list-item"><div class="con-list-type"><div class="lan12"></div></div></div></a>';
+										dataUconListStrSellMarket += '<tr data-id="' + datas[i]['id'] + '"><td><p>' + '卖出' + '</p></td><td><p>' + Number(datas[i]['price']).toFixed(round) + '</p></td><td><p>' + Number(datas[i]['num']).toFixed(round) + '</p></td><td><p>' + Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round) + '</p></td></tr>';
+										var singlePerson = {};
+										singlePerson.name = datas[i]['shop_name'];
+										singlePerson.id = datas[i]['number'];
+										singlePerson.limit = Number(datas[i]['minnum']).toFixed(round) + '-' + Number(datas[i]['num']).toFixed(round);
+										singlePerson.price = Number(datas[i]['price']).toFixed(round);
+										singlePerson.num = Number(datas[i]['num']).toFixed(round);
+										singlePerson.payWay = payImgsOne;
+										singlePerson.type = '卖出';
+										singlePerson.idId = datas[i]['id'];
+										singlePerson.sidSid = datas[i]['sid'];
+										singlePersonArr.push(singlePerson);
+									}
+								}
+								//console.log(singlePersonArr,singlePersonArr1)                      
+								$('#market-buy').html(dataUcoinListStrSell);
+								$("#market-sell").html(dataUconListStrBuy);
+								$('.market-sell-zhu').html(dataUconListStrSellMarket);
+								$('.market-zhu').html(dataUconListStrBuyMarket);
+								// 市场挂单
+								//市场挂单交易						
+								$('#market-buy a, .market-sell-zhu tr').on('click', function () {
+									var index = $(this).index();
+									var singPer = singlePersonArr[index];
+									mui.openWindow({
+										url: 'buy_USDT.html',
+										id: 'buy_USDT.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										extras: {
+											allData: singPer
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+
+								});
+								$('#market-sell a, .market-zhu tr').on('click', function () {
+									var index = $(this).index();
+									var singPer = singlePersonArr1[index];
+									mui.openWindow({
+										url: 'buy_USDT.html',
+										id: 'buy_USDT.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0'//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										extras: {
+											allData: singPer
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								});
+								//市场挂单交易
+								//当前订单
+								var currentMyDatas = data['body']['shop'];
+								//console.log(data['body'],'####')
+								var currentMyDatasL = currentMyDatas.length;
+								var currentMyData = '';
+								var currentMyDataOne = '';
+								var currentMyDataDe = [];
+								var currentMyDataDeP = [];
+								//console.log(data['body']['shop'])
+								console.log(data['body']['data']['uid'])
+								for (var j = 0; j < currentMyDatasL; j++) {
+									//普通用户和商家用户
+									var currentChargeTypeOne;
+									var currentMyDataStatusOne;
+									var currentTime;
+									if (currentMyDatas[j]['type'] == 1) {
+										currentChargeTypeOne = '买入'
+									} else {
+										currentChargeTypeOne = '卖出'
+									}
+									if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 1) {
+										currentMyDataStatusOne = '交易完成'
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 1) {
+										currentMyDataStatusOne = '订单超时'
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 0 && currentMyDatas[j]['is_get'] == 0 && data['body']['data']['uid'] == currentMyDatas[j]['bid']) {
+										currentMyDataStatusOne = '等待对方打款';
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 0 && currentMyDatas[j]['is_get'] == 0 && data['body']['data']['uid'] == currentMyDatas[j]['sid']) {
+										currentMyDataStatusOne = '等您打款';
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 0 && currentMyDatas[j]['is_get'] == 1 && data['body']['data']['uid'] == currentMyDatas[j]['bid'] && currentMyDatas[j]['is_ts'] == 0) {
+										currentMyDataStatusOne = '等待对方确认收款';
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 0 && currentMyDatas[j]['is_get'] == 1 && data['body']['data']['uid'] == currentMyDatas[j]['sid'] && currentMyDatas[j]['is_ts'] == 0) {
+										currentMyDataStatusOne = '等您收款';
+									} else if (currentMyDatas[j]['is_pay'] == 1 && currentMyDatas[j]['is_done'] == 0 && currentMyDatas[j]['is_cancel'] == 0 && currentMyDatas[j]['is_get'] == 1 && currentMyDatas[j]['is_ts'] == 2) {
+										currentMyDataStatusOne = '投诉处理中'
+									} else {
+										currentMyDataStatusOne = '挂单成功';
+									}
+									if (currentMyDataStatusOne == '挂单成功') {
+										currentTime = format(Number(currentMyDatas[j]['addtime']))
+									} else {
+										currentTime = format(Number(currentMyDatas[j]['paytime']))
+									}
+									currentMyDataOne += '<tr data-mid="' + currentMyDatas[j]['mid'] + '" data-id="' + currentMyDatas[j]['id'] + '"><td><p>' + currentMyDatas[j]['shop_name'] + '</p><p>' + currentTime + '</p></td><td><p><span>CNY</span>' + currentMyDatas[j]['cprice'] + '</p></td><td><p>' + currentChargeTypeOne + '</p><p>' + currentMyDataStatusOne + '</p></td></tr>';
+									//console.log('你不是商家')
+									var currentMyDataDeSiP = {
+										id: currentMyDatas[j]['number'],
+										price: currentMyDatas[j]['price'],
+										num: currentMyDatas[j]['num'],
+										cprice: currentMyDatas[j]['cprice'],
+										addtime: currentMyDatas[j]['addtime'],
+										paytime: currentMyDatas[j]['paytime'],
+										type: currentChargeTypeOne,
+										shopName: currentMyDatas[j]['shop_name'],
+										status: currentMyDataStatusOne
+									}
+									currentMyDataDeP.push(currentMyDataDeSiP);
+									//普通用户和商家用户
+								}
+								$('.orderTable1').html(currentMyDataOne);
+								$('.orderTableOne1').html(currentMyDataOne);
+								//当前订单详情
+								$('.orderTableOne1 tr').on('click', function () {
+									var dataMid = $(this).attr('data-mid');
+									if (dataMid > 0) {
+										var index = $(this).index();
+										var singPer = currentMyDataDeP[index];
+										mui.openWindow({
+											url: 'c2c_order_detail.html',
+											id: 'c2c_order_detail.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											extras: {
+												allData: singPer
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									} else {
+										var matchIdOne = $(this).attr('data-id');
+										localStorage.setItem('matchid', matchIdOne);
+										mui.openWindow({
+											url: 'c2c_order_detail1.html',
+											id: 'c2c_order_detail1.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									}
+
+								});
+								$('.orderTable1 tr').on('click', function () {
+									var dataMid = $(this).attr('data-mid');
+									if (dataMid > 0) {
+										var index = $(this).index();
+										var singPer = currentMyDataDeP[index];
+										mui.openWindow({
+											url: 'c2c_order_detail.html',
+											id: 'c2c_order_detail.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											extras: {
+												allData: singPer
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									} else {
+										var matchIdOne = $(this).attr('data-id');
+										localStorage.setItem('matchid', matchIdOne);
+										mui.openWindow({
+											url: 'c2c_order_detail1.html',
+											id: 'c2c_order_detail1.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									}
+
+								});
+								//当前订单详情
+								//当前订单
+
+								//历史订单
+								var currentMyDatasH = data['body']['myucoin1'];
+								//console.log(currentMyDatasH)
+								// console.log(currentMyDatasH,"yodfdfhdhf")
+								var currentMyDatasHL = currentMyDatasH.length;
+								var currentMyDataH = '';
+								var currentMyDataHOne = '';
+								var currentMyDataHDe = [];
+								var currentMyDataHOneDe = [];
+								for (var n = 0; n < currentMyDatasHL; n++) {
+									//普通和商家
+									var currentChargeTypeHOne;
+									var currentMyDataStatusHOne;
+									if (currentMyDatasH[n]['type'] == 1) {
+										currentChargeTypeHOne = '买入'
+									} else {
+										currentChargeTypeHOne = '卖出'
+									}
+									if (currentMyDatasH[n]['is_pay'] == 1 && currentMyDatasH[n]['is_done'] == 1) {
+										currentMyDataStatusHOne = '交易完成'
+									} else if (currentMyDatasH[n]['is_pay'] == 1 && currentMyDatasH[n]['is_done'] == 0 && currentMyDatasH[n]['is_cancel'] == 1) {
+										currentMyDataStatusHOne = '订单超时'
+									} else if (currentMyDatasH[n]['is_pay'] == 1 && currentMyDatasH[n]['is_done'] == 0 && currentMyDatasH[n]['is_cancel'] == 0 && currentMyDatasH[n]['is_get'] == 0) {
+										currentMyDataStatusHOne = ' 等待对方打款'
+									} else if (currentMyDatasH[n]['is_pay'] == 1 && currentMyDatasH[n]['is_done'] == 0 && currentMyDatasH[n]['is_cancel'] == 0 && currentMyDatasH[n]['is_get'] == 1 && currentMyDatasH[n]['is_ts'] == 1) {
+										currentMyDataStatusHOne = ' 等待收款'
+									} else if (currentMyDatasH[n]['is_pay'] == 1 && currentMyDatasH[n]['is_done'] == 0 && currentMyDatasH[n]['is_cancel'] == 0 && currentMyDatasH[n]['is_get'] == 1 && currentMyDatasH[n]['is_ts'] == 2) {
+										currentMyDataStatusHOne = ' 投诉处理中';
+									} else {
+										currentMyDataStatusHOne = '未付款';
+									}
+									currentMyDataHOne += '<tr><td><p>' + currentMyDatasH[n]['shop_name'] + '</p><p>' + format(Number(currentMyDatasH[n]['paytime'])) + '</p></td><td><p><span>CNY</span>' + currentMyDatasH[n]['cprice'] + '</p></td><td><p>' + currentChargeTypeHOne + '</p><p>' + currentMyDataStatusHOne + '</p></td></tr>';
+									var currentMyDataHOneS = {
+										id: currentMyDatasH[n]['number'],
+										price: currentMyDatasH[n]['price'],
+										num: currentMyDatasH[n]['num'],
+										cprice: currentMyDatasH[n]['cprice'],
+										addtime: currentMyDatasH[n]['addtime'],
+										paytime: currentMyDatasH[n]['paytime'],
+										type: currentChargeTypeHOne,
+										shopName: currentMyDatasH[n]['shop_name'],
+										status: currentMyDataStatusHOne
+									}
+									currentMyDataHOneDe.push(currentMyDataHOneS);
+									//普通和商家
+								}
+								$('.orderTable2').html(currentMyDataHOne);
+								$('.orderTable2One').html(currentMyDataHOne);
+								//历史订单详情
+								$('.orderTable2One tr').on('click', function () {
+									var index = $(this).index();
+									var singPer = currentMyDataHOneDe[index];
+									mui.openWindow({
+										url: 'c2c_order_detail.html',
+										id: 'c2c_order_detail.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										extras: {
+											allData: singPer
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								});
+								$('.orderTable2 tr').on('click', function () {
+									var index = $(this).index();
+									var singPer = currentMyDataHOneDe[index];
+									mui.openWindow({
+										url: 'c2c_order_detail.html',
+										id: 'c2c_order_detail.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										extras: {
+											allData: singPer
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								});
+								//历史订单详情
+								//历史订单
+							}
+
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					});
+
+					setTimeout(function () {
+						allDatas();
+					}, 5000)
+				}
+				allDatas();
+
+
+				// c2c买入卖出交易
+				$('#buy').on('click', function () {
+					var buyPriceVal = $('.buy-price').val();
+					var buyNumVal = $('.buy-num').val();
+					var weChat = Number($('.check-box-we').attr('data-type'));
+					var aliPay = Number($('.check-box-bao').attr('data-type'));
+					var bank = Number($('.check-box-yin').attr('data-type'));
+					if (buyNumVal == '') {
+						layer.tips('请输入数量！', '.buy-num', { tips: 3 });
+						return false;
+					}
+					if (weChat == '0' && aliPay == '0' && bank == '0') {
+						layer.tips('请选择支付方式！', '.check-box', { tips: 3 });
+						return false;
+					}
+					var chargeBuy = 1;
+					var minNum = 0;
+					var sendData = {
+						ltoken: lToken,
+						type: chargeBuy,
+						price: buyPriceVal,
+						num: buyNumVal,
+						minnum: minNum,
+						wechat: weChat,
+						alipay: aliPay,
+						bank: bank
+					};
+					//console.log(sendData);
+					$.ajax({
+						url: httpHead + 'Wap/C2c/add1',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							console.log(data)
+							if (data['status'] == 1) {
+								layer.msg(data['msg'], { icon: 1, shift: 5 });
+								if (data['id']) {
+									var matchId = data['id'];
+									localStorage.setItem('matchid', matchId);
+									mui.openWindow({
+										url: 'c2c_order_detail1.html',
+										id: 'c2c_order_detail1.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								}
+							} else {
+								layer.msg(data['msg'], { icon: 2, shift: 5 });
+								$('.layui-layer-msg').css({ 'left': '50%', 'transform': 'translateX(-50%)', 'min-width': '240px' });
+							}
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					})
+
+				});
+				$('#sell').on('click', function () {
+					var buyPriceVal = $('.sell-price').val();
+					var buyNumVal = $('.sell-num').val();
+					var weChat = Number($('.check-box-we1').attr('data-type'));
+					var aliPay = Number($('.check-box-bao1').attr('data-type'));
+					var bank = Number($('.check-box-yin1').attr('data-type'));
+					if (buyNumVal == '') {
+						layer.tips('请输入数量！', '.sell-num', { tips: 3 });
+						return false;
+					}
+					if (weChat == '0' && aliPay == '0' && bank == '0') {
+						layer.tips('请选择支付方式！', '#check-box1', { tips: 3 });
+						return false;
+					}
+					var chargeBuy = 2;
+					var minNum = 0;
+					//console.log(sendData)
+					var sendData = {
+						ltoken: lToken,
+						type: chargeBuy,
+						price: buyPriceVal,
+						num: buyNumVal,
+						minnum: minNum,
+						wechat: weChat,
+						alipay: aliPay,
+						bank: bank
+					};
+					//console.log(sendData);
+					$.ajax({
+						url: httpHead + 'Wap/C2c/add1',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							console.log(data)
+							if (data['status'] == 1) {
+								layer.msg(data['msg'], { icon: 1, shift: 5 });
+								if (data['id']) {
+									var matchId = data['id'];
+									localStorage.setItem('matchid', matchId);
+									setTimeout(function () {
+										mui.openWindow({
+											url: 'c2c_order_detail1.html',
+											id: 'c2c_order_detail1.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									}, 3000);
+								}
+							} else {
+								layer.msg(data['msg'], { icon: 2, shift: 5 })
+							}
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					})
+				});
+				$('#buyS').on('click', function () {
+					var buyPriceVal = $('.buy-priceS').val();
+					var buyNumVal = $('.buy-numS').val();
+					var weChat = Number($('.check-box-weS').attr('data-type'));
+					var aliPay = Number($('.check-box-baoS').attr('data-type'));
+					var bank = Number($('.check-box-yinS').attr('data-type'));
+					var minNum = $('#least-one').val();
+					var buyMumS = $('.buy-mumS').val();
+					// console.log(minNum)
+					if (buyNumVal == '') {
+						layer.tips('请输入数量！', '.buy-numS', { tips: 3 });
+						return false;
+					}
+					if (buyPriceVal == '') {
+						layer.tips('请输入价格！', '.buy-priceS', { tips: 3 });
+						return false;
+					}
+					if (minNum == '') {
+						layer.tips('请输入最小成交量！', '#least-one', { tips: 3 });
+						return false;
+					}
+					if (Number(minNum) > Number(buyNumVal)) {
+						layer.tips('买入数量不能大于最小成交量！', '#least-one', { tips: 3 });
+						return false;
+					}
+					if (weChat == '0' && aliPay == '0' && bank == '0') {
+						layer.tips('请选择支付方式！', '#check-boxS', { tips: 3 });
+						return false;
+					}
+					var chargeBuy = 1;
+					// console.log(sendData)
+					var sendData = {
+						ltoken: lToken,
+						type: chargeBuy,
+						price: buyPriceVal,
+						num: buyNumVal,
+						minnum: minNum,
+						wechat: weChat,
+						alipay: aliPay,
+						bank: bank
+					};
+					//console.log(sendData);
+					$.ajax({
+						url: httpHead + 'Wap/C2c/add1',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							//console.log(data)
+							if (data['status'] == 1) {
+								layer.msg(data['msg'], { icon: 1, shift: 5 });
+								if (data['id']) {
+									var matchId = data['id'];
+									localStorage.setItem('matchid', matchId);
+									//alert(matchId)
+									mui.openWindow({
+										url: 'c2c_order_detail1.html',
+										id: 'c2c_order_detail1.html',
+										styles: {
+											top: '0',//新页面顶部位置
+											bottom: '0',//新页面底部位置
+										},
+										waiting: {
+											autoShow: false
+										},
+										show: {
+											autoShow: true//页面loaded事件发生后自动显示，默认为true
+										}
+									});
+								}
+							} else {
+								layer.msg(data['msg'], { icon: 2, shift: 5 });
+								$('.layui-layer-msg').css({ 'left': '50%', 'transform': 'translateX(-50%)', 'min-width': '240px' });
+							}
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					})
+				});
+				$('#sellS').on('click', function () {
+					var buyPriceVal = $('.sell-priceS').val();
+					var buyNumVal = $('.sell-numS').val();
+					var weChat = Number($('.check-box-weS1').attr('data-type'));
+					var aliPay = Number($('.check-box-baoS1').attr('data-type'));
+					var bank = Number($('.check-box-yinS1').attr('data-type'));
+					var minNum = $('#least-two').val();
+					if (buyNumVal == '') {
+						layer.tips('请输入数量！', '.sell-numS', { tips: 3 });
+						return false;
+					}
+					if (buyPriceVal == '') {
+						layer.tips('请输入价格！', '.sell-priceS', { tips: 3 });
+						return false;
+					}
+					if (minNum == '') {
+						layer.tips('请输入最小成交量！', '#least-two', { tips: 3 });
+						return false;
+					}
+					if (minNum > buyNumVal) {
+						layer.tips('买入数量不能大于最小成交量！', '#least-two', { tips: 3 });
+						return false;
+					}
+					if (weChat == '0' && aliPay == '0' && bank == '0') {
+						layer.tips('请选择支付方式！', '#check-boxS1', { tips: 3 });
+						return false;
+					}
+					var chargeBuy = 2;
+					// console.log(sendData)
+					var sendData = {
+						ltoken: lToken,
+						type: chargeBuy,
+						price: buyPriceVal,
+						num: buyNumVal,
+						minnum: minNum,
+						wechat: weChat,
+						alipay: aliPay,
+						bank: bank
+					};
+					//console.log(sendData);
+					$.ajax({
+						url: httpHead + 'Wap/C2c/add1',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							//console.log(data)
+							if (data['status'] == 1) {
+								layer.msg(data['msg'], { icon: 1, shift: 5 });
+								if (data['id']) {
+									var matchId = data['id'];
+									localStorage.setItem('matchid', matchId);
+									setTimeout(function () {
+										mui.openWindow({
+											url: 'c2c_order_detail1.html',
+											id: 'c2c_order_detail1.html',
+											styles: {
+												top: '0',//新页面顶部位置
+												bottom: '0',//新页面底部位置
+											},
+											waiting: {
+												autoShow: false
+											},
+											show: {
+												autoShow: true//页面loaded事件发生后自动显示，默认为true
+											}
+										});
+									}, 3000)
+								}
+							} else {
+								layer.msg(data['msg'], { icon: 2, shift: 5 })
+							}
+						},
+						error: function (data) {
+							console.log(data);
+						}
+					})
+				});
+				// c2c买入卖出交易
+
+			} else {
+				$(".loginTips").show();
+				$('.loginTips').on('click', function () {
+					mui.openWindow({
+						url: 'login.html',
+						id: 'login.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+				console.log('请先登录');
+				$('#buy').on("click", function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 });
+				});
+				$('#sell').on("click", function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 });
+				});
+				$('#buyS').on("click", function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 });
+				});
+				$('#sellS').on("click", function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 });
+				});
+			}
+			//支付方式选择
+			$('.check-box').on('click', function () {
+				var thisImg = $(this).find('img');
+				if (thisImg.css('opacity') == '1') {
+					thisImg.css('opacity', '0');
+					$(this).attr('data-type', '0');
+				} else {
+					thisImg.css('opacity', '1');
+					$(this).attr('data-type', '1');
+				}
+
+			});
+			//支付方式选择
+
+			//计算总计
+			$('.buy-num').bind('input', function () {
+				totalAll($('.buy-num'), $('.buy-price'), $('.buy-total'));
+			});
+			$('.sell-num').bind('input', function () {
+				totalAll($('.sell-num'), $('.sell-price'), $('.sell-total'));
+			});
+			$('.buy-numS, .buy-priceS').bind('input', function () {
+				totalAll($('.buy-numS'), $('.buy-priceS'), $('.buy-mumS'));
+				$('#most-two').val($('.buy-numS').val());
+			});
+
+			$('.sell-numS, .sell-priceS').bind('input', function () {
+				totalAll($('.sell-numS'), $('.sell-priceS'), $('.sell-mumS'));
+				$('#most-one').val($('.sell-numS').val());
+			});
+			//计算总计
+			//计算总计函数
+			function totalAll(num, price, total) {
+				var priceOne = price.val();
+				var numOne = num.val();
+				var buyTotal;
+				if (priceOne !== '' && numOne !== '') {
+					buyTotal = multiplication(priceOne, numOne);
+					total.html(buyTotal);
+				} else {
+					total.html(0);
+				}
+			}
+			//计算总计函数
+			//js运算乘法bug函数
+			function multiplication(arg1, arg2) {
+				var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+				try { m += s1.split(".")[1].length } catch (e) { }
+				try { m += s2.split(".")[1].length } catch (e) { }
+				return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+			}
+			//js运算乘法bug
+			// 时间戳转日期
+			function add0(m) { return m < 10 ? '0' + m : m }
+			function format(shijianchuo) {
+				var shijianchuo = shijianchuo * 1000;
+				//shijianchuo是整数，否则要parseInt转换
+				var time = new Date(shijianchuo);
+				var y = time.getFullYear();
+				var m = time.getMonth() + 1;
+				var d = time.getDate();
+				var h = time.getHours();
+				var mm = time.getMinutes();
+				var s = time.getSeconds();
+				//console.log(y,'hahah')
+				return add0(y) + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+			}
+			// 时间戳转日期
+			//普通选项卡切换 
+			$('body').on('click', '#tabBox11 .hd ul li', function () {
+				$("#tabBox11 .hd ul li").removeClass('active');
+				$(this).addClass('active');
+				var index = $(this).index();
+				var leftX = multiplication(25, index);
+				var heightCon = $('#tabBox111-bd .con').eq(index).height();
+				console.log(heightCon)
+				$("#tabBox111-bd").css({ 'transform': 'translate(-' + leftX + '%)', 'height': heightCon });
+			})
+			//普通选项卡切换
+			//商家选项卡切换         
+			$('body').on('click', '#tabBox1 .hd ul li', function () {
+				$("#tabBox1 .hd ul li").removeClass('active');
+				$(this).addClass('active');
+				var index = $(this).index();
+				console.log(index)
+				var leftX = multiplication(25, index);
+				var heightCon = $('#tabBox1-bd .con').eq(index).height();
+				console.log(heightCon, leftX)
+				$("#tabBox1-bd").css({ 'transform': 'translate(-' + leftX + '%)', 'height': heightCon });
+			});
+			//商家选项卡切换
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		.btn-yzm1{
+			border:0.01rem solid #ff564f;
+			-webkit-border-radius: 0.05rem;
+			-moz-border-radius: 0.05rem;
+			border-radius: 0.05rem;
+			padding:0.1rem 0.2rem;
+			display:inline-block;
+			line-height:normal;
+			color:#333;
+		}
+		.page13 .list .yzm-choice{
+			width:6.6em;
+		}
+		.btn-short{
+			margin-right:0.5rem;
+			margin-left:0.1rem;
+		}
+		.list .btn-choice{
+			color:#fff;
+			background:#ff564f;
+		}
+		#yzm-google,#yzm-tele{
+			display:none;
+		}
+		#yzm-tele{
+			display:flex;
+		}
+		#yzm-tele .list span{
+			width:auto;
+		}
+		.page13 .list li{ line-height: 1.2rem;}
+		.page13 .list .tt{ width: auto;}
+		.page13 .box{ padding-bottom: 1rem;}
+		.page13 .g-operate .btn{
+			    line-height: .98rem;
+    			height: 0.98rem;
+		}
+		#scan-code{
+			width:0.5rem;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>付<span class="href-bi"></span></h3>
+		<a class="txtRight">提币记录</a>
+	</header>
+	<!-- <div class="h98"></div> -->
+
+
+
+	<section class="wrap page13">
+		<div class="box">
+			<div class="panel">
+				<img src="../images/icon131.png" alt="" class="logo">
+				<p>提现到地址</p>
+			</div>
+			<ul class="list">
+				<li><span class="tt">链接</span><input class="lianjie" type="text" placeholder="请选择提现地址或扫码录入"><img id="scan-code" src="../imgs/scan.png"
+					 alt="" /></li>
+				<li><span class="tt">地址名称</span><input class="address" type="text" placeholder="例如MyAddress≠1,选填"></li>
+			</ul>
+
+			<!--<div class="tips">旷工费将在可用余额中扣除，余额不足将从转账金额中扣除</div>-->
+		</div>
+		<div class="box" style=" margin-top:0.3rem;">
+			<span class="tt">提现金额量</span>
+			<ul class="list" style="margin-top: 10px;">
+
+				<li><input class="amount" type="text" placeholder="请输入提现金额量"></li>
+			</ul>
+			<div class="tips">可用金额：<span class="href-money"></span><span class="href-bi"></span></div>
+			<div class="tips"><span style="margin-right: 0.5rem;">实际到账：<span class="daozhang"></span><span class="href-bi"></span></span><span>矿工费：<span
+					 class="kuanggong"></span><span class="href-bi"></span></span></div>
+		</div>
+
+		<!--<div class="other">-->
+		<!--内部转账 <label for="" class="switch"></label>-->
+		<!--</div>-->
+		<div class="g-operate">
+			<input type="submit" value="申请提现到地址" class="btn confirm">
+		</div>
+
+	</section>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			mui.init();
+			window.addEventListener('reFresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				location.reload();
+			});
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+
+			$('#scan-code').on('click', function () {
+				mui.openWindow({
+					url: 'barcode_scan.html',
+					id: 'barcode_scan.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false,//自动显示等待框，默认为true
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+			mui.plusReady(function () {
+				if (plus.storage.getItem('codeResult')) {
+					var moneyCode = plus.storage.getItem('codeResult');
+					//alert(moneyCode)
+					$(".lianjie").val(moneyCode);
+					plus.storage.removeItem('codeResult')
+				}
+			})
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//用户ltoken
+
+				//币种
+				var hrefBi = location.href.split('?')[1].split('&');
+				$('.href-bi').html(hrefBi[0]);
+				$('.href-money').html(hrefBi[1]);
+				$('.kuanggong').html(hrefBi[2])
+				//币种
+
+				//提币记录
+				$('.txtRight').on('click', function () {
+					location.href = 'extract_record.html?' + hrefBi[0];
+				});
+				//提币记录
+				//提现金额数量改变
+				$('.amount').change(function () {
+					var nn = Number($('.amount').val()) - Number($('.kuanggong').text())
+					$('.daozhang').html(nn);
+				})
+
+				//表单验证
+				$('.confirm').on('click', function () {
+					var choicePlace;
+
+					var lianjie = $('.lianjie').val();
+					var addressVal = $('.address').val();
+					var amountVal = $('.amount').val();
+					var passwordVal = $('.password').val();
+					if (lianjie == '') {
+						layer.tips('请输入钱包链接', '.lianjie', { tips: 3 });
+						return false;
+					}
+					if (addressVal == '') {
+						layer.tips('请输入付币地址', '.address', { tips: 3 });
+						return false;
+					}
+					if (amountVal == '') {
+						layer.tips('请输入付币数量', '.amount', { tips: 3 });
+						return false;
+					}
+
+
+					var coinName = $('.href-bi').html().toLowerCase();
+					var sendData = {
+						ltoken: lToken,
+						coin: coinName,
+						num: amountVal,
+						addr: addressVal
+					};
+					console.log(sendData);
+					$.ajax({
+						url: httpHead + 'Wap/Finance/upmyzc',
+						type: 'post',
+						data: sendData,
+						success: function (data) {
+							if (data['code'] == 200) {
+								layer.msg('提币成功', { icon: 1, shift: 5 });
+							} else {
+								layer.msg(data['result'], { icon: 2, shift: 5 });
+								$('.layui-layer-msg').css({ 'left': '50%', 'transform': 'translateX(-50%)', 'min-width': '240px' });
+							}
+						},
+						error: function (data) {
+							console.log(data)
+						}
+					});
+				});
+				//表单验证
+			} else {
+				layer.msg('请先登录', { icon: 2 });
+			}
+
+
+		});
+	</script>
+</body>
+
+</html>

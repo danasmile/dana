@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		.box .upload-box img{height:100%;}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>上传身份信息</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page10">
+		<div class="tips">请确保照片内容清晰可见，身份证必须在有效期内</div>
+		<div class="box">
+			<div class="upload-box">
+				<img src="../images/img101.jpg" alt="" class="upload-img-result">
+				<input type="file" name="" id="" class="upload-img upload-img1" data-index="1">
+				<img src="../images/icon101.jpg" alt="" class="icon">
+			</div>
+			<h3>请上传本人身份证人像面</h3>
+		</div>
+		<div class="box">
+			<div class="upload-box">
+				<img src="../images/img102.jpg" alt="">
+				<input type="file" name="" class="upload-img upload-img2" data-index="2">
+				<img src="../images/icon102.jpg" alt="" class="icon">
+			</div>
+			<h3>请上传本人身份证国徽面</h3>
+		</div>
+		<div class="box">
+			<div class="upload-box">
+				<img src="../images/img103.jpg" alt="">
+				<input type="file" name="" class="upload-img upload-img3" data-index="3">
+				<img src="../images/icon103.jpg" alt="" class="icon">
+			</div>
+			<h3>请上传手持身份证和本网站ID</h3>
+		</div>
+
+		<div class="g-operate"><input type="submit" value="提交" class="btn"></div>
+
+
+
+	</section>
+
+
+
+
+	<!--<script src="js/slide.js"></script>-->
+	<!--<script src="js/main.js"></script>-->
+	<script src="../js/mui.min.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script>
+
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+			}
+			$('.btn').on('click', function () {
+				if (!$('.upload-img1').attr('data-type')) {
+					layer.tips('请上传本人身份证人像面', '.upload-img1', { tips: 3 });
+					return false;
+				}
+				if (!$('.upload-img2').attr('data-type')) {
+					layer.tips('请上传本人身份证国徽面', '.upload-img2', { tips: 3 });
+					return false;
+				}
+				if (!$('.upload-img3').attr('data-type')) {
+					layer.tips('请上传本人身份证国徽面', '.upload-img3', { tips: 3 });
+					return false;
+				} else {
+					layer.msg('上传成功', { icon: 1, shift: 5 });
+					setTimeout(function () { history.back() }, 3000);
+				}
+
+			});
+			function sendImg(sendData) {
+				console.log(sendData)
+
+				$.ajax({
+					url: httpHead + 'Wap/Ajax/imgUser',
+					type: 'post',
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: sendData,
+					success: function (data) {
+						console.log(data)
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				});
+			}
+			//上传图片展示
+			$(".upload-img").change(function () {
+				var filename = $(this).get(0).files[0];
+				//      	console.log(obj)
+				var index = Number($(this).attr('data-index'));
+				var up_img = new FormData();
+				up_img.append('file', filename);
+				up_img.append('ltoken', lToken);
+				up_img.append('i', index);
+				sendImg(up_img)
+				var wuc = window.URL.createObjectURL(filename);
+				$(this).prev().attr('src', wuc);
+				$(this).attr('data-type', true);
+			});
+			//上传图片展示
+		})
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/askAnswer.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <a href="javascript:mui.back();" class="back"></a>
+        <h3>有问必答</h3>
+    </header>
+    <div class="h98"></div>
+    <section class="wrap page1">
+        <div id="tabBox1" class="tabBoxLine">
+            <div class="hd">
+                <ul>
+                    <li class="type-or" data-type="1"><a href="javascript:void(0)">历史工单</a></li>
+                    <li class="type-or" data-type="2"><a href="javascript:void(0)">提交工单</a></li>
+                    <li class="type-or" data-type="1"><a href="javascript:void(0)">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="bd" id="tabBox1-bd">
+                <!-- ①历史工单 -->
+                <div class="con hisList">
+                    <!--<div class="conContent">-->
+                    <!--&lt;!&ndash;用户交易Id&ndash;&gt;-->
+                    <!--<div class="userId">-->
+                    <!--<span>-->
+                    <!--交易ID：<span>123456789</span>-->
+                    <!--</span>-->
+                    <!--<span class="tixian"><div class="lan159a"></div></span>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;用户反应的问题&ndash;&gt;-->
+                    <!--<div class="userQuestion">-->
+                    <!--<table>-->
+                    <!--<tr>-->
+                    <!--<td rowspan="2" width="21%">-->
+                    <!--<img src="../imgs/wenti.png" alt="问题">-->
+                    <!--</td>-->
+                    <!--<td valign="top">-->
+                    <!--<p>-->
+                    <!--到底是什么情况啊啊啊啊，充值充不上，现在提现也提不了，还能不能行。。。-->
+                    <!--</p>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                    <!--<td valign="bottom">-->
+                    <!--<span class="coinType">货币类型:USDT</span>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;问题审核状态&ndash;&gt;-->
+                    <!--<div class="questionState">-->
+                    <!--<span>您的问题正在审核中</span>-->
+                    <!--<img id="ques" src="../imgs/trunRight.png" alt="更多">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="conContent">-->
+                    <!--&lt;!&ndash;提现单号&ndash;&gt;-->
+                    <!--<div class="userId">-->
+                    <!--<span>-->
+                    <!--提现单号: <span>00013365841297236</span>-->
+                    <!--</span>-->
+                    <!--<span class="tixian"><div class="lan89"></div></span>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;用户反应的问题&ndash;&gt;-->
+                    <!--<div class="userQuestion">-->
+                    <!--<table>-->
+                    <!--<tr>-->
+                    <!--<td rowspan="2" width="21%">-->
+                    <!--<img src="../imgs/wenti.png" alt="问题">-->
+                    <!--</td>-->
+                    <!--<td valign="top">-->
+                    <!--<p>-->
+                    <!--为什么充值成功了，没有提示成功更没有增加数量，到底什么情况？？加急！！-->
+                    <!--</p>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                    <!--<td valign="bottom">-->
+                    <!--<span class="coinType">货币类型:BTM-ETH</span>-->
+                    <!--</td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;问题审核状态&ndash;&gt;-->
+                    <!--<div class="questionState">-->
+                    <!--<span>您的问题已解决</span>-->
+                    <!--<img src="../imgs/trunRight.png" alt="更多">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <!-- /①历史工单 -->
+
+                <!-- ②提交工单 -->
+                <div class="con submitDiv">
+                    <!--问题分类-->
+                    <div class="sort">
+                        <p class="title">问题分类</p>
+                        <div class="selSort">
+                            <span class="current">
+                                <div class="lan89"></div>
+                            </span>
+                            <span>提现</span>
+                            <span>其他</span>
+                        </div>
+                    </div>
+                    <!--货币信息-->
+                    <div class="coinMessage">
+                        <div class="mes1">
+                            <span>货币类型</span>
+                            <span>USTD</span>
+                        </div>
+                        <div class="openMessage">
+                            <div class="mes1">
+                                <span>交易ID(hash)</span>
+                                <input type="text" class="tradeId" placeholder="请从发币方获取交易ID">
+                            </div>
+                            <p class="title">
+                                <div class="lan216"></div>
+                            </p>
+                            <textarea name="answerWord" class="answerWord" placeholder="请在此输入你的问题"></textarea>
+                            <div style="background: #fff;padding-bottom:0.3rem;">
+                                <p class="title">问题截图</p>
+                                <div>
+                                    <div class="answerImg" style="position: relative;">
+                                        <input type="file" class="upload-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--提交按钮-->
+                    <div class="submitBtn">提交工单</div>
+                </div>
+                <!-- /②提交工单 -->
+
+                <!--③常见问题-->
+                <div class="con">
+                    <table class="answerTable">
+                        <tr>
+                            <td>如何修改/取消谷歌验证码</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何修改手机号码</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何修改资金密码</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何充值</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何提现</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>充值不到账</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>提现不到账</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--/③常见问题-->
+
+                <!--④常见问题详情-->
+                <div class="con">
+                    <div class="questionDetail">
+                        <h4>如何修改/取消谷歌验证码</h4>
+                        <p>1.打开安全设置-谷歌验证绑定，点击“取消或重置”
+                            谷歌验证“通过资金密码和绑定手机的短信可以重置
+                            谷歌验证。</p>
+                        <p>2.打开安全设置-谷歌验证绑定，点击“取消或重置”
+                            谷歌验证“通过资金密码和绑定手机的短信可以重置
+                            谷歌验证。</p>
+                    </div>
+                    <table class="answerTable">
+                        <tr class="linkQuestion">
+                            <td colspan="2">其他相关问题</td>
+                        </tr>
+                        <tr>
+                            <td>如何修改手机号码</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何修改资金密码</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何充值</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>如何提现</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>充值不到账</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td>提现不到账</td>
+                            <td><img src="../imgs/trunRight.png" alt=""></td>
+                        </tr>
+                    </table>
+                </div>
+                <!--/④常见问题详情-->
+
+                <!--⑤历史订单详情-->
+                <div class="con his">
+                    <!--<ul class="order1">
+                    <li>
+                        <span>服务单号</span>
+                        <span></span>
+                    </li>
+                    <li>
+                        <span>申请时间</span>
+                        <span>2018年6月27日</span>
+                    </li>
+                </ul>
+                <ul class="order2">
+                    <li>
+                        <p>审核留言</p>
+                    </li>
+                    <li>
+                        <span>
+                            很抱歉您的充值出现这样的意外，我们这里已经为您安排后台解决
+                            请您在30分钟后查看您的账号，是否恢复额度。
+                        </span>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--<ul class="order3">-->
+                    <!--<li>-->
+                    <!--<p>问题信息</p>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<span>问题分类</span>-->
+                    <!--<span><div class="lan89"></div></span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<span>货币类型</span>-->
+                    <!--<span>USDT</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<span>交易ID</span>-->
+                    <!--<span>03254885287852</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                    <!--<span style="float:left;"><div class="lan216"></div></span>-->
+                    <!--</li>-->
+                    <!--<li class="description">-->
+                    <!--<span class="messageWord">为什么充值成功了，没有提示成功更没有增加数量，到底什么情况加急！！</span>-->
+                    <!--</li>-->
+                    <!--<li style="height:2rem;">-->
+                    <!--<img src="../imgs/wenti.png" alt="图片">-->
+                    <!--<img src="../imgs/wenti.png" alt="图片">-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                </div>
+                <!--/⑤历史订单详情-->
+            </div>
+        </div>
+
+
+
+    </section>
+    <script src="../js/slide.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // 域名
+            var httpHead = 'http://a001.finsys.net/';
+
+            // 用户ltoken
+            if (localStorage.ltoken) {
+                var lToken = localStorage.ltoken;
+                console.log(lToken);
+            }
+
+            $.ajax({
+                url: httpHead + 'Wap/User/worklist',
+                type: 'post',
+                data: { ltoken: lToken },
+                success: function (data) {
+                    if (data['code'] == 200) {
+                        var hisList = '';
+                        var reply_list = '';
+                        var listLength = data['body']['list'].length;
+                        for (var i = 0; i < listLength; i++) {
+                            var idList = data['body']['list'][i]['id'];
+                            var send_idList = data['body']['list'][i]['send_id'];
+                            var send_ContentList = data['body']['list'][i]['send_content'];
+                            var send_userList = data['body']['list'][i]['send_user'];
+                            var send_cateList = data['body']['list'][i]['send_cate'];
+                            var send_img1List = data['body']['list'][i]['send_img1'];
+                            var send_img2List = data['body']['list'][i]['send_img2'];
+                            var send_img3List = data['body']['list'][i]['send_img3'];
+                            var statusList = data['body']['list'][i]['status'];
+                            var currencyList = data['body']['list'][i]['currency'];
+
+                            var reply_idList = data['body']['list'][i]['reply_id'];
+                            var reply_timeList = data['body']['list'][i]['reply_time'];
+                            var reply_contentList = data['body']['list'][i]['reply_content'];
+                            var trans_idList = data['body']['list'][i]['trans_id'];
+
+
+
+                            /*判断订单类别*/
+                            var send_cateCont;
+                            if (send_cateList == 0) {
+                                send_cateCont = "充值";
+                            } else if (send_cateList == 1) {
+                                send_cateCont = "提现";
+                            } else {
+                                send_cateCont = "其他";
+                            }
+                            /*订单处理状态*/
+                            var statusCont;
+                            if (statusList == 0) {
+                                statusCont = "未回复";
+                            } else if (statusList == 1) {
+                                statusCont = "已回复";
+                            }
+
+                            hisList += '<div class="conContent" id="' + idList + '"><div class="userId">' + send_userList + '<span class="tixian">' + send_cateCont + '</span></div><div class="userQuestion"><table><tr><td rowspan="2" width="21%"><img src="' + httpHead + send_img2List + '" alt="问题"></td><td valign="top"><p>' + send_ContentList + '</p></td></tr><tr><td valign="bottom"><span class="coinType">货币类型:' + currencyList + '</span></td></tr></table></div><div class="questionState"><span>' + statusCont + '</span><img src="../imgs/trunRight.png" alt="更多"> </div></div>'
+                            $(".hisList").html(hisList);
+
+                            reply_list += '<div class="hisDetail"><ul class="order1"><li><span>服务单号</span><span>' + reply_idList + '</span></li><li><span>申请时间</span><span>' + reply_timeList + '</span></li></ul><ul class="order2"><li><p>审核留言</p></li><li><span>' + reply_contentList + '</span></li></ul><ul class="order3"><li><p>问题信息</p></li><li><span>问题分类</span><span>' + send_cateCont + '</span></li><li><span>货币类型</span><span>' + currencyList + '</span></li><li><span>交易ID</span><span>' + trans_idList + '</span></li><li><span style="float:left;"><div class="lan216"></div></span></li><li class="description"><span class="messageWord">' + send_ContentList + '</span></li><li style="height:2rem;"><img src="' + httpHead + send_img3List + '" alt="图片"><img src="' + httpHead + send_img2List + '" alt="图片"></li></ul></div>';
+                            $(".his").html(reply_list);
+
+
+                        }
+
+
+                    }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+
+            /*提交订单分类选择*/
+            $(".selSort span").click(function () {
+                $(".selSort span").removeClass("current");
+                $(this).addClass("current");
+            });
+
+            /*点击“常见问题列表进入问题详情”*/
+            $(".answerTable tr").click(function () {
+                var moveWidth = '-' + 3 * ($(".tempWrap").width()) + 'px';
+                $("#tabBox1-bd").css("transform", "translate(" + moveWidth + ", 0px) translateZ(0px)");
+            });
+
+            /*点击“历史订单里的状态图标进入订单详情”*/
+            $("body").on("click", ".questionState img", function () {
+                var index = $(this).closest(".conContent").index();
+                $(".hisDetail").hide();
+                $(".his .hisDetail").eq(index).show();
+                var moveWidth = '-' + 4 * ($(".tempWrap").width()) + 'px';
+                $("#tabBox1-bd").css("transform", "translate(" + moveWidth + ", 0px) translateZ(0px)");
+            });
+
+            /*返回按钮功能*/
+            $("header a").click(function () {
+                var answerWidth = '-' + 3 * ($(".tempWrap").width());//问题详情
+                var answerWidth1 = '-' + 30 * ($(".tempWrap").width());//问题详情.移动端
+                var historyWidth = '-' + 4 * ($(".tempWrap").width());//工单详情
+                var threeWidth = '-' + ($(".tempWrap").width()) + 'px';//历史工单
+                var oneWidth = '-' + 2 * ($(".tempWrap").width()) + 'px';//常见问题
+                if ($("#tabBox1-bd").css("transform").replace(/[^0-9\-,]/g, '').split(',')[4] == historyWidth) {//工单详情、
+                    $("#tabBox1-bd").css("transform", "translate(0, 0px) translateZ(0px)");//历史工单
+                } else if ($("#tabBox1-bd").css("transform").replace(/[^0-9\-,]/g, '').split(',')[4] == answerWidth || answerWidth1) {//问题详情
+                    $("#tabBox1-bd").css("transform", "translate(" + oneWidth + ", 0px) translateZ(0px)");//常见问题
+                } else {
+                    window.history.go(-1);
+                }
+            })
+
+            /*我会被删除*/
+            function sendImg(sendData) {
+                console.log(sendData)
+
+                $.ajax({
+                    url: httpHead + 'Wap/Ajax/imgUser',
+                    type: 'post',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: sendData,
+                    success: function (data) {
+                        console.log(data)
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+            //上传图片展示
+            $(".upload-img").change(function () {
+                var filename = $(this).get(0).files[0];
+                //      	console.log(obj)
+                var index = Number($(this).attr('data-index'));
+                var up_img = new FormData();
+                up_img.append('filename', filename);
+                up_img.append('ltoken', lToken);
+                up_img.append('i', index);
+                sendImg(up_img)
+                var wuc = window.URL.createObjectURL(filename);
+                $(this).closest(".answerImg").before("<img src='' style='width:1.5rem;height:1.5rem;'/> ");
+                $(this).closest(".answerImg").prev().attr('src', wuc);
+                $(this).attr('data-type', true);
+            });
+            //上传图片展示
+
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		.mui-input-row{
+            height: 1rem;
+            line-height: 1rem;
+            background: #fff;
+            border-bottom: solid 1px #e5e5e5;
+            position: relative;
+            clear: left;
+            overflow: hidden;
+            font-size:0.3rem;
+        }
+        .mui-input-row label {
+            font-family: 'Helvetica Neue',Helvetica,sans-serif;
+            float: left;
+            width: 22%;
+            padding: 0 0.22rem;
+            box-sizing: border-box;
+            line-height: 1.0rem;
+        }
+        .mui-input-row input{
+            float:left;
+            width: 76%;
+            margin-bottom: 0;
+            padding-left: 0;
+            border: 0;
+            height:0.95rem;
+            line-height: 0.95rem;
+        }
+        .btn1 {
+            width: 96%;
+          	display:block;
+            margin:0.6rem auto;
+            display: block;
+            height: 0.9rem;
+            background: #ff564f;
+            color: #fff;
+            border: 1px solid #ff564f;
+            -webkit-border-radius: 0.1rem;
+            -moz-border-radius: 0.1rem;
+            border-radius: 0.1rem;
+            font-size:0.32rem;
+        }
+        .mui-input-row select {
+            float:left;
+            width: 76%;
+            background:#fff;
+            -webkit-appearance: menulist;
+            border:0;
+            height:1.0rem;
+            line-height:1.0rem;
+        }
+        /*实名认证信息*/
+       .identify-info li{
+       		display:flex;
+       		justify-content: space-between;
+       		padding:0 0.2rem;
+       		background:#fff;
+       		font-size:0.28rem;
+       		height:0.8rem;
+       		line-height: 0.8rem;
+       		color:#999;
+       }
+       .identify-info .identify-img{
+       		height:3rem;
+       		padding:0 0.5rem;
+       }
+       .identify-info .kong{
+   		    height: 0.3rem;
+			background: #eee;
+       }
+       section{
+       		display: none;
+       }
+      .identify-info .imgs, .identify-info .identify-img{
+       		display:none;
+       }
+       .identify-info .back-why{
+       		display: none;
+       		height:auto;
+       		line-height:0.4rem;
+       }
+        .identify-info .back-why p{
+        	line-height:0.5rem;
+        	padding-bottom:0.3rem;
+        }
+        #re-bind{
+        	display:none;
+        }
+        #btn2, #btn1{
+        	display:none;
+        }
+    </style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>
+			<div class="lan102"></div>
+		</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page5" style="margin-top:0.3rem;">
+		<div class="mui-input-row">
+			<label>真实姓名</label>
+			<input type="text" placeholder="请如实填写" class="truename">
+		</div>
+		<div class="mui-input-row rr">
+			<label>证件类型</label>
+			<!--<select name="">
+            <option value="身份证">身份证</option>
+            <option value="护照">护照</option>
+            <option value="军官证">军官证</option>
+            <option value="台湾居民通行证">台湾居民通行证</option>
+            <option value="港澳居民通行证">港澳居民通行证</option>
+        </select>-->
+			<span>身份证</span>
+			<!-- <img src="images/more.png"/>-->
+		</div>
+		<div class="mui-input-row">
+			<label>证件号码</label>
+			<input type="text" placeholder="请填写证件号码" class="truenum">
+		</div>
+		<button id="btn1" type="button" class="mui-btn mui-btn-red btn1">下一步</button>
+		<button id="btn2" type="button" class="mui-btn mui-btn-red btn1">下一步</button>
+	</section>
+	<section id="identity-after">
+		<div class="identify">
+			<ul class="identify-info">
+				<li>
+					<span>状态</span>
+					<span class="status"></span>
+				</li>
+				<li class="back-why">
+					<span>认证未通过原因</span>
+					<p class="status-why"></p>
+				</li>
+				<li class='kong'></li>
+				<li>
+					<span>
+						<div class="lan70"></div>
+					</span>
+					<span class="name"></span>
+				</li>
+				<li>
+					<span>
+						<div class="lan116"></div>
+					</span>
+					<span class="num"></span>
+				</li>
+				<li class='kong'></li>
+				<li class="imgs">
+					<span>身份证人面像</span>
+					<span></span>
+				</li>
+				<li class="identify-img">
+					<img class="img-one" src="" alt="" />
+				</li>
+				<li class="imgs">
+					<span>身份证国徽面</span>
+					<span></span>
+				</li>
+				<li class="identify-img">
+					<img class="img-two" src="" alt="" />
+				</li>
+				<li class="imgs">
+					<span>手持身份证和本网站ID照</span>
+					<span></span>
+				</li>
+				<li class="identify-img">
+					<img class="img-three" src="" alt="" />
+				</li>
+			</ul>
+			<button id="re-bind" type="button" class="mui-btn mui-btn-red btn1">重新实名认证</button>
+		</div>
+	</section>
+	<script src="../js/mui.min.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				console.log(localStorage.ltoken)
+				//用户ltoken
+				//点击证件类型
+				$('select').change(function () {
+					$('.truenum').val('');
+				});
+				//个人身份证信息
+				$.ajax({
+					url: httpHead + 'Wap/User/nameauth_new',
+					data: { ltoken: lToken },
+					type: 'post',
+					success: function (data) {
+						console.log(data)
+						if (data['code'] == 200) {
+							//console.log(data);
+							if (data['body']['truename'] == null || data['body']['truename'] == '' || data['body']['idcard'] == null || data['body']['idcard'] == '' || data['body']['idcardimg1'] == null || data['body']['idcardimg2'] == null || data['body']['idcardimg3'] == null) {
+								$('.wrap').show();
+								if ((data['body']['truename'] != null || data['body']['truename'] != '') && (data['body']['idcard'] != null || data['body']['idcard'] != '')) {
+									$('#btn2').show();
+								} else {
+									$('#btn1').show();
+								}
+							} else {
+								var dataStatus = data['body']['idcardauth'];
+								// dataStatus = 2;
+								$('#identity-after').show();
+								$('.name').html(data['body']['truename']);
+								$('.num').html(data['body']['idcard']);
+								if (dataStatus == 1) {
+									$('.status').html('已通过实名认证');
+									$('.num').parent().next('.kong').hide();
+
+									$('.imgs, .identify-img').show().css('display', 'flex');
+								} else {
+									if (data['body']['idcardinfo'] == null || data['body']['idcardinfo'] == '') {
+										$('.status').html('正在审核中');
+									} else {
+										$('.status').html('未通过实名认证');
+										$('.back-why').show();
+										$('.back-why .status-why').html(data['body']['idcardinfo']);
+										$('#re-bind').show();
+										$('#re-bind').on('click', function () {
+											$('.wrap').show();
+											if ((data['body']['truename'] != null || data['body']['truename'] != '') && (data['body']['idcard'] != null || data['body']['idcard'] != '')) {
+												$('#btn2').show();
+											} else {
+												$('#btn1').show();
+											}
+											$('#identity-after').hide();
+										});
+									}
+
+								}
+								$('.imgs, .identify-img').show().css('display', 'flex');
+								$('.img-one').attr('src', httpHead + 'Upload/idcard/' + data['body']['idcardimg1']);
+								$('.img-two').attr('src', httpHead + 'Upload/idcard/' + data['body']['idcardimg2']);
+								$('.img-three').attr('src', httpHead + 'Upload/idcard/' + data['body']['idcardimg3']);
+							}
+						}
+
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				})
+				//个人身份证信息
+				//点击下一步按钮
+				$('#btn2').on('click', function () {
+					location.href = 'identity_auth.html';
+				});
+				$('#btn1').on('click', function () {
+					var truename = $('.truename').val();
+					var idcard = $('.truenum').val();
+					if (truename == '') {
+						layer.tips('请输入名字', '.truename', { tips: 3 });
+						return false;
+					}
+					if (idcard == '') {
+						layer.tips('请输入证件号', '.truenum', { tips: 3 });
+						return false;
+					}
+
+					var sendData = {
+						truename: truename,
+						idcard: idcard,
+						ltoken: lToken
+					}
+					$.ajax({
+						type: "post",
+						url: httpHead + "Wap/Login/upregister3",
+						data: sendData,
+						success: function (data) {
+							console.log(data)
+							if (data['code'] == 200) {
+								/*layer.msg('成功',{icon:2});*/
+								location.href = 'identity_auth.html';
+
+							} else {
+								layer.msg(data['result'], { icon: 2, shift: 5 });
+							}
+						}
+
+					});
+
+				})
+			}
+		})
+	</script>
+</body>
+
+</html>

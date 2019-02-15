@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+    <script src="../js/mui.min.js"></script>
+</head>
+
+<body style="background-color:#030f24">
+    <header class="transparent">
+        <a href="javascript:mui.back()" class="back"></a>
+        <h3>
+            <div class="lan220"></div>
+        </h3>
+    </header>
+    <!-- <div class="h98"></div> -->
+    <section class="wrap page-loginRegister">
+        <a href="" class="logo" style="color:#fff;font-size:0.8rem;width:0.8rem;"><img src="../imgs/loges.png" alt=""></a>
+        <ul class="form">
+            <li><input type="text" class="icon-countryCode holder34" onfocus="this.blur();" placeholder=""></li>
+            <li><input type="text" class="icon-person holder29" placeholder=""></li>
+            <li><input type="password" name="" id="" class="icon-lock holder30" placeholder=""></li>
+            <li><button class="btn lan220" style="background:#ff564f;"></li>
+            <li><a class="btn-forget lan223"></a></li>
+        </ul>
+
+        <div class="other">
+            <div class="title">
+                <i></i>
+                <h class="lan308"></h><i></i>
+            </div>
+            <a class="btn-register">
+                <div class="lan224"></div>
+            </a>
+        </div>
+
+    </section>
+
+
+
+
+    <script src="../js/slide.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            mui.init();
+            //域名
+            var httpHead = 'https://jys.hedu.mobi/';
+            //域名
+            window.addEventListener('refresh', function (e) {
+                //在父页面中添加监听事件，刷新页面
+                // var phoneCode = event.detail.phoneCode;
+                location.reload();
+            });
+            // 忘记密码
+            $('.btn-forget').on('click', function () {
+                mui.openWindow({
+                    url: 'foget_password.html',
+                    id: 'foget_password.html',
+                    styles: {
+                        top: '0',//新页面顶部位置
+                        bottom: '0',//新页面底部位置
+                    },
+                    waiting: {
+                        autoShow: false
+                    },
+                    show: {
+                        autoShow: true//页面loaded事件发生后自动显示，默认为true
+                    }
+                });
+            });
+
+            $('.btn-register').on('click', function () {
+                mui.openWindow({
+                    url: 'register.html',
+                    id: 'register.html',
+                    styles: {
+                        top: '0',//新页面顶部位置
+                        bottom: '0',//新页面底部位置
+                    },
+                    waiting: {
+                        autoShow: false
+                    },
+                    show: {
+                        autoShow: true//页面loaded事件发生后自动显示，默认为true
+                    }
+                });
+            });
+
+            $('.icon-countryCode').val(localStorage.draft_phoneCode);
+            $('.icon-countryCode').on('click', function () {
+                mui.openWindow({
+                    url: 'phone-area.html',
+                    id: 'phone-area.html',
+                    extras: {
+                        fromPage: 'login.html'  //扩展参数
+                    },
+                    styles: {
+                        top: '0',//新页面顶部位置
+                        bottom: '0',//新页面底部位置
+                    },
+                    waiting: {
+                        autoShow: false
+                    },
+                    show: {
+                        autoShow: true//页面loaded事件发生后自动显示，默认为true
+                    }
+                });
+            });
+
+            //提交登录
+            $('.btn').on('click', function () {
+                var countryCode = $('.icon-countryCode').val();
+                var iconPerson = $('.icon-person').val();
+                var iconLock = $('.icon-lock').val();
+                if (countryCode == '') {
+                    layer.tips(lan307, '.icon-countryCode', { tips: 3 });
+                    return false;
+                }
+                if (iconPerson == '') {
+                    layer.tips(holder29, '.icon-person', { tips: 3 });
+                    return false;
+                }
+                if (iconLock == '') {
+                    layer.tips(holder30, '.icon-lock', { tips: 3 });
+                    return false;
+                }
+                //此处填写接口
+                var sendData = {
+                    countryCode: countryCode,
+                    moble: iconPerson,
+                    password: iconLock
+                };
+                $.ajax({
+                    url: httpHead + 'Wap/login/submit',
+                    type: 'post',
+                    data: sendData,
+                    success: function (data) {
+                        if (data['code'] == 200) {
+                            layer.msg('登录成功', { icon: 1, shift: 5 });
+                            //存储用户信息
+                            //存储用户登录状态
+                            //console.log(data);
+                            localStorage.setItem('ltoken', data['body']['ltoken']);
+                            localStorage.setItem('mobile', data['body']['username']);
+                            if (data['body']['countryCode']) {
+                                localStorage.setItem('countryCode', data['body']['countryCode']);
+                            } else {
+                                localStorage.setItem('countryCode', '86');
+                            }
+                            var userInfoDatas = [data['body']['username'], data['body']['header_pic'], data['body']['vip']];
+                            localStorage.setItem('userDatas', userInfoDatas)
+                            var propertyStock = plus.webview.getWebviewById('stock_goods.html');
+                            var propertyStockOne = plus.webview.getWebviewById('my_property.html');
+                            var propertyStockTwo = plus.webview.getWebviewById('mine.html');
+                            var propertyStockThree = plus.webview.getWebviewById('c2c_trade.html');
+                            //触发界面的自定义事件（refresh）,从而进行数据刷新  
+                            mui.fire(propertyStock, 'refresh');
+                            mui.fire(propertyStockOne, 'refresh');
+                            mui.fire(propertyStockTwo, 'refresh');
+                            mui.fire(propertyStockThree, 'refresh');
+                            //mui.back();
+                            plus.webview.currentWebview().close();
+
+
+
+                        } else {
+                            layer.msg(data['result'], { icon: 2, shift: 5 });
+                        }
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+                //此处填写接口
+            })
+            //提交登录
+        })
+
+    </script>
+</body>
+
+</html>

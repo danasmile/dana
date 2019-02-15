@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+</head>
+
+<body>
+	<style type="text/css">
+		header,
+		.wrap {
+			background: #ff574f;
+		}
+
+		header h3 {
+			font-size: 0.4rem;
+		}
+
+		/*内容模块*/
+		.content {
+			padding: 0.98rem 0.2rem 0.2rem;
+		}
+
+		.content-top {
+			padding: 0.4rem 0.2rem;
+			background: #fff;
+			border-radius: 4px;
+			font-size: 0.3rem;
+			/*height:7rem;*/
+		}
+
+		.text-center {
+			text-align: center;
+			margin-bottom: 1.2rem;
+		}
+
+		.head-img {
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			margin: 0.15rem 0;
+		}
+
+		.pay-ewm {
+			width: 3rem;
+			height: 3rem;
+			margin: 0.5rem 0 0.1rem;
+			display: none;
+		}
+
+		/*链接地址*/
+		.share-link {
+			margin-top: 0.6rem;
+			color: #333 !important;
+			border-radius: 0.05rem;
+			-webkit-border-radius: 0.05rem;
+			-moz-border-radius: 0.05rem;
+			background: #fff;
+			padding: 0.3rem 0;
+			font-size: 0.26rem;
+			margin-bottom: 2.8rem;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.link-icon {
+			display: inline-block;
+			width: 0.35rem;
+			height: 0.35rem;
+			background: url('../imgs/link.png') no-repeat center;
+			background-size: 100%;
+			vertical-align: middle;
+			margin-right: 0.1rem;
+			margin-left: 0.2rem;
+		}
+
+		.copy-txt {
+			color: #ff574f;
+			float: right;
+			margin-right: 0.3rem;
+			border: none;
+			background: none;
+			font-size: 0.28rem;
+			outline: none;
+		}
+
+		#qian-bao {
+			/*background:yellow;*/
+			border: none;
+			width: auto;
+			/*width:100%;*/
+			outline: none;
+			flex: 1;
+		}
+	</style>
+	<header>
+		<a href="javascript:void(0);" class="back" onclick="mui.back()"></a>
+		<h3>
+			<div class="lan89"></div>
+		</h3>
+		<a href="javascript:void(0)" class="txtRight">
+			<div class="lan153"></div>
+		</a>
+	</header>
+	<section class="wrap">
+		<div class="content">
+			<div class="content-top">
+				<div class="text-center">
+					<img src="../images/icon131.png" alt="" class="head-img" />
+					<p style="font-size:0.35rem;">汇入地址充值</p>
+					<img src="" class="pay-ewm" />
+					<p style="font-size:0.33rem;color:#999;">扫一扫二维码 获取充值地址</p>
+				</div>
+			</div>
+			<!--链接地址-->
+			<div class="btn-add share-link">
+				<i class="link-icon"></i>
+				<input id="qian-bao" style="vertical-align: middle;">
+				<button class="copy-txt" data-clipboard-target="#qian-bao" data-clipboard-action="copy">
+					<div class="lan71"></div>
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script>
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			mui.init()
+
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//用户ltoken
+				var hrefCoin = location.href.split('?')[1].toLowerCase();
+				var hrefCoin1 = hrefCoin.split('&')[0];
+				// console.log(hrefCoin1)
+				var sendData = { ltoken: lToken, coin: hrefCoin1 };
+
+				var qianBao;
+				//console.log(sendData)
+				$.ajax({
+					url: httpHead + 'Wap/Finance/myzr',
+					type: 'post',
+					data: sendData,
+					success: function (data) {
+						if (data['code'] == 200) {
+							qianBao = data['body']['qianbao'];
+							//console.log(qianBao);
+							var imgUrl = 'http://qr.liantu.com/api.php?text=' + qianBao;
+							$(".pay-ewm").show();
+							$(".pay-ewm").attr('src', imgUrl);
+							$("#qian-bao").val(qianBao)
+						}
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				})
+				//复制功能
+				var clipboard1 = new Clipboard('.copy-txt');
+				clipboard1.on('success', function (e) {
+					console.log(e);
+					if (e.text != '') {
+						layer.msg('复制成功', { icon: 1, shift: 5 })
+					}
+				});
+				clipboard1.on('error', function (e) {
+					console.log(e);
+				});
+				//复制功能
+			} else {
+				console.log('请先登录')
+			}
+
+			//console.log(location.href.split('?')[1].split('&'))
+			var href = location.href.split('?')[1].split('&');
+			var hrefBiE = href[0];
+			//console.log(hrefBiE)
+			//console.log(unescape(hrefBiE))
+
+			$(".txtRight").on('click', function () {
+				location.href = 'add-record.html?' + hrefBiE;
+			})
+
+		})
+	</script>
+</body>
+
+</html>

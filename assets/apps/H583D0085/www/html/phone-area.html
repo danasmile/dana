@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<link href="../css/mui.min.css" rel="stylesheet" />
+</head>
+<style type="text/css">
+	.mui-table-view-cell:after {
+		left: 0;
+	}
+
+	.mui-content>.mui-table-view:first-child {
+		margin-top: 0;
+	}
+
+	.mui-table-view-cell.active {
+		background: url('../images/slelected.png') no-repeat 95% center;
+		background-size: 18px;
+	}
+</style>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3 class="lan307"></h3>
+	</header>
+	<div class="h98"></div>
+	<div class="mui-content">
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell" data-parea="86"><span>中国大陆(China) +86</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="852"><span>中国香港(Hongkong) +852
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="62"><span>印度尼西亚(Indonesia) +62
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="60"><span>马来西亚(Malaysia) +60
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="65"><span>新加坡(Singapore) +65
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1"><span>美国(United States of America) +1
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="93"><span>阿富汗(Afghanistan) +93
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="355"><span>阿尔巴尼亚(Albania) +355
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="213"><span>阿尔及利亚(Algeria) +213
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="376"><span>安道尔共和国(Andorra) +376
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="244"><span>安哥拉(Angola) +244
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1264"><span>安圭拉岛(Anguilla) +1264
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1268"><span>安提瓜和巴布达(Antigua and Barbuda) +1268
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="54"><span>阿根廷(Argentina) +54
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="374"><span>亚美尼亚(Armenia) +374
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="247"><span>阿森松(Ascension) +247
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="61"><span>澳大利亚(Australia) +61
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="43"><span>奥地利(Austria) +43
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="994"><span>阿塞拜疆(Azerbaijan) +994
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1242"><span>巴哈马(Bahamas) +1242
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="973"><span>巴林(Bahrain) +973
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="880"><span>孟加拉国(Bangladesh) +880
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1246"><span>巴巴多斯(Barbados) +1246
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="375"><span>白俄罗斯(Belarus) +375
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="32"><span>比利时(Belgium) +32
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="501"><span>伯利兹(Belize) +501
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="229"><span>贝宁(Benin) +229
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1441"><span>百慕大群岛(BermudaIs.) +1441
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="591"><span>玻利维亚(Bolivia) +591
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="267"><span>博茨瓦纳(Botswana) +267
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="55"><span>巴西(Brazil) +55
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="673"><span>文莱(Brunei) +673
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="359"><span>保加利亚(Bulgaria) +359
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="226"><span>布基纳法索(Burkina-faso) +226
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="95"><span>缅甸(Burma) +95
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="257"><span>布隆迪(Burundi) +257
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="237"><span>喀麦隆(Cameroon) +237
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1"><span>加拿大(Canada) +1
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1345"><span>开曼群岛(Cayman Is.) +1345
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="236"><span>中非共和国(Central African Republic) +236
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="235"><span>乍得(Chad) +235
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="56"><span>智利(Chile) +56
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="57"><span>哥伦比亚(Colombia) +57
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="242"><span>刚果(Congo) +242
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="682"><span>库克群岛(Cook Is.) +682
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="506"><span>哥斯达黎加(Costa Rica) +506
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="53"><span>古巴(Cuba) +53
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="357"><span>塞浦路斯(Cyprus) +357
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="420"><span>捷克(Czech Republic) +420
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="45"><span>丹麦(Denmark) +45
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="253"><span>吉布提(Djibouti) +253
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1890"><span>多米尼加共和国(Dominica Rep.) +1890
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="593"><span>厄瓜多尔(Ecuador) +593
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="20"><span>埃及(Egypt) +20
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="503"><span>萨尔瓦多(EISalvador) +503
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="372"><span>爱沙尼亚(Estonia) +372
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="251"><span>埃塞俄比亚(Ethiopia) +251
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="679"><span>斐济(Fiji) +679
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="358"><span>芬兰(Finland) +358
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="33"><span>法国(France) +33
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="594"><span>法属圭亚那(French Guiana) +594
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="689"><span>法属玻利尼西亚(French Polynesia) +689
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="241"><span>加蓬(Gabon) +241
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="220"><span>冈比亚(Gambia) +220
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="995"><span>格鲁吉亚(Georgia) +995
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="49"><span>德国(Germany) +49
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="233"><span>加纳(Ghana) +233
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="350"><span>直布罗陀(Gibraltar) +350
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="30"><span>希腊(Greece) +30
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1809"><span>格林纳达(Grenada) +1809
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1671"><span>关岛(Guam) +1671
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="502"><span>危地马拉(Guatemala) +502
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="224"><span>几内亚(Guinea) +224
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="592"><span>圭亚那(Guyana) +592
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="509"><span>海地(Haiti) +509
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="504"><span>洪都拉斯(Honduras) +504
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="36"><span>匈牙利(Hungary) +36
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="354"><span>冰岛(Iceland) +354
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="91"><span>印度(India) +91
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="98"><span>伊朗(Iran) +98
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="964"><span>伊拉克(Iraq) +964
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="353"><span>爱尔兰(Ireland) +353
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="972"><span>以色列(Israel) +972
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="39"><span>意大利(Italy) +39
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="225"><span>科特迪瓦(IvoryCoast) +225
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1876"><span>牙买加(Jamaica) +1876
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="81"><span>日本(Japan) +81
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="962"><span>约旦(Jordan) +962
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="855"><span>柬埔寨(Kampuchea (Cambodia )) +855
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="327"><span>哈萨克斯坦(Kazakstan) +327
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="254"><span>肯尼亚(Kenya) +254
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="82"><span>韩国(Korea) +82
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="965"><span>科威特(Kuwait) +965
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="331"><span>吉尔吉斯坦(Kyrgyzstan) +331
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="856"><span>老挝(Laos) +856
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="371"><span>拉脱维亚(Latvia) +371
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="961"><span>黎巴嫩(Lebanon) +961
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="266"><span>莱索托(Lesotho) +266
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="231"><span>利比里亚(Liberia) +231
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="218"><span>利比亚(Libya) +218
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="423"><span>列支敦士登(Liechtenstein) +423
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="370"><span>立陶宛(Lithuania) +370
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="352"><span>卢森堡(Luxembourg) +352
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="853"><span>澳门(Macao) +853
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="261"><span>马达加斯加(Madagascar) +261
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="265"><span>马拉维(Malawi) +265
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="60"><span>马来西亚(Malaysia) +60
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="960"><span>马尔代夫(Maldives) +960
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="223"><span>马里(Mali) +223
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="356"><span>马耳他(Malta) +356
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1670"><span>马里亚那群岛(Mariana Is) +1670
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="596"><span>马提尼克(Martinique) +596
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="230"><span>毛里求斯(Mauritius) +230
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="52"><span>墨西哥(Mexico) +52
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="373"><span>摩尔多瓦(Moldova, Republic of) +373
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="377"><span>摩纳哥(Monaco) +377
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="976"><span>蒙古(Mongolia) +976
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1664"><span>蒙特塞拉特岛(Montserrat Is) +1664
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="212"><span>摩洛哥(Morocco) +212
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="258"><span>莫桑比克(Mozambique) +258
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="264"><span>纳米比亚(Namibia) +264
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="674"><span>瑙鲁(Nauru) +674
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="977"><span>尼泊尔(Nepal) +977
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="599"><span>荷属安的列斯(Netheriands Antilles) +599
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="31"><span>荷兰(Netherlands) +31
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="64"><span>新西兰(NewZealand) +64
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="505"><span>尼加拉瓜(Nicaragua) +505
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="227"><span>尼日尔(Niger) +227
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="234"><span>尼日利亚(Nigeria) +234
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="850"><span>朝鲜(North Korea) +850
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="47"><span>挪威(Norway) +47
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="968"><span>阿曼(Oman) +968
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="92"><span>巴基斯坦(Pakistan) +92
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="507"><span>巴拿马(Panama) +507
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="675"><span>巴布亚新几内亚(Papua New Cuinea) +675
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="595"><span>巴拉圭(Paraguay) +595
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="51"><span>秘鲁(Peru) +51
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="63"><span>菲律宾(Philippines) +63
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="48"><span>波兰(Poland) +48
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="351"><span>葡萄牙(Portugal) +351
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1787"><span>波多黎各(PuertoRico) +1787
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="974"><span>卡塔尔(Qatar) +974
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="262"><span>留尼旺(Reunion) +262
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="40"><span>罗马尼亚(Romania) +40
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="7"><span>俄罗斯(Russia) +7
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1758"><span>圣卢西亚(Saint Lueia) +1758
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1784"><span>圣文森特岛(Saint Vincent) +1784
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="684"><span>东萨摩亚(美)(Samoa Eastern) +684
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="685"><span>西萨摩亚(Samoa Western) +685
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="378"><span>圣马力诺(San Marino) +378
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="239"><span>圣多美和普林西比(Sao Tome and Principe) +239
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="966"><span>沙特阿拉伯(Saudi Arabia) +966
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="221"><span>塞内加尔(Senegal) +221
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="248"><span>塞舌尔(Seychelles) +248
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="232"><span>塞拉利昂(Sierra Leone) +232
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="65"><span>新加坡(Singapore) +65
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="421"><span>斯洛伐克(Slovakia) +421
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="386"><span>斯洛文尼亚(Slovenia) +386
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="677"><span>所罗门群岛(Solomon Is) +677
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="252"><span>索马里(Somali) +252
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="27"><span>南非(South Africa) +27
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="27"><span>南非(South Africa) +27
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="34"><span>西班牙(Spain) +34
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="94"><span>斯里兰卡(Sri Lanka) +94
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1758"><span>圣卢西亚(St.Lucia) +1758
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1784"><span>圣文森特(St.Vincent) +1784
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="249"><span>苏丹(Sudan) +249
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="597"><span>苏里南(Suriname) +597
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="268"><span>斯威士兰(Swaziland) +268
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="46"><span>瑞典(Sweden) +46
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="41"><span>瑞士(Switzerland) +41
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="963"><span>叙利亚(Syria) +963
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="886"><span>中国台湾(Taiwan) +886
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="992"><span>塔吉克斯坦(Tajikstan) +992
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="255"><span>坦桑尼亚(Tanzania) +255
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="66"><span>泰国(Thailand) +66
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="228"><span>多哥(Togo) +228
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="676"><span>汤加(Tonga) +676
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1809"><span>特立尼达和多巴哥(Trinidad and Tobago) +1809
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="216"><span>突尼斯(Tunisia) +216
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="90"><span>土耳其(Turkey) +90
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="993"><span>土库曼斯坦(Turkmenistan) +993
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="256"><span>乌干达(Uganda) +256
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="380"><span>乌克兰(Ukraine) +380
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="971"><span>阿拉伯联合酋长国(United Arab Emirates) +971
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="44"><span>英国(United Kiongdom) +44
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="1"><span>美国(United States of America) +1
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="598"><span>乌拉圭(Uruguay) +598
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="233"><span>乌兹别克斯坦(Uzbekistan) +233
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="58"><span>委内瑞拉(Venezuela) +58
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="84"><span>越南(Vietnam) +84
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="967"><span>也门(Yemen) +967
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="381"><span>南斯拉夫(Yugoslavia) +381
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="243"><span>扎伊尔(Zaire) +243
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="260"><span>赞比亚(Zambia) +260
+				</span>
+			</li>
+			<li class="mui-table-view-cell" data-parea="263"><span>津巴布韦(Zimbabwe) +263
+				</span>
+			</li>
+		</ul>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<!-- <script src="../js/common.js"></script> -->
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		$(function () {
+			// mui.init({
+			// 	swipeBack: true, //启用右滑关闭功能
+			// 	beforeback: function () {
+			// 		var login = plus.webview.getWebviewById('login.html');
+			// 		var forget = plus.webview.getWebviewById('foget_password.html');
+			// 		var register = plus.webview.getWebviewById('register.html');
+			// 		mui.fire(login, 'refresh')
+			// 		mui.fire(forget, 'refresh')
+			// 		mui.fire(register, 'refresh')
+
+			// 		// mui.fire(my_yue, 'refresh', {
+			// 		// 	phoneCode: localStorage.draft_phoneCode
+			// 		// });
+			// 		return true;
+			// 	}
+			// });
+			//返回上一界面后刷新主界面的数据，执行主界面的refresher自定义事件
+			$('.mui-table-view-cell').on('click', function () {
+				$(this).addClass('active').siblings().removeClass('active');
+				val = $(this).data('parea');
+				localStorage.setItem('draft_phoneCode', val);
+				if (window.plus) {
+					var self = plus.webview.currentWebview();
+					var fromPage = plus.webview.getWebviewById(self.fromPage);
+					mui.fire(fromPage, 'refresh')
+				}
+
+				mui.back();
+			})
+			if (localStorage.draft_phoneCode) {
+				//console.log(localStorage.phoneCode)
+				$('.mui-table-view-cell').each(function () {
+					if ($(this).data('parea') == localStorage.draft_phoneCode) {
+						$(this).addClass('active').siblings().removeClass('active');
+					}
+				})
+			}
+		})
+	</script>
+</body>
+
+</html>

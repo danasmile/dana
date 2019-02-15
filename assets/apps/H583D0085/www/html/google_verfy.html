@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		.other{
+			padding: .2rem;
+		}
+		.other .con {
+			font-size: .24rem;
+			line-height: .4rem;
+			text-align: justify;
+			color: #555555;
+		}
+		.list li:last-child{
+			border-bottom:#e5e5e5 1px solid
+		}
+		.list li button,.list li span{
+			color:#ff564f;
+			line-height:1rem;
+			outline:none;
+		}
+		button{
+			border:none;
+			background:none;
+		}
+		.page9 .list .btn-yzm{
+			position: static;
+		}
+		.con p{ margin-bottom: 0.2rem;}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>谷歌认证</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page9">
+		<ul class="list">
+			<li><input id="copy-content" class="input-old-pass" type="text" name="" placeholder="输入谷歌秘钥" value=""><button
+				 data-clipboard-target="#copy-content" class="tt" id="copy" data-clipboard-action="copy">
+					<div class="lan71"></div>
+				</button></li>
+			<li><input class="input-new-pass" type="text" name="" placeholder="输入谷歌验证码"><button style="opacity:0;" class="tt" id="past">粘贴</button></li>
+			<li><input class="input-new-pass1 input-short-message" type="text" name="" placeholder="输入短信验证码"><a href="" class="tt btn-yzm">发送验证码</a></li>
+			<li><input class="input-check-pass" type="password" name="" placeholder="输入资金密码"><span class="tt" style="opacity:0;">
+					<div class="lan62"></div>
+				</span></li>
+		</ul>
+		<div class="other">
+			<div class="con">
+				<p>1.安装在"Google Authenticator"应用程序中，点击右上角"+"号，然后选择"手动输入验证码"。</p>
+				<p>2.粘贴上面的"密钥"到"密钥"输入栏，并填写您的Gateio账号，点击"完成"。</p>
+				<p>3.查看"谷歌验证码"，输入到上面的"谷歌验证码"输入栏。</p>
+				<p>请勿删除此双重验证密码账户，否则会导致您无法进行账户操作；如果误删，您可通过重置密钥重新获取。</p>
+			</div>
+		</div>
+		<div class="g-operate">
+			<input type="submit" value="开启Google认证" class="btn">
+		</div>
+
+	</section>
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+
+			var httpHead = 'https://jys.hedu.mobi/'; //域名
+
+			if (localStorage.ltoken) {
+				var lToken = localStorage.ltoken;
+				var mobile = localStorage.mobile; //获取登录手机号
+				var yzm;                         //定义手机验证码全局变量
+				//获取谷歌密钥
+				$.ajax({
+					type: "get",
+					url: httpHead + "Wap/User/googleauths",
+					data: { ltoken: lToken },
+					success: function (data) {
+						console.log(data)
+						if (data['code'] == 200) {
+							$('.input-old-pass').val(data['body']);
+						} else {
+							layer.msg(data['result'], { icon: 2 });
+						}
+					}
+
+				});
+				//获取短信验证码2
+				$('.btn-yzm').on('click', function () {
+					var mobile = localStorage.mobile; 
+					var countryCode = localStorage.countryCode; 
+					var sendData = {
+						countryCode: countryCode,
+						mobile: mobile,
+						bj: 0
+					}
+					$.ajax({
+						type: "post",
+						url: httpHead + "Wap/login/real",
+						data: sendData,
+						success: function (data) {
+							console.log(data);
+							if (data['code'] == 200) {
+								layer.msg('发送成功', { icon: 1, shift: 5 });
+								yzm = data['body'];
+							} else {
+								layer.msg(data['result'], { icon: 2 });
+							}
+						}
+					});
+				})
+				//开启谷歌验证
+				$('.btn').on('click', function () {
+					var inputOldPass = $('.input-old-pass').val();
+					var inputNewPass = $('.input-new-pass').val();
+					var inputShortMessage = $('.input-short-message').val();
+					var authCode = $('.input-check-pass').val();
+					if (inputOldPass == '') {
+						layer.tips('请先登录', '.input-old-pass', { tips: 3, anim: 6 });
+						return false;
+					}
+					if (inputNewPass == '') {
+						layer.tips('请输入谷歌验证码', '.input-new-pass', { tips: 3, anim: 6 });
+						return false;
+					}
+					if (inputShortMessage == '') {
+						layer.tips('请输入短信验证码', '.input-short-message', { tips: 3, shift: 5 });
+						return false;
+					}
+					if (inputShortMessage != yzm) {
+						layer.tips('请输入正确的短信验证码', '.input-short-message', { tips: 3, shift: 5 });
+						return false;
+					}
+					if (authCode == '') {
+						layer.tips('请输入资金密码', '.input-check-pass', { tips: 3, shift: 5 });
+						return false;
+					}
+
+					var sendData = {
+						ltoken: lToken,
+						key: inputOldPass,
+						verify: inputNewPass,
+						password: authCode
+					}
+					$.ajax({
+						type: "post",
+						url: httpHead + "Wap/User/goolesave",
+						data: sendData,
+						success: function (data) {
+							console.log(data);
+							if (data['status'] == 1) {
+								layer.msg('谷歌验证绑定成功', { icon: 1 });
+								setTimeout(function () { plus.webview.currentWebview().close(); }, 3000);
+							} else {
+								layer.msg(data['msg'], { icon: 2 });
+							}
+						}
+					});
+
+				});
+				//提交修改
+				//复制功能
+				var clipboard1 = new Clipboard('#copy');
+				clipboard1.on('success', function (e) {
+					console.log(e);
+					if (e.text != '') {
+						layer.msg('复制成功', { shift: 5 })
+					}
+				});
+				clipboard1.on('error', function (e) {
+					console.log(e);
+				});
+
+				//复制功能
+
+			} else {
+				layer.msg('请先登录', { icon: 2 });
+			}
+
+
+
+
+
+		})
+
+
+
+	</script>
+</body>
+
+</html>

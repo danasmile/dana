@@ -1,0 +1,79 @@
+header{
+   z-index:10000;
+}
+.footer{
+    z-index:100;
+}
+.trade-area-change{
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background:#fff;
+    z-index:1000;
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -ms-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+}
+html body .arrow-up{
+    top:0.98rem;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+}
+.area-title{
+    width:100%;
+    overflow:hidden;
+    background:#f2f2f2;
+    display:flex;
+}
+.area-title-item{
+    flex:1;
+    float:left;
+    text-align:center;
+    height:0.7rem;
+    line-height:0.7rem;
+    cursor:pointer;
+}
+.area-title-active{
+    background:#dedede;
+    border-bottom:0.01rem solid #f4471f;
+    box-sizing:border-box;
+}
+.trade-area-content{
+    overflow:hidden;
+    background:#fff;
+}
+.trade-area-content-item{
+    width:25%;
+    float:left;
+    text-align:center;
+    padding:0.2rem 0;
+}
+.trade-area-content-item .area-logo{
+    /*display:block;*/
+    width:0.4rem;
+}
+.trade-area-bg{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:999;
+    display:none;
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -ms-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+}

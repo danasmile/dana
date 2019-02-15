@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+
+	<style type="text/css">
+		.clear {
+			zoom: 1
+		}
+
+		.clear:after {
+			clear: both;
+			display: block;
+			content: '';
+		}
+
+		.header-top {
+			width: 100%;
+			height: 2.5rem;
+			background: url(../imgs/redtop.png);
+		}
+
+		.page16 {
+			background: #f7f7f7;
+		}
+
+		.page16 .panel {
+			height: auto;
+			background: #fff;
+			position: static;
+			padding: 0;
+		}
+
+		.page16 .panel .face {
+			width: 1.8rem;
+			height: 1.8rem;
+			position: absolute;
+			top: 1.6rem;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+		}
+
+		.page16 .panel .face img {
+			width: 1.6rem;
+			height: 1.6rem;
+			max-width: none;
+			border: solid #fff 0.1rem;
+			border-radius: 100%;
+		}
+
+		.page16 .panel .center {
+			text-align: center;
+		}
+
+		.page16 .panel h3 {
+			line-height: 1.6rem;
+			font-weight: 600;
+			display: inline-block;
+			margin-top: 0.8rem;
+		}
+
+		.page16 .panel .icon-vip {
+			float: none;
+			display: inline-block;
+			vertical-align: middle;
+			margin-top: -0.2rem;
+			margin-right: 0;
+			border-radius: 0;
+		}
+
+		.page16 .list li {
+			font-size: 0.28rem;
+			line-height: 0.8rem;
+		}
+
+		.page16 .list1 li {
+			float: left;
+		}
+
+		.page16 .list1 img {
+			width: .8rem;
+			height: .8rem;
+			display: block;
+			margin: 0 auto .1rem;
+		}
+
+		.page16 h1 {
+			font-size: 0.3rem;
+			line-height: 1.2rem;
+			font-weight: 600;
+			margin-left: 0.3rem;
+		}
+
+		.page16 .bzinfo {
+			margin: 0.3rem auto;
+		}
+
+		.page16 .bzinfo,
+		.page16 .other {
+			background: #fff;
+		}
+
+		@media only screen and (max-height: 812px) and (min-height: 635px) and (width: 375px) {
+			body {
+				padding-bottom: 0;
+			}
+		}
+
+		.page16 .panel h3 {
+			color: #969696;
+			line-height: 1.1rem;
+		}
+
+		.face,
+		.center {
+			display: none;
+		}
+
+		/*弹框*/
+		.tanbg {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+		}
+
+		.tan-kuang {
+			width: 96%;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			position: fixed;
+			bottom: -100%;
+			/*bottom:0;*/
+			color: #ff574f;
+			text-align: center;
+			font-size: 0.36rem;
+			transition: all 300ms;
+			z-index: 100000;
+		}
+
+		#tan {
+			border-radius: 0.2rem;
+			margin-bottom: 0.1rem;
+			background: #fff;
+		}
+
+		#tan li:nth-child(1) {
+			font-size: 0.26rem;
+			color: #999;
+		}
+
+		#tan li {
+			padding: 0.3rem 0;
+			border-bottom: 1px solid #eee;
+		}
+
+		#tan li:last-child {
+			border-bottom: none;
+		}
+
+		.tan-cancel {
+			border-radius: 0.1rem;
+			margin-bottom: 0.3rem;
+			background: #fff;
+			padding: 0.3rem 0;
+		}
+
+		.page16 .list img {
+			height: auto;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- <div class="h98"></div> -->
+
+
+	<div class="header-top"></div>
+	<section class="wrap page16">
+		<div class="panel">
+			<div class="face face2"><img src="" alt=""></div>
+			<div class="face face1"><img src="../images/touxiang.png" alt=""></div>
+			<div class="center center1">
+				<h3>点击登录</h3>
+			</div>
+			<div class="center center2">
+				<h3></h3>
+				<img src="../imgs/vip.png" alt="" class="icon-vip">
+				<span></span>
+			</div>
+			<ul class="list clear">
+				<li><a class="safe-center"><img style="margin-bottom: -0.1rem;width: 0.7rem;" src="../imgs/icon162-1.png" alt="">
+						<div class="lan201"></div>
+					</a></li>
+				<li><a class="identity-auth"><img src="../imgs/icon162-2.png" alt="">账号管理</a></li>
+				<li><a class="entrust-trade"><img src="../imgs/icon162-3.png" alt="">支付管理</a></li>
+			</ul>
+		</div>
+		<div class="bzinfo clear">
+			<h1>认证信息</h1>
+			<ul class="list clear">
+				<li><a class="google-verfy"><img src="../imgs/icon162-4.png" alt="">谷歌认证</a></li>
+				<li><a class="identity-ren"><img src="../imgs/icon162-5.png" alt="">
+						<div class="lan102"></div>
+					</a></li>
+				<li><a class="email-bind" class="lan203"><img src="../imgs/icon162-6.png" alt="">
+						<div class="lan203"></div>
+					</a></li>
+			</ul>
+		</div>
+		<div class="other">
+			<h1>其他服务</h1>
+			<ul class="list clear">
+				<li><a class="ask-answer"><img src="../imgs/icon162-7.png" alt="">有问必答</a></li>
+				<li><a class="language-set"><img src="../imgs/icon162-8.png" alt="">
+						<div class="lan208"></div>
+					</a></li>
+				<li><a class="about-us"><img src="../imgs/icon162-9.png" alt="">
+						<div class="lan194"></div>
+					</a></li>
+			</ul>
+		</div>
+	</section>
+	<!--弹框-->
+	<div class="tanbg">
+	</div>
+	<div class="tan-kuang">
+		<ul id="tan">
+			<li>选择语言</li>
+			<li class="mui-table-view-cell">中文(简)</li>
+			<li class="mui-table-view-cell">English</li>
+		</ul>
+		<div class="tan-cancel">
+			<div class="lan25"></div>
+		</div>
+	</div>
+
+	<!--弹框-->
+
+
+	<!--<div class="h98"></div>-->
+
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script>
+		$(function () {
+			//域名
+			var httpHead = 'https://jys.hedu.mobi/';
+			//域名
+			window.addEventListener('refresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				location.reload();
+			});
+			//localStorage.clear();
+			if (localStorage.ltoken) {
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//console.log(lToken,{ltoken:lToken})
+				$('.face2').show();
+				$('.center2').show();
+				//获取用户信息
+				$.ajax({
+					url: httpHead + 'Wap/User/index',
+					type: 'post',
+					data: { ltoken: lToken },
+					success: function (data) {
+						//console.log(data)
+						$('.face2 img').attr('src', httpHead + data['body']['header_pic']);
+						$('.center2 h3').html(data['body']['username']);
+						$('.center2 span').html(data['body']['vip']);
+					},
+					error: function (data) {
+						console.log(data)
+					}
+				});
+				//获取用户信息
+				$('.google-verfy').on('click', function () {
+					mui.openWindow({
+						url: 'google_verfy.html',
+						id: 'google_verfy.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+				$('.identity-auth').on('click', function () {
+					mui.openWindow({
+						url: 'account_manage.html',
+						id: 'account_manage.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+				$('.identity-ren').on('click', function () {
+					mui.openWindow({
+						url: 'verified.html',
+						id: 'verified.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+				$('.email-bind').on('click', function () {
+					mui.openWindow({
+						url: 'email-bind.html',
+						id: 'email-bind.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+				$('.ask-answer').on('click', function () {
+					mui.openWindow({
+						url: 'askAnswer.html',
+						id: 'askAnswer.html',
+						styles: {
+							top: '0',//新页面顶部位置
+							bottom: '0',//新页面底部位置
+						},
+						waiting: {
+							autoShow: false
+						},
+						show: {
+							autoShow: true//页面loaded事件发生后自动显示，默认为true
+						}
+					});
+				});
+			} else {
+				$('.face1').show();
+				$('.center1').show();
+				$('.google-verfy').on('click', function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 })
+				});
+				$('.identity-auth').on('click', function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 })
+				});
+				$('.identity-ren').on('click', function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 })
+				});
+				$('.email-bind').on('click', function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 })
+				});
+				$('.ask-answer').on('click', function () {
+					layer.msg('请先登录', { icon: 2, shift: 5 })
+				});
+			}
+
+			$('.language-set').on('click', function () {
+				mui.openWindow({
+					url: 'language.html',
+					id: 'language.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+
+			// //语言弹框
+			// $('.language-set').on('click', function () {
+			// 	$('.tanbg').show();
+			// 	$('.tan-kuang').css('bottom', '0');
+			// });
+			// $('.tan-cancel').on('click', function () {
+			// 	$('.tanbg').hide();
+			// 	$('.tan-kuang').css('bottom', '-100%');
+			// });
+			// $('.tanbg').on('click', function () {
+			// 	$('.tanbg').hide();
+			// 	$('.tan-kuang').css('bottom', '-100%');
+			// });
+			// //语言弹框
+
+			$('.center1, .face1 img').on('click', function () {
+				mui.openWindow({
+					url: 'login.html',
+					id: 'login.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+			$('.face2').on('click', function () {
+				mui.openWindow({
+					url: 'up_img.html',
+					id: 'up_img.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+			$('.safe-center').on('click', function () {
+				mui.openWindow({
+					url: 'safe_center.html',
+					id: 'safe_center.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+			$('.about-us').on('click', function () {
+				mui.openWindow({
+					url: 'about_us.html',
+					id: 'about_us.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+			$('.entrust-trade').on('click', function () {
+				mui.openWindow({
+					url: 'pay_method.html',
+					id: 'pay_method.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+		})
+	</script>
+</body>
+
+</html>

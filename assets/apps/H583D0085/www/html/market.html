@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<style>
+		.page12 .tabBoxLine .hd li a {
+			color: #ffb6b7;
+		}
+
+		.list-title {
+			display: flex;
+
+		}
+
+		.list-title>div {
+			flex: 1;
+		}
+
+		.all-area {
+			background: #f7f7f7;
+			color: #727272;
+			padding: 0 0.26rem;
+			font-size: 0.26rem;
+			display: none;
+		}
+
+		.all-area-title,
+		.all-area-content {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.all-area-title li,
+		.all-area-content li {
+			text-align: center;
+			flex: 1.2;
+			padding: 0.2rem 0;
+			border-bottom: 0.01rem solid #eee;
+		}
+
+		.all-area-title li:last-child,
+		.all-area-content li:last-child {
+			text-align: right;
+			flex: 0.8;
+		}
+
+		.all-area-title li:first-child,
+		.all-area-content li:first-child {
+			text-align: left;
+			flex: 0.8;
+		}
+
+		.all-area-content li:first-child {
+			color: #333;
+		}
+
+		.all-area-content li:last-child {
+			color: #eb3439;
+		}
+	</style>
+</head>
+
+<body>
+	<header style="">
+		<!--<a href="search_bi.html"><input type="text" class="search" placeholder="搜索币种"></a>-->
+		<h3>速必备</h3>
+	</header>
+	<div class="h98"></div>
+	<div class="wrap page12">
+		<div id="tabBox1" class="tabBoxLine fixed-hd" style="">
+			<div class="hd">
+				<ul>
+					<li class="active"><a href="javascript:void(0)">BDB</a></li>
+					<li><a href="javascript:void(0)">USDT</a></li>
+					<li><a href="javascript:void(0)">BTC</a></li>
+				</ul>
+			</div>
+			<div class="bd" id="tabBox1-bd">
+				<!-- 自选 -->
+				<div class="con">
+					<!--<div class="list-title">-->
+					<!--<div>交易量</div>-->
+					<!--<div><div class="lan254"></div></div>-->
+					<!--<div>24H涨跌</div>-->
+					<!--</div>-->
+					<div>
+						<div class="list bdblist">
+
+						</div>
+
+					</div>
+				</div>
+				<!-- /自选 -->
+				<!-- BTC -->
+				<div class="con">
+					<div>
+
+						<div class="list usdtlist">
+
+
+
+
+						</div>
+
+
+					</div>
+				</div>
+				<!-- /BTC -->
+				<!-- ETH -->
+				<div class="con">
+					<div>
+
+
+						<div class="list btclist">
+
+
+
+
+						</div>
+
+					</div>
+				</div>
+				<!-- /ETH -->
+			</div>
+		</div>
+	</div>
+	<!--<img src="erweima3.jpg" alt="" id="erweima"/>
+<div id="info"></div>-->
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/slide.js"></script>
+	<script>
+		$(function () {
+			mui.init();
+			//识别二维码
+			//		  mui.plusReady(function(){
+			//      	//alert('haha')
+			//      	 $("#erweima").on('click',function(){
+			//      	 	alert('hah')
+			//      	 	var path = $(this).attr('src')
+			//          plus.barcode.scan('erweima3.jpg',function(type,code,file){
+			//              var result = "type"+type+"<br/>code:"+code+"<br/>file:"+file;
+			//             $('#info').html(result)
+			//             alert(code)
+			//          },function(error){
+			//              plus.nativeUI.alert('无法识别图片');
+			//          });
+			//
+			//  });
+			//
+			//      })
+			var httpChange = 'https://jys.hedu.mobi/';
+			//定义接口是否请求完成变量
+			var getData = false;
+			var bdHeight;
+			var setTimer;
+			$("body").on('click', '.btn-star', function (event) {
+				event.preventDefault();
+				$(this).toggleClass('on');
+			});
+			$("body").on('click', '.item-con1', function (event) {
+				event.preventDefault();
+				if ($(this).siblings('.all-area').css("display") == "block") {
+					$(this).siblings('.all-area').css("display", "none")
+					$(".tempWrap").height(bdHeight);
+					//console.log(setTimer)
+					getList();
+				} else {
+					//$(this).siblings('.all-area').hide();
+					clearTimeout(setTimer);
+					$(this).siblings('.all-area').css("display", "block");
+					$(".tempWrap").height("auto");
+				}
+			});
+			$('body').on('click', '.bdblist .btn-red', function (event) {
+				//alert('haah')
+				//console.log($(this).attr('data-market'))
+				var market = $(this).attr('data-market');
+				mui.openWindow({
+					url: 'k-line.html?' + market,
+					id: 'k-line.html?' + market,
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				})
+				//阻止事件冒泡
+				return false;
+				//阻止事件冒泡
+			});
+			getList();
+			//后台数据
+
+			function getList() {
+				$.ajax({
+					url: httpChange + 'wap/Index/index',
+					type: 'get',
+					success: function (data) {
+						console.log(data)
+						if (data['code'] == 200) {
+							//console.log(data);
+							var bdbList = '';
+							var usdtList = '';
+							var btcList = '';
+							var bdbListL = data['body']['ELC'].length;
+							var usdtListL = data['body']['USDT'].length;
+							var btcListL = data['body']['BTC'].length;
+							//美元转人民币汇率
+							var exChange = 6.8231;
+							//美元转人民币汇率
+							//console.log(data['body']['ELC'])
+							//console.log(bdbListL,usdtListL,btcListL);
+							for (var i = 0; i < bdbListL; i++) {
+								var rmbOne = (data['body']['ELC'][i]['new_price'] * exChange).toFixed(2);
+								var volumeColor;
+								var volume;
+								//console.log(String(data['body']['ELC'][i]['change']).indexOf('-'))
+								if (String(data['body']['ELC'][i]['change']).indexOf('-') != -1) {
+									volumeColor = 'btn-green';
+									volume = '-' + (Number(String(data['body']['ELC'][i]['change']).split('-')[1]) / 100).toFixed(2) + '%';
+								} else {
+									volumeColor = 'btn-red';
+									volume = '+' + (Number(data['body']['ELC'][i]['change']) / 100).toFixed(2) + '%';
+								}
+								bdbList += '<div class="item"><div class="item-con1"><img src="' + httpChange + 'Upload/coin/' + data['body']['ELC'][i]['xnbimg'] + '" alt="" class="icon"><div class="txt1"><span class="sp1">' + data['body']['ELC'][i]['xnb'].toUpperCase() + '</span><span class="sp2 green">$' + data['body']['ELC'][i]['new_price'] + '</span></div><div class="txt2"><span>量(24h)' + data['body']['ELC'][i]['volume'] + '</span><span> ￥' + rmbOne + '</span></div><div data-market="' + data['body']['ELC'][i]['name'] + '" class="btn ' + volumeColor + '">' + volume + '</div></div><div class="all-area"></div></div>';
+							}
+							for (var j = 0; j < usdtListL; j++) {
+								var rmbTwo = (data['body']['USDT'][j]['new_price'] * exChange).toFixed(2);
+								var volumeColorOne;
+								var volumeOne;
+								//console.log(data['body']['USDT'][j]['volume'])
+								if (String(data['body']['USDT'][j]['change']).indexOf('-') != -1) {
+									volumeColorOne = 'btn-green';
+									volumeOne = '-' + (Number(String(data['body']['USDT'][j]['change']).split('-')[1]) / 100).toFixed(2) + '%';
+								} else {
+									volumeColorOne = 'btn-red';
+									volumeOne = '+' + (Number(data['body']['USDT'][j]['change']) / 100).toFixed(2) + '%';
+								}
+								usdtList += '<div class="item"><div class="item-con1"><img src="' + httpChange + 'Upload/coin/' + data['body']['USDT'][j]['xnbimg'] + '" alt="" class="icon icon' + j + '"><div class="txt1"><span class="sp1">' + data['body']['USDT'][j]['xnb'].toUpperCase() + '</span><span class="sp2 green">$' + data['body']['USDT'][j]['new_price'] + '</span></div><div class="txt2"><span>量(24h)' + data['body']['USDT'][j]['volume'] + '</span><span> ￥' + rmbTwo + '</span></div><div class="btn ' + volumeColorOne + '">' + volumeOne + '</div></div><div class="all-area"><ul class="all-area-title"><li>交易所</li><li><div class="lan255"></div></li><li><div class="lan256"></div></li><li>涨幅</li></ul><ul class="all-area-content"><li>gate.io</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>oken</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>bitfinex</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>huobipro</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>binance</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul></div></div>';
+							}
+							for (var q = 0; q < btcListL; q++) {
+								var rmbThree = (data['body']['BTC'][q]['new_price'] * exChange).toFixed(2);
+								var volumeColorTwo;
+								var volumeTwo;
+								//console.log(data['body']['USDT'][j]['volume'])
+								if (String(data['body']['BTC'][q]['change']).indexOf('-') != -1) {
+									volumeColorTwo = 'btn-green';
+									volumeTwo = '-' + (Number(String(data['body']['BTC'][q]['change']).split('-')[1]) / 100).toFixed(2) + '%';
+								} else {
+									volumeColorTwo = 'btn-red';
+									volumeTwo = '+' + (Number(data['body']['BTC'][q]['change']) / 100).toFixed(2) + '%';
+								}
+								btcList += '<div class="item"><div class="item-con1"><img src="' + httpChange + 'Upload/coin/' + data['body']['BTC'][q]['xnbimg'] + '" alt="" class="icon icon' + q + '"><div class="txt1"><span class="sp1">' + data['body']['BTC'][q]['xnb'].toUpperCase() + '</span><span class="sp2 green">$' + data['body']['BTC'][q]['new_price'] + '</span></div><div class="txt2"><span>量(24h)' + data['body']['BTC'][q]['volume'] + '</span><span> ￥' + rmbThree + '</span></div><div class="btn ' + volumeColorTwo + '">' + volumeTwo + '</div></div><div class="all-area"><ul class="all-area-title"><li>交易所</li><li><div class="lan255"></div></li><li><div class="lan256"></div></li><li>涨幅</li></ul><ul class="all-area-content"><li>gate.io</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>oken</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>bitfinex</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>huobipro</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul><ul class="all-area-content"><li>binance</li><li>255.44</li><li>255.33</li><li>+2.35%</li></ul></div></div>';
+							}
+							$('.bdblist').html(bdbList);
+							$('.usdtlist').html(usdtList);
+							$('.btclist').html(btcList);
+
+							//console.log(getData)
+							if (getData == false) {
+								getData = true;
+								//console.log('haha')
+								TouchSlide({
+									slideCell: "#tabBox1",
+									endFun: function (i) {
+										var bd = document.getElementById("tabBox1-bd");
+										bd.parentNode.style.height = bd.children[i].children[0].offsetHeight + 1 + "px";
+										bdHeight = bd.children[i].children[0].offsetHeight + 1 + "px";
+										if (i > 0) bd.parentNode.style.transition = "200ms";
+									}
+								});
+
+							} else {
+								//console.log('haahh')
+							}
+							//							var newData2 = new Date()
+							//							console.log(newData2.getSeconds()-nowDate1.getSeconds());
+							//							console.log(newData2.getMinutes()-nowDate1.getMinutes());
+						}
+					},
+					error: function (data) {
+						//console.log(data)
+					}
+				});
+				clearTimeout(setTimer);
+				setTimer = setTimeout(function () { getList() }, 5000);
+			}
+
+			window.onbeforeunload = function (event) {
+				clearTimeout(setTimer);
+				// return confirm("确定离开此页面吗？");
+			}
+			//window
+			// window.onbeforeunload = function (e) {
+			// 	return alert('onbeforeunload')
+			// }
+			//后台数据
+		})
+
+	</script>
+</body>
+
+</html>

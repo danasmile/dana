@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+</head>
+
+<body>
+	<style type="text/css">
+		header,
+		.wrap {
+			background: #ff574f;
+		}
+
+		header h3 {
+			font-size: 0.4rem;
+		}
+
+		/*内容模块*/
+		.content {
+			padding: 0.98rem 0.2rem 0.2rem;
+		}
+
+		.content-top {
+			padding: 0.4rem 0.2rem;
+			background: #fff;
+			border-radius: 4px;
+			font-size: 0.3rem;
+			/*height:7rem;*/
+		}
+
+		.text-center {
+			text-align: center;
+			margin-bottom: 1.1rem;
+		}
+
+		.head-img {
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+			margin: 0.15rem 0;
+		}
+
+		.inputCode {
+			/*display:flex;*/
+			width: 100%;
+			padding: 0.2rem 0;
+			margin-top: 0.8rem;
+			font-size: 0.35rem;
+			border-bottom: 1px solid #e5e5e5;
+			text-align: left;
+		}
+
+		.inputCode input[type='text'] {
+			width: 70%;
+			border: 0;
+			font-size: 0.26rem;
+			/*flex:1;*/
+		}
+
+		/*温馨提示*/
+		.warnDiv {
+			color: #333;
+			font-size: 0.3rem;
+			margin-bottom: 1.1rem;
+		}
+
+		.warnDiv p {
+			font-size: 0.32rem;
+			margin-bottom: 0.2rem;
+		}
+
+		.warnDiv span {
+			line-height: 0.5rem;
+			/*margin-bottom:0.2rem;*/
+		}
+
+		/*链接地址*/
+		.share-link {
+			margin-top: 0.8rem;
+			color: #ff574f;
+			border-radius: 0.1rem;
+			-webkit-border-radius: 0.1rem;
+			-moz-border-radius: 0.1rem;
+			background: #fff;
+			padding: 0.35rem 0;
+			font-size: 0.4rem;
+			margin-bottom: 2.8rem;
+			text-align: center;
+		}
+
+		.inputCode span {
+			/*text-align: left;*/
+		}
+
+		.inputCode img {
+			width: 0.5rem;
+			vertical-align: middle;
+			float: right;
+		}
+	</style>
+	<header>
+		<a href="javascript:history.back();" class="back"></a>
+		<h3>充值码充值</h3>
+	</header>
+	<section class="wrap">
+		<div class="content">
+			<div class="content-top">
+				<div class="text-center">
+					<img src="../images/icon131.png" alt="" class="head-img" />
+					<p style="font-size:0.35rem;">充值码充值</p>
+					<div class="inputCode">
+						<span>充值码</span>
+						<input type="text" placeholder="请选充值码或扫码录入">
+						<img src="../imgs/scan.png" alt="" />
+					</div>
+				</div>
+				<div class="warnDiv">
+					<p>温馨提示：</p>
+					<span>
+						用户从代理商与他人手中购买充值码时，请务必索要前半段，到这里提交，点击锁定按钮以后在付款，谨防受骗
+					</span>
+				</div>
+			</div>
+			<!--链接地址-->
+			<div class="btn-add share-link">
+				<span>
+					<div class="lan118"></div>
+				</span>
+			</div>
+		</div>
+	</section>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			mui.init()
+			window.addEventListener('reFresh', function (e) {
+				//在父页面中添加监听事件，刷新页面
+				location.reload();
+			});
+			$('.inputCode img').on('click', function () {
+				mui.openWindow({
+					url: 'barcode_scan.html',
+					id: 'barcode_scan.html',
+					styles: {
+						top: '0',//新页面顶部位置
+						bottom: '0',//新页面底部位置
+					},
+					waiting: {
+						autoShow: false,//自动显示等待框，默认为true
+					},
+					show: {
+						autoShow: true//页面loaded事件发生后自动显示，默认为true
+					}
+				});
+			});
+
+			mui.plusReady(function () {
+				if (plus.storage.getItem('codeResult')) {
+
+					var moneyCode = plus.storage.getItem('codeResult');
+					//alert(moneyCode)
+					$(".inputCode input").val(moneyCode);
+					plus.storage.removeItem('codeResult')
+				}
+			})
+
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#one{
+				position:relative;
+			}
+			#one .two,#one .three{
+				/*position:absolute;
+				left:0;
+				top:0;*/
+			}
+			#one .two{
+				opacity:0;
+			}
+		</style>
+</head>
+
+<body>
+	<input type="password" />
+	<!--<div class="one">点击</div>-->
+	<div id="one">
+		<div class="two">two顺丰快递费淡饭黄齑风华绝代</div>
+		<div class="three">顺丰到付还记得发货的九分裤</div>
+	</div>
+
+</body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/languge/languge.js"></script>
+<script>
+	$('.two').on('click', function () {
+		alert('two')
+	})
+	$('.three').on('click', function () {
+		alert('three')
+	})
+
+
+</script>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+    <style>
+        .page9 .list{
+            margin-top:0;
+        }
+        .tt{
+            color:#9f9f9f;
+        }
+        .payImg,.coin{
+            position: absolute;
+            right:0;
+            top:0;
+            color:#9f9f9f;
+        }
+        .payImg img{
+            width:0.4rem;
+        }
+        input[disabled]{
+            color:#9f9f9f;
+            background: #fff;
+        }
+       .buyBtn{
+            color:#fff;
+        }
+        .con-list-item3{
+        	margin-right:0.1rem;
+        }
+    </style>
+</head>
+
+<body style="background: #fff;">
+    <header>
+        <a href="javascript:mui.back();" class="back"></a>
+        <h3>买入 USDT</h3>
+    </header>
+    <div class="h98"></div>
+    <section class="wrap page9">
+        <ul class="list">
+            <li>
+                <span class="tt ttName"></span>
+                <span class="payImg">
+
+                </span>
+            </li>
+            <li>
+                <span class="tt">最小成交量</span>
+                <input class="tradeLimit" type="text" name="" value="" disabled>
+                <span class="coin">USDT</span>
+            </li>
+            <li>
+                <span class="tt"><i></i>
+                    <div class="lan15"></div>
+                </span>
+                <input class="buyPrice" type="text" name="" value="" disabled>
+                <span class="coin">CNY</span>
+            </li>
+            <li>
+                <span class="tt"><i></i>
+                    <div class="lan16"></div>
+                </span>
+                <input class="buyNumber" type="text" name="" value="">
+                <span class="coin">USDT</span>
+            </li>
+            <li>
+                <span class="tt">兑换金额</span>
+                <input class="changeMoney" type="text" name="" value="" readonly>
+                <span class="coin">CNY</span>
+            </li>
+        </ul>
+        <div class="g-operate">
+            <input type="submit" value="" class="buyBtn btn">
+        </div>
+
+    </section>
+    <script src="../js/slide.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script>
+        $(function () {
+            //域名
+            var httpHead = 'https://jys.hedu.mobi/';
+            //域名
+            mui.init();
+            var tradeType;
+            var idId;
+            var sidSid;
+            mui.plusReady(function () {
+                var self = plus.webview.currentWebview();
+                //alert(self.allData)
+                var selfData = self.allData;
+                $('.ttName').html(selfData.name + '成交：' + selfData.id);
+                $('.payImg').html(selfData.payWay);
+                $('.tradeLimit').val(selfData.limit);
+                $('.buyPrice').val(selfData.price);
+                $(".buyNumber").val(selfData.num);
+                var changeMoney = multiplication(selfData.price, selfData.num);
+                idId = selfData.idId;
+                sidSid = selfData.sidSid;
+                $('.ttName').attr({ 'data-id': idId, 'data-sid': sidSid });
+                $(".changeMoney").val(changeMoney);
+                var typeS
+                if (selfData.type == '卖出') {
+                    tradeType = 2;
+                    typeS = '买入';
+                } else {
+                    tradeType = 1;
+                    typeS = '卖出';
+                }
+                $('.tt i').html(typeS);
+                $('.g-operate .buyBtn').val(typeS);
+                $('header h3').html(typeS + 'USDT');
+            });
+            if (localStorage.ltoken) {
+                //用户ltoken
+                var lToken = localStorage.ltoken;
+                //用户ltoken
+                // 立即买入
+
+                $(".buyBtn").on('click', function () {
+                    var chargeId = $('.ttName').attr('data-id');
+                    var chargeSid = $('.ttName').attr('data-sid');
+                    var wechatY;
+                    var alipayY;
+                    var bankY;
+                    var priceVal = $(".buyPrice").val();
+                    var priceNum = $(".buyNumber").val();
+                    var minNum = $('.tradeLimit').val().split('-')[0];
+                    var maxNum = $('.tradeLimit').val().split('-')[1];
+                    if (priceNum == '') {
+                        layer.tips('请输入买入数量', '.buyNumber', { tips: 3 });
+                        return false;
+                    }
+                    if (Number(priceNum) > Number(maxNum)) {
+                        layer.msg('输入数量大于最大成交量', { icon: 2, shift: 5 });
+                        return false;
+                    }
+                    if (Number(priceNum) < Number(minNum)) {
+                        layer.msg('输入数量小于最小成交量', { icon: 2, shift: 5 });
+                        return false;
+                    }
+                    //alert(tradeType)       
+                    //console.log($(this).find('.con-list-item4 span').html());
+                    if ($('.con-list-wechat').length > 0) {
+                        wechatY = 1
+                    } else {
+                        wechatY = 0;
+                    }
+                    if ($('.con-list-alipay').length > 0) {
+                        alipayY = 1
+                    } else {
+                        alipayY = 0;
+                    }
+                    if ($('.con-list-bank').length > 0) {
+                        bankY = 1
+                    } else {
+                        bankY = 0;
+                    }
+                    var buySendData = {
+                        ltoken: lToken,
+                        type: tradeType,
+                        price: priceVal,
+                        num: priceNum,
+                        minnum: minNum,
+                        wechat: wechatY,
+                        alipay: alipayY,
+                        bank: bankY
+                    };
+                    //      alert(lToken)
+                    //      alert(tradeType)
+                    //      alert(priceVal)
+                    //      alert(priceNum)
+                    //      alert(minNum)
+                    //      alert(wechatY)
+                    //      alert(alipayY)
+                    //      alert(bankY)
+
+                    //console.log(buySendData)
+                    $.ajax({
+                        url: httpHead + 'Wap/C2c/add1',
+                        type: 'post',
+                        data: buySendData,
+                        success: function (data) {
+                            // console.log(data);
+                            if (data['status'] == 1) {
+                                layer.msg(data['msg'], { icon: 1, shift: 5 });
+                                //setTimeout(function(){mui.back()},3000)
+                                if (data['id']) {
+                                    var matchId = data['id'];
+                                    alert(matchId);
+                                    localStorage.setItem('matchid', matchId);
+                                    setTimeout(function () {
+                                        mui.openWindow({
+                                            url: 'c2c_order_detail1.html',
+                                            id: 'c2c_order_detail1.html',
+                                            styles: {
+                                                top: '0',//新页面顶部位置
+                                                bottom: '0',//新页面底部位置
+                                            },
+                                            waiting: {
+                                                autoShow: false
+                                            },
+                                            show: {
+                                                autoShow: true//页面loaded事件发生后自动显示，默认为true
+                                            }
+                                        });
+                                    }, 3000)
+                                }
+                            } else {
+                                layer.msg(data['msg'], { icon: 2, shift: 5 });
+                            }
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    })
+                })
+                // 立即买入
+
+            } else {
+                layer.msg('请先登录')
+            }
+            //兑换金额
+            $(".buyNumber").on('input', function () {
+                var price = $('.buyPrice').val();
+                var num = $(this).val();
+                var total = multiplication(price, num);
+                $('.changeMoney').val(total);
+            })
+            //兑换金额
+
+            //js乘法运算函数
+            function multiplication(arg1, arg2) {
+                var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
+                try { m += s1.split(".")[1].length } catch (e) { }
+                try { m += s2.split(".")[1].length } catch (e) { }
+                return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+            }
+            //js乘法运算函数
+
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

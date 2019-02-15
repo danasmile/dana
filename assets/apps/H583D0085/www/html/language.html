@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<script src="../js/languge/languge.js"></script>
+</head>
+<style type="text/css">
+	.mui-table-view-cell:after {
+		left: 0;
+	}
+
+	.mui-table-view-cell.active {
+		background: url('../images/slelected.png') no-repeat 95% center;
+		background-size: 16px;
+	}
+</style>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3 class="lan194"></h3>
+	</header>
+	<div class="h98"></div>
+	<div class="mui-content">
+		<div class="mui-card">
+			<ul class="mui-table-view language-set">
+				<li class="mui-table-view-cell">
+					<div class="lan99"></div>
+				</li>
+				<li class="mui-table-view-cell">English</li>
+			</ul>
+		</div>
+
+	</div>
+
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		$(function () {
+			if (localStorage.lan == 0 || localStorage.lan == undefined) {
+				$('.language-set .mui-table-view-cell').eq(0).addClass('active').siblings().removeClass('active');
+			}
+			if (localStorage.lan == 1) {
+				$('.language-set .mui-table-view-cell').eq(1).addClass('active').siblings().removeClass('active');
+			}
+
+			$('.language-set .mui-table-view-cell').on('click', function () {
+				$(this).addClass('active').siblings().removeClass('active');
+				if ($(this).index() == 0) {
+					//中文
+					localStorage.setItem('lan', '0');
+				}
+				if ($(this).index() == 1) {
+					//英文
+					localStorage.setItem('lan', '1');
+				}
+				//触发刷新
+				var menu = plus.webview.getLaunchWebview();
+				var opener = plus.webview.currentWebview().opener();
+				var par = plus.webview.getWebviewById(opener.id);
+				//mui.fire(menu,'refresh');
+				//mui.fire(par,'refresh');
+				mui.back();
+			})
+		})
+	</script>
+</body>
+
+</html>

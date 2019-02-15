@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/main.css">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+		<meta name="imagemode" content="force">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" type="image/x-icon" href="">
+		<link rel="apple-touch-icon-precomposed" href="">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+		<link rel="stylesheet" href="../css/tradeareachange.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/languge/languge.js"></script>
+		<style>
+			html, body{
+		height:100%;
+		background:#fff;
+	}
+	.btn{
+		outline:none;
+	}
+	.page6 .userInfo li{
+		border-bottom:none;
+		padding:0;
+		font-size:0.24rem;
+	}
+	.page6 .userInfo{
+		border-bottom:#e5e5e5 1px solid;
+	}
+	.page6 .userInfo3{
+		border-bottom:none;
+	}
+	.trade-area-content{
+		display:none;
+	}
+	.trade-area-content:nth-child(1){
+		display:block;
+	}
+	.loginTips{
+		display:none;
+	}
+	.userInfo{
+		display:none;
+	}
+	.page6 .list3-4 .item .item-con1{
+		flex:1.4rem;
+	}
+	.page6 .list3-4 .item .item-con2{
+		flex:1.4rem;
+	}
+	.page6 .list3-4 .item .item-con3{
+		flex:0.2rem;
+	}
+	.greenGreen{
+		color:#19a952;
+	}
+	.redRed{
+		color:#eb3439;
+	}
+	html body .page6 .right-box {
+		border-left: none;
+	}
+	.page6 .left-box{
+		border-right:#e5e5e5 1px solid;
+	}
+	.money{
+		display:none;
+	}
+	.userInfo li i{
+		color:#666;
+	}
+	.page6 .panel .li5{
+		font-size:0.24rem;
+		color:#777;
+		margin-bottom:0rem;
+	}
+	.li5 span:nth-child(2){
+		color:#fa6743;
+	}
+	.li5 span:nth-child(1){
+		margin-right:0.1rem;
+	}
+	.li5 span:nth-child(3){
+		margin-left:0.1rem;
+	}
+	.page6 .panel{
+		padding:0.3rem 0.2rem 0;
+	}
+	.selllist{
+		min-height: 5rem;
+	}
+</style>
+	</head>
+
+	<body>
+		<header>
+			<!--<a href="javascript:mui.back()" class="back mui-action-back"></a>-->
+			<h3><a data-index='false' href="javascript:void(0)" class="arrow-down">SYT/CBS</a></h3>
+		</header>
+		<!--交易区选择-->
+		<div class="trade-area-bg"></div>
+		<div class="trade-area-change">
+			<ul class="area-title">
+				<!--<li class="area-title-item area-title-active">自选区</li>-->
+				<!-- <li class="area-title-item area-title-active">BTC</li>
+				<li class="area-title-item">ETH</li>
+				<li class="area-title-item">USDT</li>
+				<li class="area-title-item">YDP</li> -->
+			</ul>
+			<div id="area-content">
+				<!-- <ul class="trade-area-content trade-area-content1">
+
+				</ul>
+				<ul class="trade-area-content trade-area-content2">
+
+				</ul>
+				<ul class="trade-area-content trade-area-content3">
+
+				</ul>
+				<ul class="trade-area-content trade-area-content4">
+
+				</ul> -->
+			</div>
+
+		</div>
+		<!--交易区选择-->
+		<div class="h98"></div>
+
+
+
+		<div class="wrap page6">
+
+			<div id="tabBox1" class="tabBoxLine fixed-hd">
+				<div class="hd">
+					<ul>
+						<li><a href="javascript:void(0)">
+								<div class="lan11"></div>
+							</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="lan12"></div>
+							</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="lan2001"></div>
+							</a></li>
+						<li><a href="javascript:void(0)">
+								<div class="lan24"></div>
+							</a></li>
+					</ul>
+				</div>
+				<div class="bd" id="tabBox1-bd">
+					<!-- 买入 -->
+					<div class="con">
+						<div>
+
+							<div class="list1-2">
+								<div class="left-box">
+									<ul class="panel">
+										<li class="li1">
+											<input type="text" placeholder="委托价格" class="entrust-buy-price"><em class="unit">SYT</em>
+										</li>
+										<li class="li2">
+											<input type="text" placeholder="委托数量" class="entrust-buy-num"><em class="unit">SYT</em>
+										</li>
+										<li class="li3">
+											<input readonly type="text" placeholder="交易额" class="entrust-buy-mum"><em class="unit">CBS</em>
+										</li>
+										<li class="li6">
+											<input type="password" placeholder="交易密码" class="entrust-buy-password">
+										</li>
+										<li class="li5"><span class="lan2002"></span><span class="li5-mm">0</span><span class="li5-dd">SYT</span><br>
+											(<span class="li5-s"></span>
+											)</li>
+										<li class="li4">
+											<input id="entrust-buy-btn" type="submit" value="" class="btn btn-red" data-typ="1">
+										</li>
+									</ul>
+
+									<div class="loginTips">
+										<a href="javascript:void(0)">
+											<img src="../images/face61.png" alt="" class="icon">
+											<p id="entrust-login-tip"></p>
+										</a>
+									</div>
+									<ul class="userInfo userInfo1">
+										<li><span class="userInfoOne">
+												<div class="lan20"></div>
+											</span><span class="red userInfoTwo"></span></li>
+										<li><span class="userInfoOne1">
+												<div class="lan50"></div>
+											</span><span class="red userInfoThree"></span></li>
+									</ul>
+									<ul class="userInfo userInfo2">
+										<li><span class="userInfoOne">
+												<div class="lan20"></div>
+											</span><span class="red userInfoTwo"></span></li>
+										<li><span class="userInfoOne1">
+												<div class="lan50"></div>
+											</span><span class="red userInfoThree"></span></li>
+									</ul>
+								<!-- 	<ul class="userInfo userInfo3">
+										<li><span id="lan2009a"></span><span class="red"></span></li>
+									</ul> -->
+
+								</div>
+								<div class="right-box">
+									<ul class="data-list selllist">
+
+									</ul>
+									<div class="money"></div>
+									<ul class="data-list buylist">
+
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /买入 -->
+					<!-- 卖出 -->
+					<div class="con">
+						<div>
+							<div class="list1-2">
+								<div class="left-box">
+									<ul class="panel">
+										<li class="li1">
+											<input type="text" placeholder="委托价格" class="entrust-sell-price"><em class="unit">SYT</em>
+										</li>
+										<li class="li2">
+											<input type="text" placeholder="委托数量" class="entrust-sell-num"><em class="unit">SYT</em>
+										</li>
+										<li class="li3">
+											<input readonly type="text" placeholder="交易额" class="entrust-sell-mum"><em class="unit">CBS</em>
+										</li>
+										<li class="li6">
+											<input type="password" placeholder="交易密码" class="entrust-sell-password">
+										</li>
+										<li class="li5"><span class="lan2002"></span><span class="li5-m">0</span><span class="li5-d">SYT</span><br> (<span
+											 class="li5-s"></span>
+											)</li>
+										<li class="li4">
+											<input id="entrust-sell-btn" type="submit" value="" class="btn btn-green" data-type="2">
+										</li>
+									</ul>
+
+									<div class="loginTips">
+										<a href="javascript:void(0)">
+											<img src="../images/face61.png" alt="" class="icon">
+											<p id="trade-login-tip"></p>
+										</a>
+									</div>
+
+									<ul class="userInfo userInfo1">
+										<li><span class="userInfoOne">
+												<div class="lan20"></div>
+											</span><span class="red userInfoTwo"></span></li>
+										<li><span class="userInfoOne1">
+												<div class="lan50"></div>
+											</span><span class="red userInfoThree"></span></li>
+									</ul>
+									<ul class="userInfo userInfo2">
+										<li><span class="userInfoOne">
+												<div class="lan20"></div>
+											</span><span class="red userInfoTwo"></span></li>
+										<li><span class="userInfoOne1">
+												<div class="lan50"></div>
+											</span><span class="red userInfoThree"></span></li>
+									</ul>
+									<ul class="userInfo userInfo3">
+										<li><span id="lan2009b"></span><span class="red"></span></li>
+									</ul>
+
+								</div>
+								<div class="right-box">
+									<ul class="data-list selllist">
+
+									</ul>
+									<div class="money"></div>
+									<ul class="data-list buylist">
+
+									</ul>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+					<!-- /卖出 -->
+					<!-- 当前委托 -->
+					<div class="con">
+						<div>
+							<div class="list3-4 list3-4n">
+
+							</div>
+						</div>
+					</div>
+					<!-- /当前委托 -->
+					<!-- 历史委托 -->
+					<div class="con">
+						<div>
+
+							<div class="list3-4 list3-4h">
+
+							</div>
+
+						</div>
+					</div>
+					<!-- /历史委托 -->
+				</div>
+			</div>
+		</div>
+		<script src="../js/slide.js"></script>
+		<script src="../js/main.js"></script>
+		<script src="../layer/layer.js"></script>
+		<script src="../js/tradeareachange.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			$(function() {
+				mui.init();
+				//localStorage.clear();
+				var roundSix = 4;
+				var timerShi;
+				var timerShi1;
+				var tradeLevelTimer;
+				var bdbTradeLTime;
+				window.addEventListener('refresh', function(e) {
+					//在父页面中添加监听事件，刷新页面
+					location.reload();
+				});
+				//域名
+				var httpHead = 'https://jys.hedu.mobi/';
+				//域名
+				var chargePairOne = $('.arrow-down').html().split('/');
+				var chargePair = chargePairOne[0].toLowerCase() + '_' + chargePairOne[1].toLowerCase();
+				//localStorage.clear();
+				if (localStorage.ltoken) {
+					//用户ltoken
+					var lToken = localStorage.ltoken;
+					console.log(lToken)
+					//用户ltoken
+					$('.loginTips').hide();
+					$('.userInfo').show();
+					//币种选择
+					$.ajax({
+						url: httpHead + 'Wap/Index/index',
+						type: 'post',
+						success: function(data) {
+							//          		console.log(data);
+							if (data['code'] == 200) {
+								var dataBody = data['body'];
+								var titles = '';
+								var contents = '';
+								var dataL = dataBody.length;
+								var index=1;
+								var active='area-title-active';
+								for (var item in dataBody) {
+									var str = '';
+									var len = dataBody[item].length;
+									if(index>1)active='';
+									console.log('item---->' + item + ' len=' + len+ 'active='+active);
+									titles += '<li class="area-title-item '+ active+'">' + item + '</li>';
+									for (var i = 0; i < len; i++) {
+										var status = dataBody[item][i]['status'];
+										if (status != 1) continue;
+										var _trade=dataBody[item][i]['xnb']
+											.toUpperCase();
+										if(index==1&&str.length==0){
+											initTrade(_trade,item);
+										}
+										str += '<li class="trade-area-content-item"><img class="area-logo" src="' + httpHead + 'Upload/coin/' +
+											dataBody[item][i]['xnbimg'] + '" alt=""> <br><span class="area-bi">' + _trade+ '/' + dataBody[item][i]['rmb'].toUpperCase() + '</span></li>';
+											
+									}
+									contents += '<ul class="trade-area-content trade-area-content' + index + '">'+ str + '</ul>';
+									index+=1;
+								}
+								$('.area-title').html(titles);
+								$('#area-content').html(contents);
+								$('.area-title-item').on('click', function() {
+									//alert('haahaarea-title-item')
+									$('.area-title-item').removeClass('area-title-active');
+									$(this).addClass('area-title-active');
+									var index = $(this).index() + 1;
+									console.log('index---->' + index);
+									$('.trade-area-content').hide();
+									$('.trade-area-content' + index).show();
+								});
+							}
+						},
+						error: function(data) {
+							console.log(data);
+						}
+					});
+					$('body').on('click', '.trade-area-content-item', function() {
+						var thisContent = $(this).find('span').html();
+						$('.arrow-down').html(thisContent);
+						$(".entrust-buy-price").val('');
+						$(".entrust-buy-num").val('');
+						$(".entrust-buy-mum").val('');
+						$('.li5 .li5-mm').html('0');
+						$(".entrust-sell-price").val('');
+						$(".entrust-sell-num").val('');
+						$(".entrust-sell-mum").val('');
+						$(".li5 .li5-m").html("0");
+						var thisContentOne = thisContent.split('/')[1];
+						var thisContentTwo = thisContent.split('/')[0];
+						var itemSendData = {
+							ltoken: lToken,
+							market: thisContentTwo.toLowerCase() + '_' + thisContentOne.toLowerCase()
+						};
+						var chargePairS = thisContentTwo.toLowerCase() + '_' + thisContentOne.toLowerCase();
+						clearTimeout(timerShi);
+						//console.log(timerShi,'无人回复');
+						agencyTrade(chargePairS, 1);
+						agencyTrade1(chargePairS, 2);
+						//console.log(thisContentOne)          					
+						if (thisContentOne == 'BDB') {
+							clearTimeout(tradeLevelTimer);
+							bdbTradeLevel(chargePairS);
+						} else {
+							clearTimeout(bdbTradeLTime);
+							tradeLevel(chargePairS);
+						}
+						userFinance(itemSendData)
+						$('.li1 .unit').html(thisContentOne);
+						$('.li2 .unit').html(thisContentTwo);
+						$('.li3 .unit').html(thisContentOne);
+						//                      	$('.userInfo1 .userInfoOne').html('可用'+thisContentOne);
+						//                      	$('.userInfo1 .userInfoOne1').html('冻结'+thisContentOne);
+						//                      	$('.userInfo2 .userInfoOne').html('可用'+thisContentTwo);
+						//                      	$('.userInfo2 .userInfoOne1').html('冻结'+thisContentTwo);
+						$('.trade-area-change').removeClass('arrow-up');
+						$('.arrow-down').attr('data-index', 'false');
+						$('.trade-area-bg').css('display', 'none');
+					});
+					/**
+					 * 初始化交易选项
+					 */
+					function initTrade(thisContentOne,thisContentTwo){
+						$('.arrow-down').html(thisContentOne+'/'+thisContentTwo);
+						var itemSendData = {
+							ltoken: lToken,
+							market: thisContentTwo.toLowerCase() + '_' + thisContentOne.toLowerCase()
+						};
+						var chargePairS = thisContentTwo.toLowerCase() + '_' + thisContentOne.toLowerCase();
+						clearTimeout(timerShi);
+						//console.log(timerShi,'无人回复');
+						agencyTrade(chargePairS, 1);
+						agencyTrade1(chargePairS, 2);
+						//console.log(thisContentOne)          					
+						if (thisContentOne == 'BDB') {
+							clearTimeout(tradeLevelTimer);
+							bdbTradeLevel(chargePairS);
+						} else {
+							clearTimeout(bdbTradeLTime);
+							tradeLevel(chargePairS);
+						}
+						userFinance(itemSendData)
+						$('.li1 .unit').html(thisContentOne);
+						$('.li2 .unit').html(thisContentTwo);
+						$('.li3 .unit').html(thisContentOne);
+						//                      	$('.userInfo1 .userInfoOne').html('可用'+thisContentOne);
+						//                      	$('.userInfo1 .userInfoOne1').html('冻结'+thisContentOne);
+						//                      	$('.userInfo2 .userInfoOne').html('可用'+thisContentTwo);
+						//                      	$('.userInfo2 .userInfoOne1').html('冻结'+thisContentTwo);
+						$('.trade-area-change').removeClass('arrow-up');
+						$('.arrow-down').attr('data-index', 'false');
+						$('.trade-area-bg').css('display', 'none');
+					}
+					//币种选择
+					//当前委托,历史委托                       
+					agencyTrade(chargePair, 1);
+					agencyTrade1(chargePair, 2);
+
+					function agencyTrade(marketDouble, marketType) {
+						//console.log(marketType)
+						var randomT = Math.random(0, 1);
+						var weiSendData = {
+							ltoken: lToken,
+							market: marketDouble,
+							type: marketType,
+							t: randomT
+						};
+						$.ajax({
+							url: httpHead + 'Wap/Trade/getTradels',
+							type: 'get',
+							global: false,
+							data: weiSendData,
+							success: function(data) {
+								//console.log(data);
+								if (data['code'] == 200) {
+									var dataList = data['body']['list'];
+									var dataListL = dataList.length;
+									var dataListStr = '';
+									for (var i = 0; i < dataListL; i++) {
+										//console.log(dataList[i]['market'])
+										var marketPair = dataList[i]['market'].split('_');
+										var marketPairB = marketPair[0].toUpperCase();
+										var marketPairA = marketPair[1].toUpperCase();
+										var marketTypeS;
+										var marketStatus;
+										var marketClass;
+										var addTime = format(dataList[i]['addtime']);
+										if (dataList[i]['type'] == 1) {
+											marketTypeS = lan11;
+											marketClass = 'redRed';
+										} else {
+											marketTypeS = lan12;
+											marketClass = 'greenGreen';
+										}
+										if (dataList[i]['status'] == 0) {
+											marketStatus = lan22c;
+										}
+										if (dataList[i]['status'] == 1) {
+											marketStatus = lan22b;
+										}
+										if (dataList[i]['status'] == 2) {
+											marketStatus = lan22a;
+										}
+
+										dataListStr += '<div class="item"><div class="item-con1"><div class="txt1">' + Number(dataList[i][
+												'price'
+											]).toFixed(roundSix) + ' ' + marketPairA + '</div><div class="txt2">' + addTime +
+											'</div></div><div class="item-con2"><div class="txt1"><span id="trade-num"></span>' + Number(dataList[i]
+												['num']).toFixed(
+												roundSix) + marketPairB + '</div><div class="txt2"><span id="trade-suc"></span>' + Number(dataList[i][
+												'deal'
+											]).toFixed(roundSix) +
+											'</div></div><div class="item-con3"><div class="txt1"><i class="orange ' + marketClass + '">' +
+											marketTypeS + '</i></div><div class="txt2">' + marketStatus + '</div></div></div>';
+									}
+									//console.log(marketType,'wositype')
+									if (marketType == 1) {
+										$(".list3-4n").html(dataListStr);
+									} else {
+										$(".list3-4h").html(dataListStr);
+									}
+
+								}
+							},
+							error: function(data) {
+								console.log(data);
+							}
+						});
+						clearTimeout(timerShi);
+						//console.log(timerShi,'定时器')
+						timerShi = setTimeout(function() {
+							agencyTrade(marketDouble, marketType)
+						}, 5000);
+					}
+
+					function agencyTrade1(marketDouble, marketType) {
+						//console.log(marketType)
+						var randomT = Math.random(0, 1);
+						var weiSendData = {
+							ltoken: lToken,
+							market: marketDouble,
+							type: marketType,
+							t: randomT
+						};
+						$.ajax({
+							url: httpHead + 'Wap/Trade/getTradels',
+							type: 'get',
+							global: false,
+							data: weiSendData,
+							success: function(data) {
+								//console.log(data);
+								if (data['code'] == 200) {
+									var dataList = data['body']['list'];
+									var dataListL = dataList.length;
+									var dataListStr = '';
+									for (var i = 0; i < dataListL; i++) {
+										//console.log(dataList[i]['market'])
+										var marketPair = dataList[i]['market'].split('_');
+										var marketPairB = marketPair[0].toUpperCase();
+										var marketPairA = marketPair[1].toUpperCase();
+										var marketTypeS;
+										var marketStatus;
+										var marketClass;
+										var addTime = format(dataList[i]['addtime']);
+										if (dataList[i]['type'] == 1) {
+											marketTypeS = lan11;
+											marketClass = 'redRed';
+										} else {
+											marketTypeS = lan12;
+											marketClass = 'greenGreen';
+										}
+										if (dataList[i]['status'] == 0) {
+											marketStatus = lan22c;
+										}
+										if (dataList[i]['status'] == 1) {
+											marketStatus = lan22b;
+										}
+										if (dataList[i]['status'] == 2) {
+											marketStatus = lan22a;
+										}
+
+										dataListStr += '<div class="item"><div class="item-con1"><div class="txt1">' + Number(dataList[i][
+												'price'
+											]).toFixed(roundSix) + ' ' + marketPairA + '</div><div class="txt2">' + addTime +
+											'</div></div><div class="item-con2"><div class="txt1"><span id="trade-num1"></span>' + Number(dataList[
+												i]['num']).toFixed(
+												roundSix) + marketPairB + '</div><div class="txt2"><span id="trade-suc1"></span>' + Number(dataList[i]
+												['deal']).toFixed(roundSix) +
+											'</div></div><div class="item-con3"><div class="txt1"><i class="orange ' + marketClass + '">' +
+											marketTypeS + '</i></div><div class="txt2">' + marketStatus + '</div></div></div>';
+									}
+									//console.log(marketType,'wositype')
+									if (marketType == 1) {
+										$(".list3-4n").html(dataListStr);
+									} else {
+										$(".list3-4h").html(dataListStr);
+									}
+
+								}
+							},
+							error: function(data) {
+								console.log(data);
+							}
+						});
+						clearTimeout(timerShi1);
+						//console.log(timerShi1,'定时器')
+						timerShi1 = setTimeout(function() {
+							agencyTrade1(marketDouble, marketType)
+						}, 5000);
+					}
+					//当前委托，历史委托            
+					//用户资产显示           
+					//console.log(chargePair);
+					var sendDataCoin = {
+						ltoken: lToken,
+						market: chargePair
+					};
+					var userFinanceTimer;
+
+					function userFinance(sendData) {
+						var sendDataArr = sendData.market.split('_');
+						var sendDataB = sendDataArr[0].toUpperCase();
+						var sendDataA = sendDataArr[1].toUpperCase();
+						console.log('sendDataB1--------->'+sendDataB)
+						$.ajax({
+							url: httpHead + "Wap/Ajax/getEntrustAndUsercoin",
+							type: "post",
+							data: sendData,
+							success: function(data) {
+								if (data['code'] == 200) {
+									$('.userInfo2 .userInfoTwo').html(data['body']['usercoin']['xnb'] + '<i>' + sendDataB + '</i>');
+									$('.userInfo2 .userInfoThree').html(data['body']['usercoin']['xnbd'] + '<i>' + sendDataB + '</i>');
+									$('.userInfo1 .userInfoTwo').html(data['body']['usercoin']['cny'] + '<i>' + sendDataA + '</i>');
+									$('.userInfo1 .userInfoThree').html(data['body']['usercoin']['cnyd'] + '<i>' + sendDataA + '</i>');
+									// $('.userInfo3 .red').html(data['body']['sumCoin'] + '<i>BDB</i>');
+									$('.li5 .li5-s').html(data['body']['buy_shouxufee'] + '%');
+									$('.li5 .li5-ss').html(data['body']['sell_shouxufee'] + '%');
+									$('.li5 .li5-d').html(sendDataA);
+									console.log('sendDataB2--------->'+sendDataB)
+									$('.li5 .li5-dd').html(sendDataB);
+								}
+							},
+							error: function(datas) {
+								console.log(datas);
+							}
+						});
+						clearTimeout(userFinanceTimer);
+						userFinanceTimer = setTimeout(function() {
+							userFinance(sendData)
+						}, 3000);
+					}
+					//用户资产显示
+					userFinance(sendDataCoin);
+
+					//立即购买
+					$('.btn-red').on('click', function() {
+						var tradeType = $(this).attr('data-typ');
+						inputCheck1($('.entrust-buy-price'), $('.entrust-buy-num'), tradeType, lToken, $('.entrust-buy-password'));
+					});
+					$('.btn-green').on('click', function() {
+						var tradeType = $(this).attr('data-type');
+						inputCheck1($('.entrust-sell-price'), $('.entrust-sell-num'), tradeType, lToken, $('.entrust-sell-password'));
+					})
+					//立即购买
+
+				} else {
+					console.log('请先登录');
+					$('.loginTips').show();
+					$('.userInfo').hide();
+					$(".loginTips").on('click', function() {
+						mui.openWindow({
+							url: 'login.html',
+							id: 'login.html',
+							styles: {
+								top: '0', //新页面顶部位置
+								bottom: '0', //新页面底部位置
+							},
+							waiting: {
+								autoShow: false
+							},
+							show: {
+								autoShow: true //页面loaded事件发生后自动显示，默认为true
+							}
+						})
+					});
+					$('.btn-red, .btn-green').on('click', function() {
+						layer.msg(lan2010, {
+							icon: 2,
+							shift: 5
+						});
+					});
+				}
+
+				//bdb买卖档位
+
+				if (chargePair.split('_')[1] == 'bdb') {
+					bdbTradeLevel(chargePair);
+				} else {
+					tradeLevel(chargePair);
+				}
+
+				function bdbTradeLevel(maketDouble) {
+					//console.log(maketDouble)
+					$.ajax({
+						url: httpHead + 'Wap/Ajax/getDepth',
+						type: 'post',
+						data: {
+							market: maketDouble,
+							t: '1.23451'
+						},
+						success: function(data) {
+							$('.money').css('display', 'block');
+							data = JSON.parse(data);
+							//console.log(data)
+							if (data) {
+								var dataStrBuy = '';
+								var dataStrSell = '';
+								if (data['depth']['buy'] != '') {
+									var dataBuy = data['depth']['buy'].reverse();
+									var dataBuyL = dataBuy.length;
+									for (var i = 0; i < dataBuyL; i++) {
+										dataStrBuy += '<li><span class="sp1"><i class="green"><span id="trade-buy"></span>' + (i + 1) +
+											'</i></span>	<span class="sp2">' +
+											dataBuy[i][0] + '</span><span class="sp3">' + dataBuy[i][1] + '</span></li>';
+									}
+								}
+								if (data['depth']['sell'] != '') {
+									var dataSell = data['depth']['sell'];
+									var dataSellL = dataSell.length;
+									for (var i = dataSellL; i > 0; i--) {
+										dataStrSell += '<li><span class="sp1"><i class="red"><span id="trade-sell"></span>' + i +
+											'</i></span>	<span class="sp2">' +
+											dataSell[i - 1][0] + '</span><span class="sp3">' + dataSell[i - 1][1] + '</span></li>';
+									}
+								}
+								$('.selllist').html(dataStrSell);
+								$('.buylist').html(dataStrBuy);
+
+							}
+						},
+						error: function(data) {
+							console.log(data)
+						}
+					});
+					clearTimeout(bdbTradeLTime);
+					bdbTradeLTime = setTimeout(function() {
+						bdbTradeLevel(maketDouble)
+					}, 5000);
+				}
+
+				//bdb买卖档位
+
+				//其他交易所买卖档位							
+				//tradeLevel(chargePair); 
+				function tradeLevel(maketDouble) {
+					//console.log(maketDouble)
+					$.ajax({
+						url: 'https://jys.hedu.mobi/Wap/Ajaxmarket/depth',
+						type: 'post',
+						data: {
+							market: maketDouble
+						},
+						success: function(data) {
+							$('.money').css('display', 'block');
+							//console.log(data);
+							var len = data.length;
+							if (len == 0) return;
+							var selll = data['sell'].length;
+							var buyl = data['buy'].length;
+							var buylist = '';
+							var selllist = '';
+							if (selll > 0) {
+								for (var i = selll; i > 0; i--) {
+									var price1 = data['sell'][i - 1]['price'];
+									var str3 = String(price1).split('.');
+									if (str3.length > 1) {
+										if (str3[1].length > 6) {
+											price1 = str3[0] + '.' + str3[1].substring(0, 6);
+										}
+									}
+									var num1 = data['sell'][i - 1]['num'];
+									var str4 = String(num1).split('.');
+									if (str4.length > 1) {
+										if (str4[1].length > 6) {
+											num1 = str4[0] + '.' + str4[1].substring(0, 6);
+										}
+									}
+									selllist += '<li><span class="sp1"><i class="red"><span id="trade-sell1"></span>' + i +
+										'</i></span>	<span class="sp2">' + price1 +
+										'</span><span class="sp3">' + num1 + '</span></li>'
+								}
+								$('.selllist').html(selllist);
+
+							}
+							if (buyl > 0) {
+								for (var j = 0; j < buyl; j++) {
+									var price5 = data['buy'][j]['price'];
+									var str5 = String(price5).split('.');
+									if (str5.length > 1) {
+										if (str5[1].length > 6) {
+											price5 = str5[0] + '.' + str5[1].substring(0, 6);
+										}
+									}
+									var num6 = data['buy'][j]['num'];
+									var str6 = String(num6).split('.');
+									if (str6.length > 1) {
+										if (str6[1].length > 6) {
+											num6 = str6[0] + '.' + str6[1].substring(0, 6);
+										}
+									}
+
+									buylist += '<li><span class="sp1"><i class="green"><span id="trade-buy1"></span>' + (j + 1) +
+										'</i></span><span class="sp2">' +
+										price5 + '</span><span class="sp3">' + num6 + '</span></li>'
+								}
+								$('.buylist').html(buylist);
+							}
+						},
+						error: function(data) {
+							console.log(data);
+						}
+					})
+					clearTimeout(tradeLevelTimer);
+					tradeLevelTimer = setTimeout(function() {
+						tradeLevel(maketDouble)
+					}, 5000);
+				}
+
+				//点击买卖档位 数据自动填充到交易页面上            
+				$('.data-list').on('click', 'li', function() {
+					$('.data-list li').css('background', '#fff');
+					$(this).css('background', '#eee');
+					//买入页面
+					if ($('#tabBox1 .hd ul li:first-child').hasClass('on')) {
+						$('.entrust-buy-price').val($(this).find('.sp2').text());
+						$('.entrust-buy-num').val($(this).find('.sp3').text());
+						$('.entrust-buy-mum').val(multiplication($('.entrust-buy-price').val(), $('.entrust-buy-num').val()));
+						// 卖出页面 初始化
+						$('.entrust-sell-price').val('');
+						$('.entrust-sell-num').val('');
+						$('.entrust-sell-mum').val('');
+						$('.li5 .li5-m').html('0');
+						var shouXuF = Number($('.li5 .li5-s').html().split('%')[0]) / 100;
+						$('.li5 .li5-mm').html(multiplication($('.entrust-buy-num').val(), shouXuF));
+					}
+					//卖出页面
+					if ($('#tabBox1 .hd ul li:nth-child(2)').hasClass('on')) {
+						$('.entrust-sell-price').val($(this).find('.sp2').text());
+						$('.entrust-sell-num').val($(this).find('.sp3').text());
+						$('.entrust-sell-mum').val(multiplication($('.entrust-sell-price').val(), $('.entrust-sell-num').val()));
+						// 买入页面 初始化
+						$('.entrust-buy-price').val('');
+						$('.entrust-buy-num').val('');
+						$('.entrust-buy-mum').val('');
+						$('.li5 .li5-mm').html('0');
+						var shouXuF = Number($('.li5 .li5-ss').html().split('%')[0]) / 100;
+						$('.li5 .li5-m').html(multiplication($('.entrust-sell-num').val(), shouXuF));
+					}
+				})
+				//买卖档位
+
+				//计算总计
+				$('.entrust-buy-price, .entrust-buy-num').bind('input', function() {
+					var entrustNum = $('.entrust-buy-num').val();
+					var buyShou = Number($('.li5 .li5-s').html().split('%')[0]) / 100;
+					if (entrustNum != '') {
+						$('.li5 .li5-mm').html(multiplication(entrustNum, buyShou));
+					} else {
+						$('.li5 .li5-mm').html(0);
+					}
+					//console.log($('.entrust-buy-num').val())
+					totalAll($('.entrust-buy-price'), $('.entrust-buy-num'), $('.entrust-buy-mum'));
+				});
+				$('.entrust-sell-price, .entrust-sell-num').bind('input', function() {
+					totalAll($('.entrust-sell-price'), $('.entrust-sell-num'), $('.entrust-sell-mum'));
+					if ($('.entrust-sell-mum').val() != '') {
+						var buyShou = Number($('.li5 .li5-ss').html().split('%')[0]) / 100;
+						$('.li5 .li5-m').html(multiplication($('.entrust-sell-mum').val(), buyShou));
+					} else {
+						$('.li5 .li5-m').html(0);
+					}
+				});
+				//计算总计
+				//输入校验函数
+				function inputCheck(price, num, tradeType, ltoken) {
+					//console.log(tradeType)
+					var priceTwo = price.val();
+					var numTwo = num.val();
+					var totalAll;
+					var sendData;
+					var chargePairOne = $('.arrow-down').html().split('/');
+					var chargePair = chargePairOne[0].toLowerCase() + '_' + chargePairOne[1].toLowerCase();
+					if (priceTwo === '') {
+						layer.tips('请输入金额！', price, {
+							tips: 3
+						});
+						return false;
+					}
+					if (numTwo === '') {
+						layer.tips('请输入数量！', num, {
+							tips: 3
+						});
+						return false;
+					}
+					if (tradeType === '1') {
+						totalAll = $('.entrust-buy-mum').html();
+					}
+					if (tradeType === '2') {
+						totalAll = $('.entrust-sell-mum').html();
+					}
+					//      sendData = 'price='+priceTwo+'&num='+numTwo+'&total='+totalAll;
+					sendData = {
+						ltoken: ltoken,
+						price: priceTwo,
+						num: numTwo,
+						market: chargePair,
+						type: tradeType
+					}
+					//console.log(sendData);
+					//这里添加接口
+					$.ajax({
+						url: httpHead + 'Wap/Trade/upTrade',
+						type: 'post',
+						data: sendData,
+						success: function(data) {
+							if (data['code'] == 200) {
+								layer.msg(data['result'], {
+									icon: 1,
+									shift: 5
+								});
+							} else {
+								layer.msg(data['result'], {
+									icon: 2,
+									shift: 5
+								});
+							}
+						},
+						error: function(data) {
+							console.log(data);
+						}
+					})
+					//这里添加接口
+				}
+				//计算总计
+				//输入校验函数
+				function inputCheck1(price, num, tradeType, ltoken, password) {
+					// console.log(password)
+					var priceTwo = price.val();
+					var numTwo = num.val();
+					var paypassword = password.val();
+					var totalAll;
+					var sendData;
+					var chargePairOne = $('.arrow-down').html().split('/');
+					var chargePair = chargePairOne[0].toLowerCase() + '_' + chargePairOne[1].toLowerCase();
+					if (priceTwo === '') {
+						layer.tips(lan2006, price, {
+							tips: 3
+						});
+						return false;
+					}
+					if (numTwo === '') {
+						layer.tips(lan2007, num, {
+							tips: 3
+						});
+						return false;
+					}
+					if (paypassword === '') {
+						layer.tips(lan2008, password, {
+							tips: 3
+						});
+						return false;
+					}
+					if (tradeType === '1') {
+						totalAll = $('.entrust-buy-mum').html();
+					}
+					if (tradeType === '2') {
+						totalAll = $('.entrust-sell-mum').html();
+					}
+					//      sendData = 'price='+priceTwo+'&num='+numTwo+'&total='+totalAll;
+					sendData = {
+						ltoken: ltoken,
+						price: priceTwo,
+						num: numTwo,
+						market: chargePair,
+						type: tradeType,
+						paypassword: paypassword
+					}
+					// console.log(sendData);
+					//这里添加接口
+					$.ajax({
+						url: httpHead + 'Wap/Trade/upTrade',
+						type: 'post',
+						data: sendData,
+						success: function(data) {
+							if (data['code'] == 200) {
+								layer.msg(data['result'], {
+									icon: 1,
+									shift: 5
+								});
+							} else {
+								layer.msg(data['result'], {
+									icon: 2,
+									shift: 5
+								});
+							}
+						},
+						error: function(data) {
+							console.log(data);
+						}
+					})
+					//这里添加接口
+				}
+
+				//输入校验函数
+				//计算总计函数
+				function totalAll(price, num, total) {
+					var priceOne = price.val();
+					var numOne = num.val();
+					var buyTotal;
+					if (priceOne !== '' && numOne !== '') {
+						buyTotal = multiplication(priceOne, numOne);
+						total.val(buyTotal);
+					} else {
+						total.val(0);
+					}
+				}
+				//计算总计函数
+				//js运算乘法bug函数
+				function multiplication(arg1, arg2) {
+					var m = 0,
+						s1 = arg1.toString(),
+						s2 = arg2.toString();
+					try {
+						m += s1.split(".")[1].length
+					} catch (e) {}
+					try {
+						m += s2.split(".")[1].length
+					} catch (e) {}
+					return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m);
+				}
+				//js运算乘法bug
+				// 时间戳转日期
+				function add0(m) {
+					return m < 10 ? '0' + m : m
+				}
+
+				function format(shijianchuo) {
+					shijianchuo = shijianchuo * 1000;
+					//shijianchuo是整数，否则要parseInt转换
+					var time = new Date(shijianchuo);
+					var y = time.getFullYear();
+					var m = time.getMonth() + 1;
+					var d = time.getDate();
+					var h = time.getHours();
+					var mm = time.getMinutes();
+					var s = time.getSeconds();
+					//console.log(y,'hahah')
+					return add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm);
+				}
+				// 时间戳转日期
+			})
+		</script>
+	</body>
+
+</html>

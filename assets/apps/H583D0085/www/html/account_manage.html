@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<style>
+		.face{
+		display:none;
+	}
+	.face a{
+		width:100%;
+		height:100%;
+	}
+	.face a img{
+		width:100%;
+		height:100%;
+	}
+	.page22 .list .center h3{
+		font-size:0.3rem;
+	}
+</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>账号管理</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page22">
+		<div class="list">
+			<div class="item">
+				<div class="face"><a href=""><img src="" alt=""></a></div>
+				<div class="center">
+					<h3>登录账号</h3>
+					<p></p>
+				</div>
+				<!--<img src="images/icon-checked.png" alt="" class="icon-checked">-->
+			</div>
+		</div>
+		<div class="g-operate"><input type="submit" value="注销登录" class="btn"></div>
+
+
+
+	</section>
+
+
+
+
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			if (localStorage.ltoken) {
+				//域名
+				var httpHead = 'https://jys.hedu.mobi/';
+				//域名
+				//用户ltoken
+				var lToken = localStorage.ltoken;
+				//用户ltoken
+				//获取用户信息
+				$.ajax({
+					url: httpHead + 'Wap/User/index',
+					type: 'post',
+					data: { ltoken: lToken },
+					success: function (data) {
+						console.log(data)
+						$('.face').show();
+						$('.face img').attr('src', httpHead + data['body']['header_pic']);
+						$('.center p').html(data['body']['username']);
+					},
+					error: function (data) {
+						console.log(data)
+					}
+				})
+				//获取用户信息
+
+				$('.btn').on('click', function () {
+					localStorage.clear();
+					var propertyStock = plus.webview.getWebviewById('stock_goods.html');
+					var propertyStockOne = plus.webview.getWebviewById('my_property.html');
+					var propertyStockTwo = plus.webview.getWebviewById('mine.html');
+					var propertyStockThree = plus.webview.getWebviewById('c2c_trade.html');
+					//触发界面的自定义事件（refresh）,从而进行数据刷新  
+					mui.fire(propertyStock, 'refresh');
+					mui.fire(propertyStockOne, 'refresh');
+					mui.fire(propertyStockTwo, 'refresh');
+					mui.fire(propertyStockThree, 'refresh');
+					mui.back();
+				});
+			}
+
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		header {
+			background: #ff574f;
+			height: 4rem;
+		}
+
+		header h3 {
+			font-size: 0.4rem;
+		}
+
+		header .txtRight {
+			font-size: 0.32rem;
+			color: rgba(255, 255, 255, 0.8);
+		}
+
+		.wrap {
+			margin-top: 0.98rem;
+			position: relative;
+			z-index: 999;
+		}
+
+		/*资金总额*/
+		.coinNumber {
+			width: 90%;
+			height: 5.3rem;
+			margin: 0 auto;
+			background: #fff;
+			overflow: hidden;
+		}
+
+		.coinNumber>div {
+			text-align: center;
+			margin-top: 28%;
+			color: #333;
+		}
+
+		.coinNumber>div p {
+			font-size: 0.38rem;
+			margin-bottom: 0.05rem;
+		}
+
+		.coinNumber>div h1 {
+			font-size: 0.6rem;
+		}
+
+		/*充值方式*/
+		.addStyle {
+			width: 90%;
+			height: 1.8rem;
+			border-radius: 0.1rem;
+			-webkit-border-radius: 0.1rem;
+			-moz-border-radius: 0.1rem;
+			background: #ff625b;
+			margin: 0 auto;
+			margin-top: 0.3rem;
+			padding-top: 0.4rem;
+			box-sizing: border-box;
+		}
+
+		.addStyle a>div:first-child {
+			float: left;
+			margin-left: 0.2rem;
+		}
+
+		.addStyle a>div:first-child p {
+			font-size: 0.32rem;
+			color: #fff;
+			margin-bottom: 0.2rem;
+		}
+
+		.addStyle a>div:first-child span {
+			font-size: 0.3rem;
+			color: rgba(255, 255, 255, 0.5);
+		}
+
+		.addStyle a>div:last-child {
+			float: right;
+			margin-right: 0.3rem;
+		}
+
+		.addStyle a>div:last-child img {
+			width: 0.6rem;
+			margin-top: 0.18rem;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>
+			<div class="lan89"></div><span class="href-bi"></span>
+		</h3>
+		<a href="javascript:void(0)" class="txtRight">
+			<div class="lan153"></div>
+		</a>
+	</header>
+	<!-- <div class="h98"></div> -->
+
+	<section class="wrap">
+		<div class="coinNumber">
+			<div>
+				<p></p>
+				<h1></h1>
+			</div>
+		</div>
+
+		<div class="addStyle addStyle1">
+			<a href="javascript:void(0)">
+				<div>
+					<p>汇入地址充值</p>
+					<span>虚拟币地址转入，扫码转账充值</span>
+				</div>
+				<div>
+					<img src="../imgs/erweima.png" alt="汇入地址充值">
+				</div>
+			</a>
+		</div>
+		<div class="addStyle addStyle2" style="background:#6d82ff;">
+			<a href="javascript:void(0)">
+				<div>
+					<p>充值码充值</p>
+					<span>仅用于平台转账，无手续费</span>
+				</div>
+				<div>
+					<img src="../imgs/chongzhima.png" alt="充值码充值">
+				</div>
+			</a>
+		</div>
+	</section>
+
+
+
+
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			//console.log(location.href.split('?')[1].split('&'))
+			var href = location.href.split('?')[1].split('&');
+			var hrefBiE = href[0];
+			var hrefBiC = href[2];
+			var hrefBiM = href[1];
+			console.log(unescape(hrefBiC))
+			$('.coinNumber div p').html(hrefBiE + ' ' + decodeURI(decodeURI(hrefBiC, "UTF-8")));
+			$('.coinNumber h1').html(hrefBiM);
+			$('.addStyle1').on('click', function () {
+				location.href = 'addressAdd.html?' + hrefBiE;
+			});
+			$('.addStyle2').on('click', function () {
+				location.href = 'codeAdd.html?' + hrefBiE;
+			});
+			$(".txtRight").on('click', function () {
+				location.href = 'add-record.html?' + hrefBiE;
+			})
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+
+	<style>
+		/*检查更新*/
+		.check-update {
+			transform: rotate(360deg);
+			-webkit-transition: all 1s ease-in-out;
+			-moz-transition: all 1s ease-in-out;
+			-ms-transition: all 1s ease-in-out;
+			-o-transition: all 1s ease-in-out;
+			transition: all 1s ease-in-out;
+		}
+
+		a:active,
+		a:hover,
+		a:focus {
+			color: #333;
+		}
+
+		body .layui-layer-setmybg .layui-layer-content {
+			background: rgb(0, 201, 0);
+			color: #fff;
+			border: none;
+		}
+
+		#check-update {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:mui.back();" class="back"></a>
+		<h3>
+			<div class="lan194"></div>
+		</h3>
+	</header>
+	<div class="h98"></div>
+	<section class="wrap page5">
+		<div class="panel">
+			<img src="../images/logo.png" alt="" class="logo">
+			<p>当前版本:1.0</p>
+		</div>
+		<ul class="list">
+			<li><a href="company_intruduce.html" class="arrow-right"><img style="width:0.4rem;height:0.4rem;margin-left:0.04rem;"
+					 src="../imgs/compony-zhu.png" alt="">公司简介</a></li>
+			<li><a href="agreement.html" class="arrow-right"><img src="../images/icon52.png" alt="">协议与声明</a></li>
+			<!--<li><a href="idea_back.html" class="arrow-right"><img src="../images/icon53.png" alt="">意见反馈</a></li>-->
+			<li><a href="javascript:void(0);" class="arrow-right arrow-right-clear"><img src="../images/icon54.png" alt="">清除缓存</a></li>
+			<li id="check-update"><img src="../images/icon55.png" alt="">检查更新<span></span></li>
+		</ul>
+	</section>
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		$(function () {
+			$('.arrow-right-clear').on('click', function () {
+				if (localStorage) {
+					localStorage.clear();
+					layer.msg('已清除缓存', { shift: 5 });
+				}
+			});
+			var clickIndex = 0;
+			$('#check-update').on('click', function () {
+				if (clickIndex == 0) {
+					$('#check-update img').addClass('check-update');
+					layer.msg('好赞，当前已是最新版本', { shift: 5 });
+					clickIndex = 1;
+				} else {
+					layer.msg('已是最新版本', { shift: 5 });
+				}
+
+			})
+		});
+	// $('#check-update').on('click', function(){
+	//     $(this).addClass('check-update');
+	//     var thisElement = $(this);
+	//     setTimeout(function(){
+	//         $(thisElement).removeClass('check-update')
+	// 	},1000);
+	// })
+	</script>
+</body>
+
+</html>

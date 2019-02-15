@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/askAnswer.css">
+	<link rel="stylesheet" type="text/css" href="../css/zfb_pay.css" />
+	<link rel="stylesheet" type="text/css" href="../css/zfb_czrd.css" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+	<meta name="imagemode" content="force">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="apple-touch-icon-precomposed" href="">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="-1">
+	<script src="../js/languge/languge.js"></script>
+	<style>
+		/*绑定成功信息*/
+       .identify-info li{
+       		display:flex;
+       		justify-content: space-between;
+       		padding:0 0.2rem;
+       		background:#fff;
+       		font-size:0.28rem;
+       		height:0.8rem;
+       		line-height: 0.8rem;
+       		color:#999;
+       }
+       .identify-info .identify-img{
+       		height:auto;
+       		padding:0 0.2rem;
+       }
+       .identify-info .identify-img img{
+       		width:3rem;
+       		height:3rem;
+       }
+       .identify-info .kong{
+   		    height: 0.3rem;
+			background: #eee;
+       }
+       .btn1{
+       	    width: 96%;
+		    display: block;
+		    margin: 0.6rem auto;
+		    height: 0.9rem;
+		    background: #ff564f;
+		    color: #fff;
+		    border: 1px solid #ff564f;
+		    -webkit-border-radius: 0.1rem;
+		    -moz-border-radius: 0.1rem;
+		    border-radius: 0.1rem;
+		    font-size: 0.32rem;
+       }
+       section{display:none;}
+</style>
+</head>
+
+<body>
+	<header>
+		<a href="javascript:history.back();" class="back"></a>
+		<h3>绑定支付宝</h3>
+	</header>
+	<div class="h98"></div>
+
+	<section class="wrap page21">
+		<div id="" class="tabBoxLine">
+			<div class="bd" id="tabBox1-bd">
+				<!-- 绑定支付宝 begin -->
+
+				<div class="con submitDiv">
+
+
+					<div class="coinMessage">
+
+						<div class="openMessage">
+
+							<div class="mes1">
+								<span>支付宝姓名</span>
+								<input type="text" class="tradeId" placeholder="请填写支付宝账号持有人姓名" name="pay_name" id="pay_name">
+							</div>
+
+							<div class="mes1">
+								<span>支付宝账号</span>
+								<input type="text" class="tradeId" placeholder="请输入您要绑定的支付宝账号" id="ali_name" name="ali_name">
+							</div>
+
+							<div class="mes1">
+								<span>资金密码</span>
+								<input type="password" class="tradeId" name="fund_pwd_wei" placeholder="请输入您的资金密码" id="fund_pwd_ali">
+							</div>
+
+							<div class="ws_zfb_pay">
+								<p class="title zfb_pay-p">上传支付二维码：</p>
+								<p class="zfb_pay-p">
+									<img src="../imgs/file.png" />
+									<input type="file" class="upload-img upload-img1" value="选择图片" name="file">
+								</p>
+
+							</div>
+						</div>
+					</div>
+					<!--提交按钮-->
+					<div class="submitBtn">确任绑定</div>
+
+				</div>
+
+				<!-- /绑定支付宝 end -->
+			</div>
+		</div>
+
+	</section>
+	<section id="identity-after">
+		<div class="identify">
+			<ul class="identify-info">
+
+				<li>
+					<span>
+						<div class="lan70"></div>
+					</span>
+					<span class="name"></span>
+				</li>
+				<li>
+					<span>支付宝账号</span>
+					<span class="num"></span>
+				</li>
+				<li class='kong'></li>
+				<li>
+					<span>支付二维码</span>
+					<span></span>
+				</li>
+				<li class="identify-img">
+					<img class="erweima" src="" alt="" />
+				</li>
+				<!--<li class='kong'></li>-->
+			</ul>
+			<button id="re-bind" type="button" class="mui-btn mui-btn-red btn1">重新绑定</button>
+		</div>
+	</section>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/languge/languge.js"></script>
+	<script src="../js/slide.js"></script>
+	<script src="../js/main.js"></script>
+	<script src="../layer/layer.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" src="../js/zfb_czrd.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../css/mui.picker.all.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/askAnswer.css">
+	<link rel="stylesheet" type="text/css" href="../css/zfb_pay.css" />
+    <link rel="stylesheet" type="text/css" href="../css/zfb_czrd.css" />
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="imagemode" content="force">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="apple-touch-icon-precomposed" href="">
+    <!--<link rel="stylesheet" href="css/mui.picker.min.css">
+	<link rel="stylesheet" href="css/mui.poppicker.css">-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/languge/languge.js"></script>
+</head>
+<style type="text/css">
+    .page14 .box .pb80 {
+        padding-bottom: 0;
+    }
+
+    .bank-quan {
+        border: solid red 2px;
+    }
+
+    #bank_result {
+        display: none;
+        color: #999999;
+        margin-left: 0;
+    }
+
+    .page14 .box input[type=password] {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        margin-left: .3rem;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <header>
+        <a href="javascript:history.back();" class="back"></a>
+        <h3>添加银行卡</h3>
+    </header>
+    <div class="h98"></div>
+
+
+
+    <section class="wrap page14">
+        <div class="title">请添加本人银行卡</div>
+        <ul class="box box1">
+            <li>
+                <span class="tt"><i class="e1">姓</i><i class="e1"></i>名</i></span>
+                <input type="text" value="" placeholder="请输入银行卡姓名" class="user">
+            </li>
+            <li>
+                <span class="tt">开户银行</span>
+                <input type="text" onfocus="this.blur();" placeholder="请选择开户银行" class="bank-name">
+
+            </li>
+            <li>
+                <span class="tt">开户支行</span>
+                <input type="text" placeholder="请填写正确的开户行所在地" class="bank-quan">
+            </li>
+            <li>
+                <span class="tt">银行卡号</span>
+                <input type="text" value="" placeholder="请输入银行卡号" class="bank_no">
+            </li>
+
+
+        </ul>
+        <ul class="box box1">
+            <li>
+                <span class="tt">资金密码</span>
+                <input type="password" value="" placeholder="请输入资金密码号" class="tel" />
+            </li>
+        </ul>
+        <div class="submitBtn">立即添加</div>
+
+
+        <!-- <div class="g-operate"><input type="submit" value="确认添加" class="btn"></div> -->
+    </section>
+
+
+
+
+    <script src="../js/slide.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/mui.picker.min.js"></script>
+    <script src="../js/mui.poppicker.js"></script>
+    <!--<script src="js/data.city.js"></script>-->
+    <script src="../js/city.data.js"></script>
+    <script src="../js/city.data-3.js"></script>
+    <script src="../layer/layer.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/bank.js"></script>
+    <script>
+        $(function () {
+
+            //域名
+            var httpHead = 'https://jys.hedu.mobi/';
+
+            mui.init();
+            window.addEventListener('refresh_bank_name', function (e) {
+                //在父页面中添加监听事件，刷新页面
+                var bank_name = event.detail.bank_name;
+                $('.bank-name').val(bank_name);
+                // location.reload();
+            });
+
+            $('.bank-name').on('click', function () {
+                mui.openWindow({
+                    url: 'bank_name.html',
+                    id: 'bank_name.html',
+                    extras: {
+                        fromPage: 'add_backcard.html'  //扩展参数
+                    },
+                    styles: {
+                        top: '0',//新页面顶部位置
+                        bottom: '0',//新页面底部位置
+                    },
+                    waiting: {
+                        autoShow: false
+                    },
+                    show: {
+                        autoShow: true//页面loaded事件发生后自动显示，默认为true
+                    }
+                });
+            });
+            //确认添加银行卡
+            $('.submitBtn').on('click', function () {
+                var bankUser = $('.user').val();
+                var bankName = $('.bank-name').val();
+                var bankBranch = $('.bank-quan').val();
+                var bankNo = $('.bank_no').val();
+                var password = $('.tel').val();
+
+                if (bankUser == '' || bankUser == null) {
+                    layer.tips('请输入持卡人的姓名', '.user', { tips: [3, '#FFA235'] });
+                    return false;
+                }
+                // bankName = '交通银行'
+                if (bankName == '' || bankName == null) {
+                    layer.tips('请选择开户银行', '.bank-name', { tips: [3, '#FFA235'] });
+                    return false;
+                }
+                if (bankBranch == '' || bankBranch == null) {
+                    layer.tips("请输入开户行全称", '.bank-quan', { tips: [3, '#FFA235'] });
+                    return false;
+                }
+                if (bankNo == '' || bankNo == null) {
+                    layer.tips("请输入银行卡号", '.bank_no', { tips: [3, '#FFA235'] });
+                    return false;
+                }
+                if (password == '' || password == null) {
+                    layer.tips("请输入资金密码", '.tel', { tips: [3, '#FFA235'] });
+                    return false;
+                }
+
+                var sendData = {
+                    ltoken: localStorage.ltoken,
+                    bank_user: bankUser,
+                    bank_name: bankName,
+                    bank_branch: bankBranch,
+                    bank_addr: bankNo,
+                    fund_pwd_bank: password,
+                }
+                $.ajax({
+                    type: "post",
+                    url: httpHead + 'Wap/User/bind_bank',
+                    data: sendData,
+                    success: function (data) {
+                        if (data.code == "200") {
+                            layer.msg('添加成功', { icon: 1, shift: 5 });
+                            setTimeout(function () { history.back() }, 3000);
+                        } else {
+                            layer.msg(data['result'], { icon: 2, shift: 5 });
+                        }
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+
+
+
+
+            })
+            //确认选择添加银行卡
+
+
+        });
+
+    </script>
+</body>
+
+</html>
